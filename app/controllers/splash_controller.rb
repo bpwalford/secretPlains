@@ -4,7 +4,7 @@ class SplashController < ApplicationController
 
     @userIp = request.remote_ip
 
-    @ipBreakDown = Geocoder.search("76.25.195.243")
+    @ipBreakDown = Geocoder.search(@userIp)
     @Gip = Geocoder.search("128.177.172.2")
 
     @bar = Array.new
