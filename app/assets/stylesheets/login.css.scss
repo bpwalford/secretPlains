@@ -1,0 +1,64 @@
+
+.login {
+
+  margin-top: 8%;
+
+  .login-container {
+
+    position: relative;
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+    }
+    &:before {
+      top: -3px;
+      left: -3px;
+      bottom: 0;
+      right: -3px;
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(192, 192, 192)), to(transparent));
+      background-image: -webkit-linear-gradient(rgb(192, 192, 192), transparent);
+      background-image: -moz-linear-gradient(rgb(192, 192, 192), transparent);
+      background-image: -o-linear-gradient(rgb(192, 192, 192), transparent);
+      z-index: -2;
+    }
+    &:after {
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: white;
+    }
+
+    padding: 3% 10%;
+    border-radius: 10px;
+    // border: solid 1px rgb(238, 238, 238);
+
+    h2 {
+      border-bottom: solid 1px rgb(238, 238, 238);
+      padding-bottom: 5px;
+    }
+
+
+    ::-webkit-input-placeholder {
+      color: rgb(238, 238, 238);
+    }
+
+    .form-control {
+      color: rgb(103, 175, 233);
+  		border-radius: 5px;
+  		font-size: 20px;
+  		height: 50px;
+    }
+
+    .btn-lg {
+      background-color: rgb(238, 238, 238);
+      border-color: rgb(238, 238, 238);
+
+      &:hover {
+        color: rgb(103, 175, 233);
+      }
+    }
+  }
+}

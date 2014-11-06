@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "splash.css.scss";
+@import "login.css.scss";
 
 body {
 
@@ -25,9 +26,10 @@ body {
     background-color: white;
 
    .navbar-brand {
-     
+      color: rgb(238, 238, 238);
+
       &:hover {
-        color: #9ADAFC;
+        color: rgb(103, 175, 233);
       }
     }
   }
