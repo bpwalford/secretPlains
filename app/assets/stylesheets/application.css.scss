@@ -16,4 +16,19 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "splash.css.scss"
+@import "splash.css.scss";
+
+body {
+
+  .navbar {
+    border-color: white;
+    background-color: white;
+
+   .navbar-brand {
+     
+      &:hover {
+        color: #9ADAFC;
+      }
+    }
+  }
+}

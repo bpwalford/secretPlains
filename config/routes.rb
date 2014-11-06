@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root to: 'splash#index', as: :home
+root 'splash#index', as: :root
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

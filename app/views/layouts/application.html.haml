@@ -6,5 +6,11 @@
     =javascript_include_tag 'application', 'data-turbolinks-track' => true
     =csrf_meta_tags
 
+
   %body
+
+    .navbar.navbar-default
+      .navbar-header.pull-right
+        .foo= link_to "login", root_path, class: "navbar-brand"
+
     = yield
