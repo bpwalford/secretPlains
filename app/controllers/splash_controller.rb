@@ -2,6 +2,10 @@ class SplashController < ApplicationController
 
   def index
 
+  end
+
+  def test
+
     @userIp = request.remote_ip
 
     @ipBreakDown = Geocoder.search(@userIp)
