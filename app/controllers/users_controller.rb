@@ -15,7 +15,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: session[:user_id])
+    if !@user
+      redirect_to login_path
+    end
   end
 
   def destroy

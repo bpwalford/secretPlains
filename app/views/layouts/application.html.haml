@@ -16,6 +16,8 @@
         = link_to "about", login_path, class: "navbar-brand"
         |
         -if current_user
+          = link_to "profile", dashboard_path, class: "navbar-brand"
+          |
           = link_to "settings", user_path(current_user), class: "navbar-brand"
           |
           = link_to "logout", logout_path, class: "navbar-brand"
@@ -24,13 +26,5 @@
           |
           = link_to "login", login_path, class: "navbar-brand"
 
-        -# .col-md-3.text-center
-        -#   = link_to "home", root_path, class: "navbar-brand"
-        -# .col-md-3.text-center
-        -#   = link_to "about", login_path, class: "navbar-brand"
-        -# .col-md-3.text-center
-        -#   = link_to "register", login_path, class: "navbar-brand"
-        -# .col-md-3.text-center
-        -#   = link_to "login", login_path, class: "navbar-brand"
     = notice
     = yield
