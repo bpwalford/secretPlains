@@ -5,39 +5,56 @@
 
   .login-container {
 
-    position: relative;
+    // *******************************************************************************************************
+    // position: relative;
+    //
+    // &:before, &:after {
+    //   content: "";
+    //   position: absolute;
+    // }
+    // &:before {
+    //   top: -3px;
+    //   left: -3px;
+    //   bottom: 0;
+    //   right: -3px;
+    //   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(192, 192, 192)), to(transparent));
+    //   background-image: -webkit-linear-gradient(rgb(192, 192, 192), transparent);
+    //   background-image: -moz-linear-gradient(rgb(192, 192, 192), transparent);
+    //   background-image: -o-linear-gradient(rgb(192, 192, 192), transparent);
+    //   z-index: -2;
+    // }
+    // &:after {
+    //   z-index: -1;
+    //   top: 0;
+    //   left: 0;
+    //   bottom: 0;
+    //   right: 0;
+    //   background: white;
+    // }
+    // *******************************************************************************************************
 
-    &:before, &:after {
-      content: "";
-      position: absolute;
-    }
-    &:before {
-      top: -3px;
-      left: -3px;
-      bottom: 0;
-      right: -3px;
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(192, 192, 192)), to(transparent));
-      background-image: -webkit-linear-gradient(rgb(192, 192, 192), transparent);
-      background-image: -moz-linear-gradient(rgb(192, 192, 192), transparent);
-      background-image: -o-linear-gradient(rgb(192, 192, 192), transparent);
-      z-index: -2;
-    }
-    &:after {
-      z-index: -1;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: white;
-    }
+    //  -moz-box-shadow:    inset 0 0 5px #000000;
+    //  -webkit-box-shadow: inset 0 0 5px #000000;
+    //  box-shadow:         inset 0 0 5px #000000;
+
+    // -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    // -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    // box-shadow:  3px 3px 5px 6px #ccc;
+
+    // 	-webkit-box-shadow: 0 8px 6px -6px rgb(238, 238, 238);
+	  //  -moz-box-shadow: 0 8px 6px -6px rgb(238, 238, 238);
+	  //       box-shadow: 0 8px 6px -6px rgb(238, 238, 238);
+
+    background: -webkit-radial-gradient(50% 0%, 50% 5px, #aaa 0%, white 100%);
 
     padding: 3% 10%;
-    border-radius: 10px;
+    // border-radius: 15px;
     // border: solid 1px rgb(238, 238, 238);
 
     h2 {
       border-bottom: solid 1px rgb(238, 238, 238);
       padding-bottom: 5px;
+      margin-bottom: 12%;
     }
 
 
@@ -49,12 +66,15 @@
       color: rgb(103, 175, 233);
   		border-radius: 5px;
   		font-size: 20px;
-  		height: 50px;
+  		height: 60px;
     }
 
     .btn-lg {
       background-color: rgb(238, 238, 238);
       border-color: rgb(238, 238, 238);
+      margin-top: 12%;
+      width: 25%;
+      font-weight: 900;
 
       &:hover {
         color: rgb(103, 175, 233);
