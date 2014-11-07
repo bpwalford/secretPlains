@@ -46,6 +46,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
 
+gem 'faker'
+
 group :development do
   gem 'pry'
 end

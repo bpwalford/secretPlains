@@ -1,0 +1,2 @@
+%h1= @user.email
+.btn.btn-danger= link_to "delete account", @user, method: :delete, data: {confirm: 'are you sure?'}

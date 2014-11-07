@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Secret Plains
+    %title secretPlains
     =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     =javascript_include_tag 'application', 'data-turbolinks-track' => true
     =csrf_meta_tags
@@ -11,6 +11,26 @@
 
     .navbar.navbar-default
       .navbar-header.pull-right
-        = link_to "login", login_path, class: "navbar-brand"
+        = link_to "home", root_path, class: "navbar-brand"
+        |
+        = link_to "about", login_path, class: "navbar-brand"
+        |
+        -if current_user
+          = link_to "settings", user_path(current_user), class: "navbar-brand"
+          |
+          = link_to "logout", logout_path, class: "navbar-brand"
+        -else
+          = link_to "register", new_user_path, class: "navbar-brand"
+          |
+          = link_to "login", login_path, class: "navbar-brand"
 
+        -# .col-md-3.text-center
+        -#   = link_to "home", root_path, class: "navbar-brand"
+        -# .col-md-3.text-center
+        -#   = link_to "about", login_path, class: "navbar-brand"
+        -# .col-md-3.text-center
+        -#   = link_to "register", login_path, class: "navbar-brand"
+        -# .col-md-3.text-center
+        -#   = link_to "login", login_path, class: "navbar-brand"
+    = notice
     = yield
