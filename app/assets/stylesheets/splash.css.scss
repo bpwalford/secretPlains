@@ -14,78 +14,256 @@
   min-height: 100%;
   width: 100%;
   height: auto;
-  position: fixed;
+  position: static;
   top: 0;
   left: 0;
   z-index: -1;
 
   .line-1 {
-    position: relative;
-    left: 200px;
-    height: 500px;
-    border-left: solid 3px gray;
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+    left: 13%;
+    height: 70vh;
 
-    -webkit-animation: backgroundFade 40s infinite,
-                       leftAndRight300 200s infinite;
-    -moz-animation:    backgroundFade 20s infinite,
-                       leftAndRight300 200s infinite;
-    -o-animation:      backgroundFade 20s infinite,
-                       leftAndRight300 200s infinite;
-    animation:         backgroundFade 20s infinite,
-                       leftAndRight300 200s infinite;
+    -webkit-animation: backgroundFadeTwo 40s infinite,
+                       lineOne 50s infinite;
+    -moz-animation:    backgroundFadeTwo 20s infinite,
+                       lineOne 50s infinite;
+    -o-animation:      backgroundFadeTwo 20s infinite,
+                       lineOne 50s infinite;
+    animation:         backgroundFadeTwo 20s infinite,
+                       lineOne 50s infinite;
 
   }
-
   .line-2 {
-    position: relative;
-    left: 500px;
-    width: 800px;
-    border-bottom: solid 3px gray;
+    position: absolute;
+    border-bottom: solid 3px rgb(238, 238, 238);
+    top: 64%;
+    left: 35%;
+    width: 60%;
 
     -webkit-animation: backgroundFade 20s infinite,
-                       leftAndRight600 300s infinite;
+                       lineTwo 60s infinite;
     -moz-animation:    backgroundFade 20s infinite,
-                       leftAndRight600 300s infinite;
+                       lineTwo 60s infinite;
     -o-animation:      backgroundFade 20s infinite,
-                       leftAndRight600 300s infinite;
+                       lineTwo 60s infinite;
     animation:         backgroundFade 20s infinite,
-                       leftAndRight600 300s infinite;
+                       lineTwo 60s infinite;
+  }
+  .line-3 {
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+    height: 30vh;
+    left: 77%;
+    top: 60%;
+
+    -webkit-animation: backgroundFadeThree 15s infinite,
+                       lineThree 40s infinite;
+    -moz-animation:    backgroundFadeThree 15s infinite,
+                       lineThree 40s infinite;
+    -o-animation:      backgroundFadeThree 15s infinite,
+                       lineThree 40s infinite;
+    animation:         backgroundFadeThree 15s infinite,
+                       lineThree 40s infinite;
+  }
+  .line-4 {
+    position: absolute;
+    border-bottom: solid 3px rgb(238, 238, 238);
+    width: 48%;
+    left: 9%;
+    top: 16%;
+
+    -webkit-animation: backgroundFadeTwo 50s infinite,
+                       lineFour 40s infinite;
+    -moz-animation:    backgroundFadeTwo 50s infinite,
+                       lineFour 40s infinite;
+    -o-animation:      backgroundFadeTwo 50s infinite,
+                       lineFour 40s infinite;
+    animation:         backgroundFadeTwo 50s infinite,
+                       lineFour 40s infinite;
+  }
+  .line-5 {
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+    height: 58vh;
+    top: 3%;
+    left: 55%;
+
+    -webkit-animation: backgroundFade 25s infinite,
+                       lineFive 30s infinite;
+    -moz-animation:    backgroundFade 25s infinite,
+                       lineFive 30s infinite;
+    -o-animation:      backgroundFade 25s infinite,
+                       lineFive 30s infinite;
+    animation:         backgroundFade 25s infinite,
+                       lineFive 30s infinite;
+  }
+
+  .box-1 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    left: 74%;
+    top: 64.8%;
+    background-color: rgb(103, 175, 233);
+
+  }
+  .box-2 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    left: 30%;
+    top: 20%;
+    background-color: rgb(103, 175, 233);
+
+    -webkit-animation: boxOne 100s infinite;
+    -moz-animation:    boxOne 100s infinite;
+    -o-animation:      boxOne 100s infinite;
+    animation:         boxOne 100s infinite;
+  }
+  .box-3 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    left: 80%;
+    top: 25%;
+    background-color: rgb(103, 175, 233);
   }
 }
 
-
+// Line One
 // *******************************************************************
-@-webkit-keyframes leftAndRight300 {
-  50%  { transform: translate(30%, 10%) }
+@-webkit-keyframes lineOne {
+  50%  { transform: translate(15em, 10%) }
 }
-@-moz-keyframes leftAndRight300 {
-  50%  { transform: translate(30%, 10%) }
+@-moz-keyframes lineOne {
+  50%  { transform: translate(15em, 10%) }
 }
-@-o-keyframes leftAndRight300 {
-  50%  { transform: translate(30%, 10%) }
+@-o-keyframes lineOne {
+  50%  { transform: translate(15em, 10%) }
 }
-@keyframes leftAndRight300 {
-  50%  { transform: translate(30%, 10%) }
-}
-// *******************************************************************
-
-// *******************************************************************
-@-webkit-keyframes leftAndRight600 {
-  50%  { transform: translate(-600px, 0px) }
-}
-@-moz-keyframes leftAndRight600 {
-  50%  { transform: translate(-600px, 0px) }
-}
-@-o-keyframes leftAndRight600 {
-  50%  { transform: translate(-600px, 0px) }
-}
-@keyframes leftAndRight600 {
-  50%  { transform: translate(-600px, 0px) }
+@keyframes lineOne {
+  50%  { transform: translate(15em, 10%) }
 }
 // *******************************************************************
 
+// Line Two
+// *******************************************************************
+@-webkit-keyframes lineTwo {
+  50%  { transform: translate(-600px, 0px) }
+}
+@-moz-keyframes lineTwo {
+  50%  { transform: translate(-600px, 0px) }
+}
+@-o-keyframes lineTwo {
+  50%  { transform: translate(-600px, 0px) }
+}
+@keyframes lineTwo {
+  50%  { transform: translate(-600px, 0px) }
+}
+// *******************************************************************
 
+// Line Three
+// *******************************************************************
+@-webkit-keyframes lineThree {
+  50%  { transform: translate(-600px, -500px) }
+}
+@-moz-keyframes lineThree {
+  50%  { transform: translate(-600px, -500px) }
+}
+@-o-keyframes lineThree {
+  50%  { transform: translate(-600px, -500px) }
+}
+@keyframes lineThree {
+  50%  { transform: translate(-600px, -500px) }
+}
+// *******************************************************************
 
+// Line Four
+// *******************************************************************
+@-webkit-keyframes lineFour {
+  15%  { transform: translate(100px, 80px) }
+  30%  { transform: translate(250px, 120px) }
+  45%  { transform: translate(400px, 200px) }
+  55%  { transform: translate(-150px, 110px) }
+  70%  { transform: translate(-75px, 60px) }
+  85%  { transform: translate(-25px, -10px) }
+}
+@-moz-keyframes lineFour {
+  15%  { transform: translate(100px, 80px) }
+  30%  { transform: translate(250px, 120px) }
+  45%  { transform: translate(400px, 200px) }
+  55%  { transform: translate(-150px, 110px) }
+  70%  { transform: translate(-75px, 60px) }
+  85%  { transform: translate(-25px, -10px) }
+}
+@-o-keyframes lineFour {
+  15%  { transform: translate(100px, 80px) }
+  30%  { transform: translate(250px, 120px) }
+  45%  { transform: translate(400px, 200px) }
+  55%  { transform: translate(-150px, 110px) }
+  70%  { transform: translate(-75px, 60px) }
+  85%  { transform: translate(-25px, -10px) }
+}
+@keyframes lineFour {
+  15%  { transform: translate(100px, 80px) }
+  30%  { transform: translate(250px, 120px) }
+  45%  { transform: translate(400px, 200px) }
+  55%  { transform: translate(-150px, 110px) }
+  70%  { transform: translate(-75px, 60px) }
+  85%  { transform: translate(-25px, -10px) }
+}
+// *******************************************************************
+
+// Box One
+// *******************************************************************
+@-webkit-keyframes boxOne {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
+}
+@-moz-keyframes boxOne {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
+}
+@-o-keyframes boxOne {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
+}
+@keyframes boxOne {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
+}
+// *******************************************************************
+
+// Line Five
+// *******************************************************************
+@-webkit-keyframes lineFive {
+  50%  { transform: translate(0px, 40%) }
+}
+@-moz-keyframes lineFive {
+  50%  { transform: translate(0px, 40%) }
+}
+@-o-keyframes lineFive {
+  50%  { transform: translate(0px, 40%) }
+}
+@keyframes lineFive {
+  50%  { transform: translate(0px, 40%) }
+}
+// *******************************************************************
+
+// Fade dark to light
 // *******************************************************************
 @-webkit-keyframes backgroundFade {
   0%   { opacity: 1; }
@@ -106,5 +284,61 @@
   0%   { opacity: 1; }
   50%  { opacity: 0.1; }
   100% { opacity: 1; }
+}
+// *******************************************************************
+
+// Fade light to dark
+// *******************************************************************
+@-webkit-keyframes backgroundFadeTwo {
+  0%   { opacity: 0.1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+@-moz-keyframes backgroundFadeTwo {
+  0%   { opacity: 0.1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+@-o-keyframes backgroundFadeTwo {
+  0%   { opacity: 0.1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+@keyframes backgroundFadeTwo {
+  0%   { opacity: 0.1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+// *******************************************************************
+
+// Fade mid to light to dark to mid
+// *******************************************************************
+@-webkit-keyframes backgroundFadeThree {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 0.1; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@-moz-keyframes backgroundFadeThree {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 0.1; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@-o-keyframes backgroundFadeThree {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 0.1; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+@keyframes backgroundFadeThree {
+  0%   { opacity: 0.5; }
+  25%  { opacity: 0.1; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 1; }
+  100% { opacity: 0.5; }
 }
 // *******************************************************************
