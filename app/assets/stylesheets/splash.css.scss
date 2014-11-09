@@ -10,15 +10,7 @@
   }
 }
 
-// @mixin animate($actions...) {
-//   -webkit-animation: $actions;
-//      -moz-animation: $actions;
-//       -ms-animation: $actions;
-//           animation: $actions;
-// }
-
 @import 'mixins.css.scss';
-
 
 .grid {
   min-height: 100%;
@@ -31,90 +23,94 @@
 
   .line-1 {
     position: absolute;
-    // border-left: solid 3px rgb(238, 238, 238);
-    border-left: solid 3px gray;
+    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px gray;
     left: 13%;
     height: 70vh;
 
-    // -webkit-animation: backgroundFadeTwo 40s infinite,
-    //                    lineOne 50s infinite;
-    // -moz-animation:    backgroundFadeTwo 20s infinite,
-    //                    lineOne 50s infinite;
-    // -o-animation:      backgroundFadeTwo 20s infinite,
-    //                    lineOne 50s infinite;
-    // animation:         backgroundFadeTwo 20s infinite,
-    //                    lineOne 50s infinite;
-
-    @include animate(backgroundFadeTwo 40s infinite);
-    // @include animate(lineOne, 50s, infinite);
+    @include animate(
+                      backgroundFadeTwo 40s infinite,
+                      lineOne 50s infinite
+                    );
   }
   .line-2 {
     position: absolute;
-    // border-bottom: solid 3px rgb(238, 238, 238);
-    border-bottom: solid 3px gray;
+    border-bottom: solid 3px rgb(238, 238, 238);
+    // border-bottom: solid 3px gray;
     top: 64%;
     left: 35%;
     width: 60%;
 
-    -webkit-animation: backgroundFade 20s infinite,
-                       lineTwo 60s infinite;
-    -moz-animation:    backgroundFade 20s infinite,
-                       lineTwo 60s infinite;
-    -o-animation:      backgroundFade 20s infinite,
-                       lineTwo 60s infinite;
-    animation:         backgroundFade 20s infinite,
-                       lineTwo 60s infinite;
+    @include animate(
+                      backgroundFade 20s infinite,
+                      lineTwo 60s infinite
+                    );
   }
   .line-3 {
     position: absolute;
-    // border-left: solid 3px rgb(238, 238, 238);
-    border-left: solid 3px gray;
+    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px gray;
     height: 30vh;
     left: 77%;
     top: 60%;
 
-    -webkit-animation: backgroundFadeThree 15s infinite,
-                       lineThree 40s infinite;
-    -moz-animation:    backgroundFadeThree 15s infinite,
-                       lineThree 40s infinite;
-    -o-animation:      backgroundFadeThree 15s infinite,
-                       lineThree 40s infinite;
-    animation:         backgroundFadeThree 15s infinite,
-                       lineThree 40s infinite;
+    @include animate(
+                      backgroundFadeThree 15s infinite,
+                      lineThree 40s infinite
+                    );
   }
   .line-4 {
     position: absolute;
-    // border-bottom: solid 3px rgb(238, 238, 238);
-    border-bottom: solid 3px gray;
+    border-bottom: solid 3px rgb(238, 238, 238);
+    // border-bottom: solid 3px gray;
     width: 48%;
     left: 9%;
     top: 16%;
 
-    -webkit-animation: backgroundFadeTwo 50s infinite,
-                       lineFour 40s infinite;
-    -moz-animation:    backgroundFadeTwo 50s infinite,
-                       lineFour 40s infinite;
-    -o-animation:      backgroundFadeTwo 50s infinite,
-                       lineFour 40s infinite;
-    animation:         backgroundFadeTwo 50s infinite,
-                       lineFour 40s infinite;
+    @include animate(
+                      backgroundFadeTwo 50s infinite,
+                      lineFour 40s infinite
+                    );
   }
   .line-5 {
     position: absolute;
-    // border-left: solid 3px rgb(238, 238, 238);
-    border-left: solid 3px gray;
+    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px gray;
     height: 58vh;
     top: 3%;
     left: 54%;
 
-    -webkit-animation: backgroundFade 25s infinite,
-                       lineFive 30s infinite;
-    -moz-animation:    backgroundFade 25s infinite,
-                       lineFive 30s infinite;
-    -o-animation:      backgroundFade 25s infinite,
-                       lineFive 30s infinite;
-    animation:         backgroundFade 25s infinite,
-                       lineFive 30s infinite;
+    @include animate(
+                      backgroundFade 25s infinite,
+                      lineFive 30s infinite
+                    );
+  }
+  .line-6 {
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px gray;
+    height: 38vh;
+    top: 30%;
+    left: 44%;
+
+  }
+  .line-7 {
+    position: absolute;
+    border-bottom: solid 3px rgb(238, 238, 238);
+    // border-bottom: solid 3px red;
+    width: 30%;
+    top: 90%;
+    left: 0%;
+
+  }
+  .line-8 {
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px gray;
+    height: 20%;
+    top: 15%;
+    left: 85%;
+
   }
 
   .box-1 {
@@ -126,6 +122,11 @@
     top: 64.8%;
     background-color: rgb(103, 175, 233);
 
+    @include animate(
+                      backgroundFadeThree 80s infinite,
+                      boxOne 75s infinite
+                    );
+
   }
   .box-2 {
     position: absolute;
@@ -136,14 +137,10 @@
     top: 20%;
     background-color: rgb(103, 175, 233);
 
-    -webkit-animation: boxOne 100s infinite,
-                       backgroundFade 30s infinite;
-    -moz-animation:    boxOne 100s infinite,
-                       backgroundFade 30s infinite;
-    -o-animation:      boxOne 100s infinite,
-                       backgroundFade 30s infinite;
-    animation:         boxOne 100s infinite,
-                       backgroundFade 30s infinite;
+    @include animate(
+                      backgroundFade 30s infinite,
+                      boxTwo 100s infinite
+                    );
   }
   .box-3 {
     position: absolute;
@@ -153,64 +150,45 @@
     left: 80%;
     top: 25%;
     background-color: rgb(103, 175, 233);
+
+    @include animate(
+                      backgroundFadeTwo 40s infinite,
+                      boxThree 200s infinite
+                    );
   }
 }
 
 // Line One
 // *******************************************************************
-@-webkit-keyframes lineOne {
-  50%  { transform: translate(15em, 10%) }
+@include keyframes(lineOne) {
+  50% { transform: translate(15em, 10%) }
 }
-@-moz-keyframes lineOne {
-  50%  { transform: translate(15em, 10%) }
-}
-@-o-keyframes lineOne {
-  50%  { transform: translate(15em, 10%) }
-}
-@keyframes lineOne {
-  50%  { transform: translate(15em, 10%) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Line Two
 // *******************************************************************
-@-webkit-keyframes lineTwo {
-  50%  { transform: translate(-600px, 0px) }
+@include keyframes(lineTwo) {
+  50% { transform: translate(-600px, 0%) }
 }
-@-moz-keyframes lineTwo {
-  50%  { transform: translate(-600px, 0px) }
-}
-@-o-keyframes lineTwo {
-  50%  { transform: translate(-600px, 0px) }
-}
-@keyframes lineTwo {
-  50%  { transform: translate(-600px, 0px) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Line Three
 // *******************************************************************
-@-webkit-keyframes lineThree {
+@include keyframes(lineThree) {
   33%  { transform: translate(-600px, -500px) }
   66%  { transform: translate(-700px, -400px) }
 }
-@-moz-keyframes lineThree {
-  33%  { transform: translate(-600px, -500px) }
-  66%  { transform: translate(-700px, -400px) }
-}
-@-o-keyframes lineThree {
-  33%  { transform: translate(-600px, -500px) }
-  66%  { transform: translate(-700px, -400px) }
-}
-@keyframes lineThree {
-  33%  { transform: translate(-600px, -500px) }
-  66%  { transform: translate(-700px, -400px) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Line Four
 // *******************************************************************
-@-webkit-keyframes lineFour {
+@include keyframes(lineFour) {
   15%  { transform: translate(100px, 80px) }
   30%  { transform: translate(250px, 120px) }
   45%  { transform: translate(400px, 200px) }
@@ -218,188 +196,84 @@
   70%  { transform: translate(-75px, 60px) }
   85%  { transform: translate(-25px, -10px) }
 }
-@-moz-keyframes lineFour {
-  15%  { transform: translate(100px, 80px) }
-  30%  { transform: translate(250px, 120px) }
-  45%  { transform: translate(400px, 200px) }
-  55%  { transform: translate(-150px, 110px) }
-  70%  { transform: translate(-75px, 60px) }
-  85%  { transform: translate(-25px, -10px) }
-}
-@-o-keyframes lineFour {
-  15%  { transform: translate(100px, 80px) }
-  30%  { transform: translate(250px, 120px) }
-  45%  { transform: translate(400px, 200px) }
-  55%  { transform: translate(-150px, 110px) }
-  70%  { transform: translate(-75px, 60px) }
-  85%  { transform: translate(-25px, -10px) }
-}
-@keyframes lineFour {
-  15%  { transform: translate(100px, 80px) }
-  30%  { transform: translate(250px, 120px) }
-  45%  { transform: translate(400px, 200px) }
-  55%  { transform: translate(-150px, 110px) }
-  70%  { transform: translate(-75px, 60px) }
-  85%  { transform: translate(-25px, -10px) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Line Five
 // *******************************************************************
-@-webkit-keyframes lineFive {
+@include keyframes(lineFive) {
   25%  { transform: translate(50px, 20%) }
   50%  { transform: translate(0px, 40%) }
   75%  { transform: translate(-50px, 20%) }
 }
-@-moz-keyframes lineFive {
-  25%  { transform: translate(50px, 20%) }
-  50%  { transform: translate(0px, 40%) }
-  75%  { transform: translate(-50px, 20%) }
-}
-@-o-keyframes lineFive {
-  25%  { transform: translate(50px, 20%) }
-  50%  { transform: translate(0px, 40%) }
-  75%  { transform: translate(-50px, 20%) }
-}
-@keyframes lineFive {
-  25%  { transform: translate(50px, 20%) }
-  50%  { transform: translate(0px, 40%) }
-  75%  { transform: translate(-50px, 20%) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Box One
 // *******************************************************************
-@-webkit-keyframes boxOne {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
+@include keyframes(boxOne) {
+  20%  { transform: translate(-70px, -350px) }
+  50%  { transform: translate(-500px, -400px) }
+  80%  { transform: translate(-300px, -300px) }
 }
-@-moz-keyframes boxOne {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-@-o-keyframes boxOne {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-@keyframes boxOne {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Box Two
 // *******************************************************************
-@-webkit-keyframes boxTwo {
+@include keyframes(boxTwo) {
   20%  { transform: translate(300px, 50px) }
   40%  { transform: translate(500px, 300px) }
   60%  { transform: translate(-100px, 400px) }
   80%  { transform: translate(-150px, 200px) }
 }
-@-moz-keyframes boxTwo {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-@-o-keyframes boxTwo {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-@keyframes boxTwo {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+// Box Three
 // *******************************************************************
+@include keyframes(boxThree) {
+  33%  { transform: translate(-800px, 400px) }
+  66%  { transform: translate(-1000px, -100px) }
+}
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Fade dark to light
 // *******************************************************************
-@-webkit-keyframes backgroundFade {
+@include keyframes(backgroundFade) {
   0%   { opacity: 1; }
   50%  { opacity: 0.1; }
   100% { opacity: 1; }
-}
-@-moz-keyframes backgroundFade {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.1; }
-  100% { opacity: 1; }
-}
-@-o-keyframes backgroundFade {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.1; }
-  100% { opacity: 1; }
-}
-@keyframes backgroundFade {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.1; }
-  100% { opacity: 1; }
-}
-// *******************************************************************
+  }
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Fade light to dark
 // *******************************************************************
-@-webkit-keyframes backgroundFadeTwo {
+@include keyframes(backgroundFadeTwo) {
   0%   { opacity: 0.1; }
   50%  { opacity: 1; }
   100% { opacity: 0.1; }
 }
-@-moz-keyframes backgroundFadeTwo {
-  0%   { opacity: 0.1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.1; }
-}
-@-o-keyframes backgroundFadeTwo {
-  0%   { opacity: 0.1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.1; }
-}
-@keyframes backgroundFadeTwo {
-  0%   { opacity: 0.1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.1; }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 // Fade mid to light to dark to mid
 // *******************************************************************
-@-webkit-keyframes backgroundFadeThree {
+@include keyframes(backgroundFadeThree) {
   0%   { opacity: 0.5; }
   25%  { opacity: 0.1; }
   50%  { opacity: 0.5; }
   75%  { opacity: 1; }
   100% { opacity: 0.5; }
 }
-@-moz-keyframes backgroundFadeThree {
-  0%   { opacity: 0.5; }
-  25%  { opacity: 0.1; }
-  50%  { opacity: 0.5; }
-  75%  { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-@-o-keyframes backgroundFadeThree {
-  0%   { opacity: 0.5; }
-  25%  { opacity: 0.1; }
-  50%  { opacity: 0.5; }
-  75%  { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-@keyframes backgroundFadeThree {
-  0%   { opacity: 0.5; }
-  25%  { opacity: 0.1; }
-  50%  { opacity: 0.5; }
-  75%  { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-// *******************************************************************
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

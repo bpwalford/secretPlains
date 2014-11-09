@@ -1,8 +1,22 @@
 
-
 @mixin animate($actions...) {
   -webkit-animation: $actions;
      -moz-animation: $actions;
       -ms-animation: $actions;
           animation: $actions;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes $name {
+    @content;
+  }
+  @-moz-keyframes $name {
+    @content;
+  }
+  @-ms-keyframes $name {
+    @content;
+  }
+  @keyframes $name {
+    @content;
+  }
 }
