@@ -13,7 +13,7 @@ $(document).ready(function(){
 
   $(".exit").click(function() {
     $(".login").fadeOut(1200);
-    $(".splash-page").delay(3000).fadeIn(4000);
+    $(".splash-page").delay(1200).fadeIn(4000);
   });
 
 
