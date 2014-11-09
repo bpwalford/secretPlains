@@ -1,15 +1,8 @@
 
-// var firstVisit = true;
-
 $(document).ready(function(){
-// location.reload();
 
-  // if ( $(".splash-page").css("display") == "none" ) {
-    $(".splash-page").fadeIn(4000);
-    // firstVisit = false
-  // } else {
-    // $(".splash-page").show();
-  // }
+
+  $(".splash-page").fadeIn(4000);
 
 
   $(".login-link").click(function() {
@@ -22,5 +15,6 @@ $(document).ready(function(){
     $(".login").fadeOut(1200);
     $(".splash-page").delay(3000).fadeIn(4000);
   });
+
 
 });

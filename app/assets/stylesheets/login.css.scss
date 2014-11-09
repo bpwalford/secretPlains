@@ -9,7 +9,9 @@
   .exit {
     position: relative;
     bottom: 45px;
-    left: 142px;
+    left: 146px;
+    font-weight: 900;
+    color: gray;
 
     &:hover {
       color: rgb(103, 175, 233);
@@ -63,7 +65,7 @@
       border-bottom: solid 1px rgb(238, 238, 238);
       padding-bottom: 5px;
       margin-bottom: 12%;
-      // color: rgb(103, 175, 233);
+      color: gray;
     }
 
 
@@ -79,10 +81,11 @@
     }
 
     .btn-lg {
-      background-color: rgb(238, 238, 238);
+      background-color: white;
       border-color: rgb(238, 238, 238);
       margin-top: 12%;
       width: 25%;
+      color: gray;
       font-weight: 900;
       // color: rgb(103, 175, 233);
 
