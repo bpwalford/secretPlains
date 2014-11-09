@@ -27,10 +27,16 @@ body {
     background-color: white;
     color: rgb(192, 192, 192);
 
-   .navbar-brand {
-      color: rgb(192, 192, 192);
-      float: none;
+    .current {
+      color: rgb(103, 175, 233);
 
+      &:hover {
+        color: rgb(103, 175, 233);
+      }
+    }
+
+    .not-current {
+      color: rgb(192, 192, 192);
 
       &:hover {
         color: rgb(103, 175, 233);
