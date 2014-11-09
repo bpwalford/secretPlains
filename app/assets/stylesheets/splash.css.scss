@@ -10,6 +10,16 @@
   }
 }
 
+// @mixin animate($actions...) {
+//   -webkit-animation: $actions;
+//      -moz-animation: $actions;
+//       -ms-animation: $actions;
+//           animation: $actions;
+// }
+
+@import 'mixins.css.scss';
+
+
 .grid {
   min-height: 100%;
   width: 100%;
@@ -21,23 +31,27 @@
 
   .line-1 {
     position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px rgb(238, 238, 238);
+    border-left: solid 3px gray;
     left: 13%;
     height: 70vh;
 
-    -webkit-animation: backgroundFadeTwo 40s infinite,
-                       lineOne 50s infinite;
-    -moz-animation:    backgroundFadeTwo 20s infinite,
-                       lineOne 50s infinite;
-    -o-animation:      backgroundFadeTwo 20s infinite,
-                       lineOne 50s infinite;
-    animation:         backgroundFadeTwo 20s infinite,
-                       lineOne 50s infinite;
+    // -webkit-animation: backgroundFadeTwo 40s infinite,
+    //                    lineOne 50s infinite;
+    // -moz-animation:    backgroundFadeTwo 20s infinite,
+    //                    lineOne 50s infinite;
+    // -o-animation:      backgroundFadeTwo 20s infinite,
+    //                    lineOne 50s infinite;
+    // animation:         backgroundFadeTwo 20s infinite,
+    //                    lineOne 50s infinite;
 
+    @include animate(backgroundFadeTwo 40s infinite);
+    // @include animate(lineOne, 50s, infinite);
   }
   .line-2 {
     position: absolute;
-    border-bottom: solid 3px rgb(238, 238, 238);
+    // border-bottom: solid 3px rgb(238, 238, 238);
+    border-bottom: solid 3px gray;
     top: 64%;
     left: 35%;
     width: 60%;
@@ -53,7 +67,8 @@
   }
   .line-3 {
     position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px rgb(238, 238, 238);
+    border-left: solid 3px gray;
     height: 30vh;
     left: 77%;
     top: 60%;
@@ -69,7 +84,8 @@
   }
   .line-4 {
     position: absolute;
-    border-bottom: solid 3px rgb(238, 238, 238);
+    // border-bottom: solid 3px rgb(238, 238, 238);
+    border-bottom: solid 3px gray;
     width: 48%;
     left: 9%;
     top: 16%;
@@ -85,10 +101,11 @@
   }
   .line-5 {
     position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
+    // border-left: solid 3px rgb(238, 238, 238);
+    border-left: solid 3px gray;
     height: 58vh;
     top: 3%;
-    left: 55%;
+    left: 54%;
 
     -webkit-animation: backgroundFade 25s infinite,
                        lineFive 30s infinite;
@@ -119,10 +136,14 @@
     top: 20%;
     background-color: rgb(103, 175, 233);
 
-    -webkit-animation: boxOne 100s infinite;
-    -moz-animation:    boxOne 100s infinite;
-    -o-animation:      boxOne 100s infinite;
-    animation:         boxOne 100s infinite;
+    -webkit-animation: boxOne 100s infinite,
+                       backgroundFade 30s infinite;
+    -moz-animation:    boxOne 100s infinite,
+                       backgroundFade 30s infinite;
+    -o-animation:      boxOne 100s infinite,
+                       backgroundFade 30s infinite;
+    animation:         boxOne 100s infinite,
+                       backgroundFade 30s infinite;
   }
   .box-3 {
     position: absolute;
@@ -170,16 +191,20 @@
 // Line Three
 // *******************************************************************
 @-webkit-keyframes lineThree {
-  50%  { transform: translate(-600px, -500px) }
+  33%  { transform: translate(-600px, -500px) }
+  66%  { transform: translate(-700px, -400px) }
 }
 @-moz-keyframes lineThree {
-  50%  { transform: translate(-600px, -500px) }
+  33%  { transform: translate(-600px, -500px) }
+  66%  { transform: translate(-700px, -400px) }
 }
 @-o-keyframes lineThree {
-  50%  { transform: translate(-600px, -500px) }
+  33%  { transform: translate(-600px, -500px) }
+  66%  { transform: translate(-700px, -400px) }
 }
 @keyframes lineThree {
-  50%  { transform: translate(-600px, -500px) }
+  33%  { transform: translate(-600px, -500px) }
+  66%  { transform: translate(-700px, -400px) }
 }
 // *******************************************************************
 
@@ -219,6 +244,30 @@
 }
 // *******************************************************************
 
+// Line Five
+// *******************************************************************
+@-webkit-keyframes lineFive {
+  25%  { transform: translate(50px, 20%) }
+  50%  { transform: translate(0px, 40%) }
+  75%  { transform: translate(-50px, 20%) }
+}
+@-moz-keyframes lineFive {
+  25%  { transform: translate(50px, 20%) }
+  50%  { transform: translate(0px, 40%) }
+  75%  { transform: translate(-50px, 20%) }
+}
+@-o-keyframes lineFive {
+  25%  { transform: translate(50px, 20%) }
+  50%  { transform: translate(0px, 40%) }
+  75%  { transform: translate(-50px, 20%) }
+}
+@keyframes lineFive {
+  25%  { transform: translate(50px, 20%) }
+  50%  { transform: translate(0px, 40%) }
+  75%  { transform: translate(-50px, 20%) }
+}
+// *******************************************************************
+
 // Box One
 // *******************************************************************
 @-webkit-keyframes boxOne {
@@ -247,19 +296,31 @@
 }
 // *******************************************************************
 
-// Line Five
+// Box Two
 // *******************************************************************
-@-webkit-keyframes lineFive {
-  50%  { transform: translate(0px, 40%) }
+@-webkit-keyframes boxTwo {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
 }
-@-moz-keyframes lineFive {
-  50%  { transform: translate(0px, 40%) }
+@-moz-keyframes boxTwo {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
 }
-@-o-keyframes lineFive {
-  50%  { transform: translate(0px, 40%) }
+@-o-keyframes boxTwo {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
 }
-@keyframes lineFive {
-  50%  { transform: translate(0px, 40%) }
+@keyframes boxTwo {
+  20%  { transform: translate(300px, 50px) }
+  40%  { transform: translate(500px, 300px) }
+  60%  { transform: translate(-100px, 400px) }
+  80%  { transform: translate(-150px, 200px) }
 }
 // *******************************************************************
 
