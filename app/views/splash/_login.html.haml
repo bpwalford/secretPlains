@@ -1,0 +1,9 @@
+.login.row
+  .col-md-6.col-md-offset-3.login-container
+    .exit.pull-right.btn
+      x
+    .row
+      %h2 sign in
+      = form_for(:session, url: logging_in_path) do |f|
+        = f.text_field :email, class: "form-control", placeholder: "email"
+        = f.submit "login", class: "btn-lg pull-right"

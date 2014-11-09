@@ -2,6 +2,17 @@
 .login {
 
   margin-top: 8%;
+  display: none;
+
+  .exit {
+    position: relative;
+    bottom: 45px;
+    left: 142px;
+
+    &:hover {
+      color: rgb(103, 175, 233);
+    }
+  }
 
   .login-container {
 

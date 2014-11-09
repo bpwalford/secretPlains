@@ -1,5 +1,7 @@
 .splash-page {
 
+  display: none;
+
   .splash-title {
     margin-top: 18%;
     font-size: 60px;
@@ -19,7 +21,7 @@
   position: static;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: -2;
 
   .line-1 {
     position: absolute;
@@ -117,7 +119,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    border-radius: 5px;
+    @include borderRadius(5px);
     left: 74%;
     top: 64.8%;
     background-color: rgb(103, 175, 233);
@@ -132,7 +134,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    border-radius: 5px;
+    @include borderRadius(5px);
     left: 30%;
     top: 20%;
     background-color: rgb(103, 175, 233);
@@ -146,7 +148,7 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    border-radius: 5px;
+    @include borderRadius(5px);
     left: 80%;
     top: 25%;
     background-color: rgb(103, 175, 233);
@@ -159,7 +161,7 @@
 }
 
 // Line One
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(lineOne) {
   50% { transform: translate(15em, 10%) }
 }
@@ -168,7 +170,7 @@
 
 
 // Line Two
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(lineTwo) {
   50% { transform: translate(-600px, 0%) }
 }
@@ -177,7 +179,7 @@
 
 
 // Line Three
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(lineThree) {
   33%  { transform: translate(-600px, -500px) }
   66%  { transform: translate(-700px, -400px) }
@@ -187,7 +189,7 @@
 
 
 // Line Four
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(lineFour) {
   15%  { transform: translate(100px, 80px) }
   30%  { transform: translate(250px, 120px) }
@@ -201,7 +203,7 @@
 
 
 // Line Five
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(lineFive) {
   25%  { transform: translate(50px, 20%) }
   50%  { transform: translate(0px, 40%) }
@@ -212,7 +214,7 @@
 
 
 // Box One
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(boxOne) {
   20%  { transform: translate(-70px, -350px) }
   50%  { transform: translate(-500px, -400px) }
@@ -223,7 +225,7 @@
 
 
 // Box Two
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(boxTwo) {
   20%  { transform: translate(300px, 50px) }
   40%  { transform: translate(500px, 300px) }
@@ -235,7 +237,7 @@
 
 
 // Box Three
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(boxThree) {
   33%  { transform: translate(-800px, 400px) }
   66%  { transform: translate(-1000px, -100px) }
@@ -245,7 +247,7 @@
 
 
 // Fade dark to light
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(backgroundFade) {
   0%   { opacity: 1; }
   50%  { opacity: 0.1; }
@@ -256,7 +258,7 @@
 
 
 // Fade light to dark
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(backgroundFadeTwo) {
   0%   { opacity: 0.1; }
   50%  { opacity: 1; }
@@ -267,7 +269,7 @@
 
 
 // Fade mid to light to dark to mid
-// *******************************************************************
+// *****************************************************************************
 @include keyframes(backgroundFadeThree) {
   0%   { opacity: 0.5; }
   25%  { opacity: 0.1; }
