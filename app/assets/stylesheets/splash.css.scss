@@ -26,104 +26,97 @@
   .line-1 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    // border-left: solid 3px gray;
     left: 13%;
     height: 70vh;
 
+
     @include animate(
-                      backgroundFadeTwo 40s infinite,
-                      lineOne 50s infinite
+                      backgroundFadeTwo 40s infinite
+                      // ,lineOne 50s infinite
                     );
   }
   .line-2 {
     position: absolute;
     border-bottom: solid 3px rgb(238, 238, 238);
-    // border-bottom: solid 3px gray;
     top: 64%;
     left: 35%;
     width: 60%;
 
     @include animate(
-                      backgroundFade 20s infinite,
-                      lineTwo 60s infinite
+                      backgroundFade 20s infinite
+                      // ,lineTwo 60s infinite
                     );
   }
   .line-3 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    // border-left: solid 3px gray;
     height: 30vh;
     left: 77%;
     top: 60%;
 
     @include animate(
-                      backgroundFadeThree 15s infinite,
-                      lineThree 40s infinite
+                      backgroundFadeThree 15s infinite
+                      // ,lineThree 40s infinite
                     );
   }
   .line-4 {
     position: absolute;
     border-bottom: solid 3px rgb(238, 238, 238);
-    // border-bottom: solid 3px gray;
     width: 48%;
     left: 9%;
     top: 16%;
 
     @include animate(
-                      backgroundFadeTwo 50s infinite,
-                      lineFour 40s infinite
+                      backgroundFadeTwo 50s infinite
+                      // ,lineFour 40s infinite
                     );
   }
   .line-5 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    // border-left: solid 3px gray;
     height: 58vh;
     top: 3%;
     left: 54%;
 
     @include animate(
-                      backgroundFade 25s infinite,
-                      lineFive 30s infinite
+                      backgroundFade 25s infinite
+                      // ,lineFive 30s infinite
                     );
   }
   .line-6 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    // border-left: solid 3px gray;
     height: 38vh;
     top: 30%;
     left: 44%;
 
     @include animate(
-                      backgroundFadeTwo 35s infinite,
-                      lineSix 40s infinite
+                      backgroundFadeTwo 35s infinite
+                      // ,lineSix 40s infinite
                     );
   }
   .line-7 {
     position: absolute;
     border-bottom: solid 3px rgb(238, 238, 238);
-    // border-bottom: solid 3px red;
     width: 30%;
     top: 90%;
     left: 0%;
 
     @include animate(
-                      backgroundFade 95s infinite,
-                      lineSeven 70s infinite
+                      backgroundFade 95s infinite
+                      // ,lineSeven 70s infinite
                     );
   }
   .line-8 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    // border-left: solid 3px gray;
     height: 20%;
     top: 15%;
     left: 85%;
 
     @include animate(
-                      backgroundFadeThree 10s infinite,
-                      lineEight 25s infinite
+                      backgroundFadeThree 10s infinite
+                      // ,lineEight 25s infinite
                     );
   }
 
@@ -137,8 +130,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFadeThree 80s infinite,
-                      boxOne 75s infinite
+                      backgroundFadeThree 80s infinite
+                      // ,boxOne 75s infinite
                     );
 
   }
@@ -152,8 +145,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFade 30s infinite,
-                      boxTwo 100s infinite
+                      backgroundFade 30s infinite
+                      // ,boxTwo 100s infinite
                     );
   }
   .box-3 {
@@ -166,8 +159,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFadeTwo 40s infinite,
-                      boxThree 200s infinite
+                      backgroundFadeTwo 40s infinite
+                      // ,boxThree 200s infinite
                     );
   }
 }

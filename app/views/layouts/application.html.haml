@@ -11,17 +11,17 @@
 
     .navbar.navbar-default
       .navbar-header.pull-right
-        = link_to "home", root_path, class: "not-current navbar-brand btn"
         -# %a{class: "navbar-brand btn current"}= link_to_unless_current "home", "/", class: "not-current navbar-brand btn"
-        = link_to "about", login_path, class: "not-current navbar-brand btn"
         -if current_user
-          = link_to "profile", dashboard_path, class: "not-current navbar-brand btn"
-          = link_to "settings", user_path(current_user), class: "not-current navbar-brand btn"
-          = link_to "logout", logout_path, class: "not-current navbar-brand btn"
+          = link_to "profile", dashboard_path, class: "navbar-brand btn"
+          = link_to "settings", user_path(current_user), class: "navbar-brand btn"
+          = link_to "logout", logout_path, class: "navbar-brand btn"
         -else
-          = link_to "register", new_user_path, class: "not-current navbar-brand btn"
+          = link_to "home", root_path, class: "navbar-brand btn"
+          = link_to "about", login_path, class: "navbar-brand btn"
+          = link_to "register", new_user_path, class: "navbar-brand btn"
           -# = link_to "login", login_path, class: "navbar-brand"
-          %a.btn.navbar-brand.login-link.not-current= "login"
+          %a.btn.navbar-brand.login-link= "login"
 
     = notice
     = yield
