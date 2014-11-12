@@ -48,6 +48,8 @@ gem 'haml'
 
 gem 'faker'
 
+gem 'nokogiri'
+
 group :development do
   gem 'pry'
 end
