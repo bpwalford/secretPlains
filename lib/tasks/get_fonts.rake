@@ -10,7 +10,6 @@ task :get_fonts do
   doc = Nokogiri::HTML(open("http://en.wikipedia.org/wiki/List_of_typefaces"))
   fontHtml = doc.css("div.div-col.columns.column-width ul li a")
 
-  File.open("seeds.rb", 'w') { |file| file.write("wiki_fonts = [")}
   fonts = Array.new
 
   fontHtml.each do |font|
