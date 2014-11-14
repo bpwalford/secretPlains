@@ -129,6 +129,21 @@
   Fingerprint
 %h4
   :javascript
+    document.write("browser is: " + navigator.appName);
+%h4
+  :javascript
+    document.write("browser version: " + navigator.appVersion);
+%h4
+  :javascript
+    document.write("cookies enabled?: " + navigator.cookieEnabled);
+%h4
+  :javascript
+    document.write("language?: " + navigator.language);
+%h4
+  :javascript
+    document.write("cookies enabled?: " + navigator.cookieEnabled);
+%h4
+  :javascript
     document.write(installedFonts + " fonts installed");
 %h4
   :javascript
@@ -140,14 +155,23 @@
   :javascript
     var browserPluginsSpaces = browserPlugins.split(" ");
     document.write(browserPluginsSpaces.length + " spaces in plugin string");
-
 %h4
-  fingerprint:
-%p{style: "font-size: 10px"}
   :javascript
+    document.write("user agent is: " + navigator.userAgent);
 
+%p
+  :javascript
     document.write(browserPlugins);
-
-    for (var i = 0; i < fontDict.length; i++) {
-      document.write(fontDict[i] + "; ");
-    }
+    // for (var i = 0; i < navigator.plugins.length; i++) {
+    //   document.write(navigator.plugins[i])
+    // }
+-# %h4
+-#   fingerprint:
+-# %p{style: "font-size: 10px"}
+-#   :javascript
+-#
+-#     document.write(browserPlugins);
+-#
+-#     for (var i = 0; i < fontDict.length; i++) {
+-#       document.write(fontDict[i] + "; ");
+-#     }
