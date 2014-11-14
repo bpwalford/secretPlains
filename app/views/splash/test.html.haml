@@ -133,6 +133,13 @@
 %h4
   :javascript
     document.write(uninstalledFonts + " fonts not installed");
+%h4
+  :javascript
+    document.write(browserPlugins.length + " characters in plugin string");
+%h4
+  :javascript
+    var browserPluginsSpaces = browserPlugins.split(" ");
+    document.write(browserPluginsSpaces.length + " spaces in plugin string");
 
 %h4
   fingerprint:
