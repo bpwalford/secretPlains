@@ -23,6 +23,22 @@
   left: 0;
   z-index: -2;
 
+
+  .line {
+    position: absolute;
+    border-left: solid 3px rgb(238, 238, 238);
+  }
+
+  @for $i from 1 through 20 {
+    .line:nth-child(#{$i}) {
+      height: random(700px);
+      left: random(1500px);
+      top: random(300px);
+      $seconds: random(300s);
+      @include animate (backgroundFadeTwo $seconds infinite)
+    }
+  }
+
   .line-1 {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
@@ -137,8 +153,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFadeThree 80s infinite,
-                      boxOne 75s infinite
+                      backgroundFadeThree 80s infinite
+                      // ,boxOne 75s infinite
                     );
 
   }
@@ -152,8 +168,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFade 30s infinite,
-                      boxTwo 100s infinite
+                      backgroundFade 30s infinite
+                      // ,boxTwo 100s infinite
                     );
   }
   .box-3 {
@@ -166,8 +182,8 @@
     background-color: rgb(103, 175, 233);
 
     @include animate(
-                      backgroundFadeTwo 40s infinite,
-                      boxThree 200s infinite
+                      backgroundFadeTwo 40s infinite
+                      // ,boxThree 200s infinite
                     );
   }
 }
