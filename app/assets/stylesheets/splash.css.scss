@@ -27,17 +27,32 @@
   .line {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-  }
 
-  @for $i from 1 through 20 {
-    .line:nth-child(#{$i}) {
-      height: random(700px);
-      left: random(1500px);
-      top: random(300px);
-      $seconds: random(300s);
-      @include animate (backgroundFadeTwo $seconds infinite)
+    @for $i from 1 through 60 {
+      &:nth-child(#{$i}) {
+        height: random(700px);
+        left: random(1500px);
+        top: random(300px);
+        $seconds: random(50s) + 10;
+        @include animate (backgroundFadeTwo $seconds infinite)
+      }
     }
   }
+  .lineh {
+    position: absolute;
+    border-bottom: solid 3px rgb(238, 238, 238);
+
+    @for $i from 1 through 60 {
+      &:nth-child(#{$i}) {
+        width: random(1000px);
+        left: random(800px);
+        top: random(600px) + 60;
+        $seconds: random(50s) + 10;
+        @include animate (backgroundFadeTwo $seconds infinite)
+      }
+    }
+  }
+
 
   .line-1 {
     position: absolute;
