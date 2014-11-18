@@ -25,7 +25,8 @@
 
 
   // ************
-  $num: 30;
+  $num: 40;
+  $timing: 35s;
   // ************
 
   // functions to avoid superfluous overlap of animated elements
@@ -123,7 +124,7 @@
         $top: setLineMargins($top, $height);
         top: $top;
 
-        $seconds: random(25s) + 5;
+        $seconds: random($timing) + 5;
         @include animate (elementFade $seconds infinite);
       }
     }
@@ -149,7 +150,7 @@
         $left: setLineMargins($left, $width);
         left: $left;
 
-        $seconds: random(25s) + 5;
+        $seconds: random($timing) + 5;
         @include animate (elementFade $seconds infinite);
       }
     }
@@ -219,7 +220,7 @@
         $setValues: ();
 
         // set fade animation and timing
-        $seconds: random(20s) + 10;
+        $seconds: random($timing) + 10;
         @include animate (elementFade $seconds infinite);
       }
     }
@@ -232,9 +233,9 @@
 // ****************************************************************************
 @include keyframes(elementFade) {
   0%   { opacity:  0;}
-  35%  { opacity:  0.1;}
+  40%  { opacity:  0.1;}
   50%  { opacity:  1;}
-  65%  { opacity:  0.1;}
+  60%  { opacity:  0.1;}
   100% { opacity:  0;}
 }
 // ****************************************************************************
