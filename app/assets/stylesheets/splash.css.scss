@@ -23,258 +23,218 @@
   left: 0;
   z-index: -2;
 
-  .line-1 {
+  // ************
+  $num: 40;
+  $timing: 35s;
+  // ************
+
+  // functions to avoid superfluous overlap of animated elements
+  // **************************************************************************
+  $setValues: ();
+
+  @function setProximity($value) {
+
+    // ensure vertical lines are not too close to each other
+    @if length($setValues) == 0 {
+      $setValues: append($setValues, $value);
+      @return $value;
+    }@else {
+      // otherwise loop through existing measurements
+      @for $i from 1 through length($setValues) {
+        // if it's similar
+        @if ($value > nth($setValues,$i)-5) and ($value < nth($setValues, $i)+5) {
+          // then reset value
+          $direction: random(501);
+          @if $direction < 250 {
+            $value: $value + 5;
+          } @else {
+            $value: $value - 5;
+          }
+          // would have been cool to call recursively and ensure no overlap but browser can't handle it
+            // $value: random(100%);
+            // $value: scanOverlap($value);
+          @return $value;
+        } @else {
+          // otherwise populate list with new value
+          $setValues: append($setValues, $value);
+          @return $value;
+        }
+      }
+    }
+  }
+  // **************************************************************************
+  
+
+  //  functions to set line size to avoid over flow
+  // **************************************************************************
+  @function setLines($size, $distance, $minimum) {
+
+    @while $size < $minimum {
+      $size: $size + 5;
+    }
+    @while ($size + $distance) > 100 {
+      $size: $size - 5;
+    }
+
+    @return $size;
+
+  }
+
+  @function setLineMargins($distance, $size) {
+
+    // set top and left sides
+    @if $distance < 8 {
+      $difference: 8 - $distance;
+      $distance: $distance + $difference;
+    // set right and bottom sides
+    } @else if (100 - $distance - $size) < 8 {
+      $difference: 100 - $distance - $size;
+      // $distance: $distance - $difference;
+      $distance: $distance - 9;
+    }
+
+    @return $distance;
+
+  }
+  // **************************************************************************
+
+
+  // animated lines
+  // **************************************************************************
+    .line {
     position: absolute;
     border-left: solid 3px rgb(238, 238, 238);
-    left: 13%;
-    height: 70vh;
+    z-index: -1;
+    // border-left: solid 3px black;
 
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
 
-    @include animate(
-                      backgroundFadeTwo 40s infinite
-                      // ,lineOne 50s infinite
-                    );
+        $left: random(100%);
+        left: setProximity($left);
+        // clear the list
+        $setValues: ();
+
+        $minimum: 30%;
+        $top: random(70%)+10;
+        $height: random(100%);
+        height: setLines($height, $top, $minimum);
+
+        $top: setLineMargins($top, $height);
+        top: $top;
+
+        $seconds: random($timing) + 5;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
   }
-  .line-2 {
+
+  .lineh {
     position: absolute;
     border-bottom: solid 3px rgb(238, 238, 238);
-    top: 64%;
-    left: 35%;
-    width: 60%;
+    z-index: -1;
+    // border-bottom: solid 3px black;
 
-    @include animate(
-                      backgroundFade 20s infinite
-                      // ,lineTwo 60s infinite
-                    );
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
+
+        $top: random(90%)+10;
+        top: setProximity($top);
+
+        $minimum: 40%;
+        $left: random(60%);
+        $width: random(70%);
+        width: setLines($width, $left, $minimum);
+
+        $left: setLineMargins($left, $width);
+        left: $left;
+
+        $seconds: random($timing) + 5;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
   }
-  .line-3 {
-    position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
-    height: 30vh;
-    left: 77%;
-    top: 60%;
+  // **************************************************************************
 
-    @include animate(
-                      backgroundFadeThree 15s infinite
-                      // ,lineThree 40s infinite
-                    );
-  }
-  .line-4 {
-    position: absolute;
-    border-bottom: solid 3px rgb(238, 238, 238);
-    width: 48%;
-    left: 9%;
-    top: 16%;
 
-    @include animate(
-                      backgroundFadeTwo 50s infinite
-                      // ,lineFour 40s infinite
-                    );
-  }
-  .line-5 {
-    position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
-    height: 58vh;
-    top: 3%;
-    left: 54%;
+  // functions for checking box margins to avoid overflow
+  // **************************************************************************
+  @function checkBoxHorizontalMargins($margin) {
 
-    @include animate(
-                      backgroundFade 25s infinite
-                      // ,lineFive 30s infinite
-                    );
-  }
-  .line-6 {
-    position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
-    height: 38vh;
-    top: 30%;
-    left: 44%;
+    @if $margin < 5% {
+      $margin: random(5%) + 5;
+      @return $margin;
+    } @else if $margin > 95% {
+      $margin: random(5%) + 91;
+      @return $margin;
+    } @else {
+      @return $margin;
+    }
 
-    @include animate(
-                      backgroundFadeTwo 35s infinite
-                      // ,lineSix 40s infinite
-                    );
-  }
-  .line-7 {
-    position: absolute;
-    border-bottom: solid 3px rgb(238, 238, 238);
-    width: 30%;
-    top: 90%;
-    left: 0%;
-
-    @include animate(
-                      backgroundFade 95s infinite
-                      // ,lineSeven 70s infinite
-                    );
-  }
-  .line-8 {
-    position: absolute;
-    border-left: solid 3px rgb(238, 238, 238);
-    height: 20%;
-    top: 15%;
-    left: 85%;
-
-    @include animate(
-                      backgroundFadeThree 10s infinite
-                      // ,lineEight 25s infinite
-                    );
   }
 
-  .box-1 {
+  @function checkBoxVerticalMargins($margin) {
+
+    @if $margin < 10% {
+      $margin: random(10%) + 10;
+      @return $margin;
+    } @else if $margin > 90% {
+      $margin: random(10%) + 80;
+      @return $margin;
+    } @else {
+      @return $margin;
+    }
+
+  }
+  // **************************************************************************
+
+  // animated boxes
+  // **************************************************************************
+  $boxSizes: 20 20 20 20 20 30 30 30;
+
+  .box {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    @include borderRadius(5px);
-    left: 74%;
-    top: 64.8%;
     background-color: rgb(103, 175, 233);
+    // z-index: 1;
 
-    @include animate(
-                      backgroundFadeThree 80s infinite
-                      // ,boxOne 75s infinite
-                    );
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
+        $size: nth($boxSizes, random(8)+1);
+        width: $size + px;
+        height: $size + px;
+        @include borderRadius(5px);
 
-  }
-  .box-2 {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    @include borderRadius(5px);
-    left: 30%;
-    top: 20%;
-    background-color: rgb(103, 175, 233);
+        // set left and right margins
+        $left: random(100%);
+        $left: setProximity($left);
+        left: checkBoxHorizontalMargins($left);
+        // empty list for next value setting
+        $setValues: ();
 
-    @include animate(
-                      backgroundFade 30s infinite
-                      // ,boxTwo 100s infinite
-                    );
-  }
-  .box-3 {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    @include borderRadius(5px);
-    left: 80%;
-    top: 25%;
-    background-color: rgb(103, 175, 233);
+        // set top and bottom margin
+        $top: random(100%);
+        $top: setProximity($top);
+        top: checkBoxVerticalMargins($top);
+        // empty list for next value setting
+        $setValues: ();
 
-    @include animate(
-                      backgroundFadeTwo 40s infinite
-                      // ,boxThree 200s infinite
-                    );
+        // set fade animation and timing
+        $seconds: random($timing) + 10;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
   }
 }
+// ****************************************************************************
 
-// Line One
-@include keyframes(lineOne) {
-  50% { transform: translate(15em, 10%) }
+
+// fade animation
+// ****************************************************************************
+@include keyframes(elementFade) {
+  0%   { opacity:  0;}
+  40%  { opacity:  0.1;}
+  50%  { opacity:  1;}
+  60%  { opacity:  0.1;}
+  100% { opacity:  0;}
 }
-
-
-// Line Two
-@include keyframes(lineTwo) {
-  50% { transform: translate(-600px, 0%) }
-}
-
-
-// Line Three
-@include keyframes(lineThree) {
-  33%  { transform: translate(-600px, -500px) }
-  66%  { transform: translate(-700px, -400px) }
-}
-
-
-// Line Four
-@include keyframes(lineFour) {
-  15%  { transform: translate(100px, 80px) }
-  30%  { transform: translate(250px, 120px) }
-  45%  { transform: translate(400px, 200px) }
-  55%  { transform: translate(-150px, 110px) }
-  70%  { transform: translate(-75px, 60px) }
-  85%  { transform: translate(-25px, -10px) }
-}
-
-
-// Line Five
-@include keyframes(lineFive) {
-  25%  { transform: translate(50px, 20%) }
-  50%  { transform: translate(0px, 40%) }
-  75%  { transform: translate(-50px, 20%) }
-}
-
-
-// Line Six
-@include keyframes(lineSix) {
-  20%  { transform: translate(500px, 30%) }
-  60%  { transform: translate(500px, -10%) }
-}
-
-
-// Line Seven
-@include keyframes(lineSeven) {
-  25%  { transform: translate(180%, -100px) }
-  50%  { transform: translate(200%, -250px) }
-  75%  { transform: translate(180%, -600px) }
-}
-
-
-// Line Eight
-@include keyframes(lineEight) {
-  50%  { transform: translate(75px, 150%) }
-}
-
-
-// *************************************************************************
-
-
-// Box One
-@include keyframes(boxOne) {
-  20%  { transform: translate(-70px, -350px) }
-  50%  { transform: translate(-500px, -400px) }
-  80%  { transform: translate(-300px, -300px) }
-}
-
-
-// Box Two
-@include keyframes(boxTwo) {
-  20%  { transform: translate(300px, 50px) }
-  40%  { transform: translate(500px, 300px) }
-  60%  { transform: translate(-100px, 400px) }
-  80%  { transform: translate(-150px, 200px) }
-}
-
-
-// Box Three
-@include keyframes(boxThree) {
-  33%  { transform: translate(-800px, 400px) }
-  66%  { transform: translate(-1000px, -100px) }
-}
-
-
-// *************************************************************************
-
-
-// Fade dark to light
-@include keyframes(backgroundFade) {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.1; }
-  100% { opacity: 1; }
-  }
-
-
-// Fade light to dark
-@include keyframes(backgroundFadeTwo) {
-  0%   { opacity: 0.1; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.1; }
-}
-
-
-// Fade mid to light to dark to mid
-@include keyframes(backgroundFadeThree) {
-  0%   { opacity: 0.5; }
-  25%  { opacity: 0.1; }
-  50%  { opacity: 0.5; }
-  75%  { opacity: 1; }
-  100% { opacity: 0.5; }
-}
+// ****************************************************************************
