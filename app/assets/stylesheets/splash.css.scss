@@ -2,6 +2,10 @@
 
   display: none;
 
+  .foo {
+    color: rgb(103, 175, 233);
+  }
+
   .splash-title {
     margin-top: 18%;
     font-size: 60px;
@@ -24,8 +28,8 @@
   z-index: -2;
 
   // ************
-  $num: 40;
-  $timing: 35s;
+  $num: 150;
+  $timing: 55s;
   // ************
 
   // functions to avoid superfluous overlap of animated elements
@@ -42,7 +46,7 @@
       // otherwise loop through existing measurements
       @for $i from 1 through length($setValues) {
         // if it's similar
-        @if ($value > nth($setValues,$i)-5) and ($value < nth($setValues, $i)+5) {
+        @if ($value > nth($setValues,$i)-10) and ($value < nth($setValues, $i)+10) {
           // then reset value
           $direction: random(501);
           @if $direction < 250 {
@@ -63,7 +67,7 @@
     }
   }
   // **************************************************************************
-  
+
 
   //  functions to set line size to avoid over flow
   // **************************************************************************
@@ -232,9 +236,9 @@
 // ****************************************************************************
 @include keyframes(elementFade) {
   0%   { opacity:  0;}
-  40%  { opacity:  0.1;}
+  40%  { opacity:  0.05;}
   50%  { opacity:  1;}
-  60%  { opacity:  0.1;}
+  60%  { opacity:  0.05;}
   100% { opacity:  0;}
 }
 // ****************************************************************************

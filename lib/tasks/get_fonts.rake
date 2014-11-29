@@ -10,9 +10,7 @@ task :get_fonts do
   doc = Nokogiri::HTML(open("http://en.wikipedia.org/wiki/List_of_typefaces"))
   fontHtml = doc.css("div.div-col.columns.column-width ul li a")
 
-  fonts = Array.new
-
-  fontHtml.each do |font|
+  fontHtml.flat_map do |font|
 
     font = font.to_s
 
@@ -25,38 +23,20 @@ task :get_fonts do
     font = font.split(">")
     font = font.last
 
-    # if / is used for alternate name
-    if font.include?("/")
-
-      font = font.split("/")
-
-      fontTwo = font.last
-      fonts << fontTwo.strip!
-
-      font = font.first.strip
-
+    fonts = font.split("/")
+    fonts.flat_map! do |font|
+      if font.include?("(")
+        font, alternate = font.split("(")
+        [font, alternate[0..-2]]
+      else
+        [font]
+      end
     end
 
-    # if ()'s are used for alternate name
-    if font.include?("(") && font.include?(")")
-
-      font = font.split("(")
-
-      fontTwo = font.last
-      fontTwo[-1] = ""
-      fonts << fontTwo
-
-      font = font.first.strip
-
+    fonts.reject! do |font|
+      font.include?("a href=\"")
     end
-
-    # unwanted a href's
-    if font.include?("a href=\"")
-      next
-    end
-
-    fonts << font
-
+    fonts.map(&:strip)
   end
 
   11.times do
