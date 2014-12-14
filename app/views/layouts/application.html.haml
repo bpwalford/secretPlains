@@ -11,7 +11,6 @@
 
     .navbar.navbar-default
       .navbar-header.pull-right
-        -# %a{class: "navbar-brand btn current"}= link_to_unless_current "home", "/", class: "not-current navbar-brand btn"
         -if current_user
           = link_to "profile", dashboard_path, class: "navbar-brand btn"
           = link_to "settings", user_path(current_user), class: "navbar-brand btn"
@@ -19,8 +18,8 @@
         -else
           = link_to "home", root_path, class: "navbar-brand btn"
           = link_to "about", login_path, class: "navbar-brand btn"
-          = link_to "register", new_user_path, class: "navbar-brand btn"
-          -# = link_to "login", login_path, class: "navbar-brand"
+          -# = link_to "register", new_user_path, class: "navbar-brand btn"
+          %a.btn.navbar-brand.register-link= "register"
           %a.btn.navbar-brand.login-link= "login"
 
     = notice

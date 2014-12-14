@@ -1,11 +1,7 @@
 class SessionsController < ApplicationController
 
-  def index
-
-  end
-
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email].downcase.strip)
     if user
       session[:user_id] = user.id
       redirect_to dashboard_path

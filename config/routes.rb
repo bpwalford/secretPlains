@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-root 'splash#index', as: :root
+root 'splash#index'
 get 'testprint883' => 'splash#test'
 
 get 'dashboard' => 'dashboards#index', as: :dashboard
