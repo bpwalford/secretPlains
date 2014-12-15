@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require plugin_finder.js
 //= require font_list.js
 //= require font_detector.js
-//= require plugin_finder.js
 //= require_tree .
