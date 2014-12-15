@@ -29,6 +29,6 @@ var FontDetector = function() {
     }
     return detected;
   }
-
+  
   this.detect = detect;
 };

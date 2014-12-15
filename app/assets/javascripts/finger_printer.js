@@ -1,6 +1,6 @@
 // get plugins
-var plugins = identify_plugins();
-
+var pluginFinder = new PluginFinder;
+var plugins = pluginFinder.identify();
 
 // get fonts
 var detective = new FontDetector();
@@ -18,16 +18,10 @@ for(var i in window.fonts) {
   }
 }
 
-
 // get other brower attributes
 var browserVersion = navigator.appVersion
-
 var cookies = navigator.cookieEnabled
-
 var language = navigator.language
-
 var userAgent = navigator.userAgent
-
 // var pluginChars =  browserPlugins.length
-
 // var pluginsSpaces = plugins.split(" ").length
