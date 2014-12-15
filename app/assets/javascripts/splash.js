@@ -1,6 +1,4 @@
-
 $(document).ready(function(){
-
 
   $(".splash-page").fadeIn(4000);
 

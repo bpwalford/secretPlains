@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require font_list.js
+//= require font_detector.js
+//= require plugin_finder.js
 //= require_tree .
