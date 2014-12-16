@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214223002) do
+ActiveRecord::Schema.define(version: 20141215215639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "fingerprints", force: true do |t|
     t.integer  "user_id"
-    t.string   "plugins"
-    t.string   "fonts"
+    t.text     "plugins"
+    t.text     "fonts"
     t.string   "user_agent"
     t.string   "browser_version"
     t.string   "cookies"

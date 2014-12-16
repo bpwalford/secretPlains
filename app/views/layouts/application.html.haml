@@ -17,10 +17,10 @@
           = link_to "logout", logout_path, class: "navbar-brand btn"
         -else
           = link_to "home", root_path, class: "navbar-brand btn"
-          = link_to "about", login_path, class: "navbar-brand btn"
-          -# = link_to "register", new_user_path, class: "navbar-brand btn"
+          = link_to "about", root_path, class: "navbar-brand btn"
           %a.btn.navbar-brand.register-link= "register"
           %a.btn.navbar-brand.login-link= "login"
 
-    = notice
-    = yield
+    .container
+      = notice
+      = yield

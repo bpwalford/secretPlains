@@ -1,5 +1,7 @@
-.container
+.dashboard
   .col-md-12
     %h1.page-header.text-center
       Hello,
       = current_user.email_to_username
+    %p
+      = current_user.fingerprints.first.print

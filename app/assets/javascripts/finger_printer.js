@@ -1,27 +1,30 @@
-// get plugins
-var pluginFinder = new PluginFinder;
-var plugins = pluginFinder.identify();
+FingerPrinter = function(){
 
-// get fonts
-var detective = new FontDetector();
-var fontDict = new Array();
-var installedFonts = 0;
-var uninstalledFonts = 0;
+  fingerPrint = {}
 
-for(var i in window.fonts) {
-  if (detective.detect(window.fonts[i]) == false) {
-    fontDict.push(window.fonts[i] + " false")
-    installedFonts ++;
-  } else {
-    fontDict.push(window.fonts[i] + " true")
-    uninstalledFonts ++;
+  var pluginFinder = new PluginFinder;
+  var plugins = pluginFinder.identify();
+  fingerPrint['plugins'] = plugins
+
+  var detective = new FontDetector();
+  var fontMap = new Array();
+  for(var i in window.fonts) {
+    if (detective.detect(window.fonts[i]) == false) {
+      fontMap.push(window.fonts[i] + " false")
+    } else {
+      fontMap.push(window.fonts[i] + " true")
+    }
   }
-}
+  fingerPrint['fonts'] = fontMap
 
-// get other brower attributes
-var browserVersion = navigator.appVersion
-var cookies = navigator.cookieEnabled
-var language = navigator.language
-var userAgent = navigator.userAgent
-// var pluginChars =  browserPlugins.length
-// var pluginsSpaces = plugins.split(" ").length
+  var browserVersion = navigator.appVersion
+  fingerPrint['version'] = browserVersion
+  var cookies = navigator.cookieEnabled
+  fingerPrint['cookies'] = cookies
+  var language = navigator.language
+  fingerPrint['language'] = language
+  var userAgent = navigator.userAgent
+  fingerPrint['agent'] = userAgent
+
+  this.fingerPrint = fingerPrint
+}

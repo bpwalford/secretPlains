@@ -1,15 +1,20 @@
 class UsersController < ApplicationController
 
-  def new
-    @user = User.new
-  end
-
   def create
-    @user = User.new(params.require(:user).permit(:email))
-    if @user.save
-      session[:user_id] = @user.id
+    user = User.new(params.permit(:email))
+
+    if user.save
+      fingerprint = Fingerprint.create!(
+        user: user,
+        plugins: params[:plugins],
+        fonts: params[:fonts],
+        user_agent: params[:agent],
+        browser_version: params[:version],
+        cookies: params[:cookies],
+        language: params[:language],
+      )
+      session[:user_id] = user.id
       redirect_to dashboard_path
-      # create a new finger print
     else
       render :new
     end
