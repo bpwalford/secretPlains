@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(params.permit(:email))
-
+# binding.pry
     if user.save
+# binding.pry
       fingerprint = Fingerprint.create!(
         user: user,
         plugins: params[:plugins],
@@ -16,7 +17,8 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to dashboard_path
     else
-      render :new
+# binding.pry
+      redirect_to root_path(notice: 'email is taken or not valid')
     end
   end
 

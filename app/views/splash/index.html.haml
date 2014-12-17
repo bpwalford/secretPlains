@@ -1,11 +1,18 @@
+:javascript
+  $("document").ready(function(){
+    setPrint();
+  });
+
 .grid
   -(1..150).each do |i|
     -# .box
     .line
     .lineh
-  .login-box= render 'login'
-  .register-box= render 'users/new'
-.container.splash-page
+
+.login-box= render 'login'
+.register-box= render 'users/new'
+
+.splash-page
   .row
     %h1.col-md-12.text-center.page-header.splash-title
       %span s e c r e t

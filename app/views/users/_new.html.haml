@@ -1,13 +1,13 @@
 .row.form.register
-  :javascript
-    $("document").ready(function(){
-      setPrint();
-    });
   .col-md-8.col-md-offset-2.login-container
     .exit.pull-right.btn
       x
     .row
-      %h2 create account
+      %h2 Create Account
+      .notice
+        - if params[:notice] && params[:notice].split(' ').last != 'fingerprint'
+          .alert.alert-danger
+            = params[:notice]
       = form_tag(users_path, method: :post) do
         = email_field_tag :email, nil, {class: 'form-control', placeholder: 'email'}
         = hidden_field_tag :plugins
@@ -16,4 +16,4 @@
         = hidden_field_tag :cookies
         = hidden_field_tag :language
         = hidden_field_tag :agent
-        = submit_tag 'submit', class: 'btn-lg pull-right'
+        = submit_tag 'Submit', class: 'btn-lg pull-right'

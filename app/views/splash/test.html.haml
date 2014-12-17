@@ -129,9 +129,6 @@
   Fingerprint
 %h4
   :javascript
-    document.write("browser is: " + navigator.appName);
-%h4
-  :javascript
     document.write("browser version: " + navigator.appVersion);
 %h4
   :javascript
@@ -165,13 +162,13 @@
     // for (var i = 0; i < navigator.plugins.length; i++) {
     //   document.write(navigator.plugins[i])
     // }
--# %h4
--#   fingerprint:
--# %p{style: "font-size: 10px"}
--#   :javascript
--#
--#     document.write(browserPlugins);
--#
--#     for (var i = 0; i < fontDict.length; i++) {
--#       document.write(fontDict[i] + "; ");
--#     }
+%h4
+  font list
+%p
+  :javascript
+
+    // document.write(browserPlugins);
+
+    for (var i = 0; i < fontDict.length; i++) {
+      document.write(fontDict[i] + "; ");
+    }

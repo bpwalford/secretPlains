@@ -87,11 +87,11 @@
   @function setLineMargins($distance, $size) {
 
     // set top and left sides
-    @if $distance < 8 {
-      $difference: 8 - $distance;
+    @if $distance < 20 {
+      $difference: 20 - $distance;
       $distance: $distance + $difference;
     // set right and bottom sides
-    } @else if (100 - $distance - $size) < 8 {
+  } @else if (100 - $distance - $size) < 20 {
       $difference: 100 - $distance - $size;
       // $distance: $distance - $difference;
       $distance: $distance - 9;
