@@ -1,4 +1,4 @@
-// another sweet function obtained from the internet
+// another function obtained from the internet
 var FontDetector = function() {
   var baseFonts = ['monospace', 'sans-serif', 'serif'];
   var testString = "mmmmmmmmmmlli";

@@ -1,4 +1,4 @@
-// thank you to panopticlick for the sweet function
+// thank you to panopticlick for the function
 var PluginFinder = function(){
 
   function identify_plugins(){
