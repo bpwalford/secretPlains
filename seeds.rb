@@ -1,2 +1,0 @@
-User.delete_all
-Fingerprint.delete_all
