@@ -1,4 +1,4 @@
-class Ip < Activerecord::Base
+class Ip < ActiveRecord::Base
 
   belongs_to :user
 

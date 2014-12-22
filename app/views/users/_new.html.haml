@@ -16,5 +16,14 @@
         = hidden_field_tag :cookies
         = hidden_field_tag :language
         = hidden_field_tag :agent
-        = hidden_field_tag :ip, value: @userIp
+        = hidden_field_tag 'country_code', @country_code
+        = hidden_field_tag 'country_name', @country_name
+        = hidden_field_tag 'longitude', @longitude
+        = hidden_field_tag 'latitude', @latitude
+        = hidden_field_tag 'zipcode', @zipcode
+        = hidden_field_tag 'metrocode', @metrocode
+        = hidden_field_tag 'region_name', @region_name
+        = hidden_field_tag 'region_code', @region_code
+        = hidden_field_tag 'city', @city
+        = hidden_field_tag 'ip', @ip 
         = submit_tag 'Submit', class: 'btn-lg pull-right'
