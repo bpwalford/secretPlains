@@ -20,3 +20,91 @@ class FingerprintScanner
   end
 
 end
+
+
+
+
+
+
+
+
+
+# encrypt fingerprints in the database
+
+# make acceptable differences persist across database drop
+#   they should be in the database
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# set value for each comparator
+#   plugins
+
+# class for each comparator?
+#   character type count -> mid
+#   space count -> low
+#   size count -> mid
+#   word types -> more
+#   sequence types -> more
+
+#   installed fonts -> mid
+#   uninstalled fonts -> mid
+#
+#   cookies -> very low
+#
+#   language -> mid
+#
+#   version -> mid
+#
+#   agent -> mid
+#
+#   plugins -> more
+#
+#   screen size and color depth
+#     low importance if match, but high importance if not a match
+#       if it doesn't match then they are not on the same computer
+#         override would not alter acceptable differences but would refingerprint user with new computer specs
+
+
+# user agent reader
+#   recognizes different browsers
+
+
+# create a module which contains all the passible values for each comparator
+#   minimums
+#     if below minimum automatic rejectance
+#   relative value for enterence
+#     e.g. plugin may have a total value of 30%, while cookies has %5
+#   all comparator values can include the module so tolerances can be adjusted in one place
+#
+# each comparator will return a percentage (0-100) which is then translated into its global value
+#   e.g. a cookies match will equate to 100% but be translated to the max value indicated by the comparators module
+
+
+# when users are wrongfully rejected the email brings them to the dash borad but first fingerprints the computer,
+# calculates the percent difference of in current finger print and last finger and adjust global attribute tolerence to
+# reflect that difference
+
+# what happens when a user isn't wrongfully rejected, but claims otherwise?
+#   maybe email isn't necessary?
+#     get emergency password on first login
+#       recalculate fingerprint tolerances on correct password
+#   need to protect against total tolerance degredation
+#     have a constant of minimum values
+#       eventually, these minimums will be met...
+#   need a means of raising tolerence, just because on person's print changed drastically doesn't mean all tolerances
+#   should be adjusted
+#     maybe have a maxium tolerence minimization rate?
+#     in extreme cases send an email which causes user fingerprints to be reset on next login
