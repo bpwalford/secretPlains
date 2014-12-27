@@ -1,8 +1,8 @@
 class SplashController < ApplicationController
 
   def index
-    ip = request.remote_ip
-    userIp = Geocoder.search(ip)[0].data
+    @ip = request.remote_ip
+    userIp = Geocoder.search(@ip)[0].data
 
     @ip           = userIp['ip']
     @city         = userIp['city']
