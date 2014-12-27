@@ -12,6 +12,7 @@ describe 'CharactersComparer' do
     #   :new    => 0,
     #   :subbed => 0,
     #   :spaces => 0,
+    #   :diffs  => {}
     # }
 
     @partial = ' word 1.2.3 $%^ drow'
@@ -33,28 +34,21 @@ describe 'CharactersComparer' do
     #   }
     # }
 
-    @no_match = 'asdf1234!@#$uuuu'
-    @hctam_on = 'wert5678%^&*oooo'
+    @no_match = 'as12!@uuu'
+    @hctam_on = 'we56%^ooo'
     # {
     #   :match  =>  0.0,
     #   :size   =>  0,
-    #   :new    =>  16,
-    #   :subbed => -16,
+    #   :new    =>  9,
+    #   :subbed => -9,
     #   :spaces =>  0,
     #   :diffs  =>  {
     #     'a'  =>  1,
     #     's'  =>  1,
-    #     'd'  =>  1,
-    #     'f'  =>  1,
     #     '1'  =>  1,
     #     '2'  =>  1,
-    #     '3'  =>  1,
-    #     '4'  =>  1,
     #     '!'  =>  1,
     #     '@'  =>  1,
-    #     '#'  =>  1,
-    #     '$'  =>  1,
-    #     'u'  =>  1,
     #     'u'  =>  1,
     #     'u'  =>  1,
     #     'u'  =>  1,
@@ -64,13 +58,8 @@ describe 'CharactersComparer' do
     #     't'  => -1,
     #     '5'  => -1,
     #     '6'  => -1,
-    #     '7'  => -1,
-    #     '8'  => -1,
     #     '%'  => -1,
     #     '^'  => -1,
-    #     '&'  => -1,
-    #     '*'  => -1,
-    #     'o'  => -1,
     #     'o'  => -1,
     #     'o'  => -1,
     #     'o'  => -1,
@@ -120,10 +109,21 @@ describe 'CharactersComparer' do
       expect(result[:spaces]).to eq(-1)
     end
 
-    # it 'gets differences of specific numbers' do
-    #   result = CharactersComparer.new(@before, @after).evaluate
-    #   expect(result[:]).to eq()
-    # end
+    it 'gets differences of specific characters' do
+      result = CharactersComparer.new(@match, @hctam).evaluate
+      expect(result[:diffs]).to eq({})
+
+      result = CharactersComparer.new(@partial, @laitrap).evaluate
+      expect(result[:diffs]).to eq({
+          '4' =>  1,
+          '*' =>  1,
+          'o' =>  2,
+          'i' =>  1,
+          ' ' => -1,
+          '3' => -1,
+          '^' => -1,
+        })
+    end
 
   end
 

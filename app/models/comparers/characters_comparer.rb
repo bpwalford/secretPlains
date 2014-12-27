@@ -20,6 +20,8 @@ class CharactersComparer
 
     differences[:spaces] = get_spaces
 
+    differences[:diffs]  = get_diffs
+
     differences
   end
 
@@ -49,13 +51,20 @@ class CharactersComparer
   end
 
   def get_subbed
-    diff = get_diff(original) {|l| !altered.include?(l)} # not good enough not accounting for more than one instance of a char
-    diff * -1
-  end
+    diff = get_diff(original) {|l| !altered.include?(l)} * -1
 
   def get_spaces
-    diff = original.count(' ') - altered.count(' ')
-    diff * -1
+    diff = original.count(' ') - altered.count(' ') * -1
+  end
+
+  def get_diffs
+    diff = {}
+    original.each do |letter|
+      if original.count(letter) != altered.count(letter)
+        diff[letter] = altered.count(letter) - original.count(letter)
+      end
+    end
+    diff
   end
 
 end
