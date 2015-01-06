@@ -17,6 +17,7 @@ class CharactersComparer
     differences[:added]  = get_added
 
     differences[:subbed] = get_subbed
+# binding.pry
 
     differences[:spaces] = get_spaces
 
@@ -52,9 +53,10 @@ class CharactersComparer
 
   def get_subbed
     diff = get_diff(original) {|l| !altered.include?(l)} * -1
+  end
 
   def get_spaces
-    diff = original.count(' ') - altered.count(' ') * -1
+    diff = (original.count(' ') - altered.count(' ')) * -1
   end
 
   def get_diffs
