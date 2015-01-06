@@ -17,7 +17,6 @@ class CharactersComparer
     differences[:added]  = get_added
 
     differences[:subbed] = get_subbed
-# binding.pry
 
     differences[:spaces] = get_spaces
 
