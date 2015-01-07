@@ -24,9 +24,9 @@ describe 'CharactersComparer' do
     #   :subbed => -2,
     #   :spaces => -1,
     #   :diffs  =>  {
+    #     'o' =>  2,
     #     '4' =>  1,
     #     '*' =>  1,
-    #     'o' =>  2,
     #     'i' =>  1,
     #     ' ' => -1,
     #     '3' => -1,
@@ -34,8 +34,8 @@ describe 'CharactersComparer' do
     #   }
     # }
 
-    @no_match = 'as12!@uuu'
-    @hctam_on = 'we56%^ooo'
+    @no_match = 'a1@uuu'
+    @hctam_on = 'w5^ooo'
     # {
     #   :match  =>  0.0,
     #   :size   =>  0,
@@ -43,26 +43,18 @@ describe 'CharactersComparer' do
     #   :subbed => -9,
     #   :spaces =>  0,
     #   :diffs  =>  {
-    #     'a'  =>  1,
-    #     's'  =>  1,
-    #     '1'  =>  1,
-    #     '2'  =>  1,
-    #     '!'  =>  1,
-    #     '@'  =>  1,
-    #     'u'  =>  1,
-    #     'u'  =>  1,
-    #     'u'  =>  1,
-    #     'w'  => -1,
-    #     'e'  => -1,
-    #     'r'  => -1,
-    #     't'  => -1,
-    #     '5'  => -1,
-    #     '6'  => -1,
-    #     '%'  => -1,
-    #     '^'  => -1,
-    #     'o'  => -1,
-    #     'o'  => -1,
-    #     'o'  => -1,
+    #     'w'  =>  1,
+    #     '5'  =>  1,
+    #     '^'  =>  1,
+    #     'o'  =>  1,
+    #     'o'  =>  1,
+    #     'o'  =>  1,
+    #     'a'  => -1,
+    #     '1'  => -1,
+    #     '@'  => -1,
+    #     'u'  => -1,
+    #     'u'  => -1,
+    #     'u'  => -1,
     #   }
     # }
   end
@@ -115,9 +107,9 @@ describe 'CharactersComparer' do
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
       expect(result[:diffs]).to eq({
+          'o' =>  2,
           '4' =>  1,
           '*' =>  1,
-          'o' =>  2,
           'i' =>  1,
           ' ' => -1,
           '3' => -1,

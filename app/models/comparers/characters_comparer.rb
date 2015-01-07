@@ -60,11 +60,17 @@ class CharactersComparer
 
   def get_diffs
     diff = {}
-    original.each do |letter|
-      if original.count(letter) != altered.count(letter)
+
+    altered.each do |letter|
+      if altered.count(letter) != original.count(letter)
         diff[letter] = altered.count(letter) - original.count(letter)
       end
     end
+
+    original.each do |letter|
+      diff[letter] = altered.count(letter) - original.count(letter) if !altered.include?(letter)
+    end
+
     diff
   end
 
