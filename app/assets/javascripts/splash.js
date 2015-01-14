@@ -1,21 +1,33 @@
-
 function setPrint(){
   fingerPrinter = new FingerPrinter();
-  plugins = fingerPrinter.fingerPrint;
+  print = fingerPrinter.fingerPrint;
 
-  $("input#plugins").val(plugins['plugins']);
-  $("input#fonts").val(plugins['fonts']);
-  $("input#version").val(plugins['version']);
-  $("input#language").val(plugins['language']);
-  $("input#agent").val(plugins['agent']);
-  $("input#cookies").val(plugins['cookies']);
+  var height = screen.height.toString();
+  var width  = screen.width.toString();
+  var dimensions = height + 'x' + width;
 
-  $("input#session_plugins").val(plugins['plugins']);
-  $("input#session_fonts").val(plugins['fonts']);
-  $("input#session_version").val(plugins['version']);
-  $("input#session_language").val(plugins['language']);
-  $("input#session_agent").val(plugins['agent']);
-  $("input#session_cookies").val(plugins['cookies']);
+  $("input#plugins").val(print['plugins']);
+  $("input#fonts").val(print['fonts']);
+  $("input#version").val(print['version']);
+  $("input#language").val(print['language']);
+  $("input#agent").val(print['agent']);
+  $("input#cookies").val(print['cookies']);
+  $("input#screen").val(dimensions);
+
+  $("input#session_plugins").val(print['plugins']);
+  $("input#session_fonts").val(print['fonts']);
+  $("input#session_version").val(print['version']);
+  $("input#session_language").val(print['language']);
+  $("input#session_agent").val(print['agent']);
+  $("input#session_cookies").val(print['cookies']);
+  $("input#session_screen").val(dimensions);
+
+  $.getJSON("http://www.telize.com/geoip?callback=?", function(json) {
+    $("input#ip").val(json.ip);
+    $("input#country").val(json.country);
+    $("input#session_ip").val(json.ip);
+    $("input#session_country").val(json.country);
+  });
 };
 
 function setPageState(){
