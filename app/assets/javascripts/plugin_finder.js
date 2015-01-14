@@ -1,4 +1,4 @@
-// thank you to panopticlick for the function
+// adapted function from panoptoclick
 var PluginFinder = function(){
 
   function identify_plugins(){
@@ -8,18 +8,17 @@ var PluginFinder = function(){
       var np = navigator.plugins;
       var plist = new Array();
       for (var i = 0; i < np.length; i++) {
-        plist[i] = np[i].name + "; ";
-        plist[i] += np[i].description + "; ";
-        plist[i] += np[i].filename + ";";
+        plist[i] = np[i].name + "|";
+        plist[i] += np[i].description + "|";
+        plist[i] += np[i].filename + "|";
         for (var n = 0; n < np[i].length; n++) {
-          plist[i] += " (" + np[i][n].description +"; "+ np[i][n].type +
-          "; "+ np[i][n].suffixes + ")";
+          plist[i] += "|" + np[i][n].description +"|"+ np[i][n].type +
+          "|"+ np[i][n].suffixes;
         }
-        plist[i] += ". ";
       }
       plist.sort();
       for (i = 0; i < np.length; i++) {
-        plugins+= "Plugin "+i+": " + plist[i];
+        plugins+= "Plugin "+i+": " + plist[i] + "||||";
       }
     }
 
@@ -32,7 +31,7 @@ var PluginFinder = function(){
       for ( p in pp ) {
         version = PluginDetect.getVersion(pp[p]);
         if (version)
-          plugins += pp[p] + " " + version + "; "
+          plugins += pp[p] + " " + version + "||||"
       }
       plugins += ieAcrobatVersion();
     }

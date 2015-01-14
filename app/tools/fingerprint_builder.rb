@@ -10,8 +10,8 @@ class FingerprintBuilder
   def build
     Fingerprint.create!(
       user: user,
-      plugins: params[:plugins],
-      fonts: params[:fonts],
+      plugins: build_plugin_matrix,
+      fonts: build_font_hash,
       user_agent: params[:agent],
       browser_version: params[:version],
       cookies: params[:cookies],
@@ -20,6 +20,22 @@ class FingerprintBuilder
       ip: params[:ip],
       country: params[:country],
     )
+  end
+
+  private
+
+  def build_plugin_matrix
+    matrix = []
+
+    pre = params[:plugins].split('||||')
+    pre.map{|p| p.gsub!(/\|\|\||\|\|/, '|')}
+    pre.map{|p| matrix << p.split('|')}
+
+    matrix
+  end
+
+  def build_font_hash
+    
   end
 
 end

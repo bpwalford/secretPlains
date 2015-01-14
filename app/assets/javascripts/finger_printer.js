@@ -10,9 +10,9 @@ FingerPrinter = function(){
   var fontMap = new Array();
   for(var i in window.fonts) {
     if (detective.detect(window.fonts[i]) == false) {
-      fontMap.push(window.fonts[i] + " false")
+      fontMap.push(window.fonts[i] + "|false||")
     } else {
-      fontMap.push(window.fonts[i] + " true")
+      fontMap.push(window.fonts[i] + "|true||")
     }
   }
   fingerPrint['fonts'] = fontMap
