@@ -7,7 +7,7 @@ describe FingerprintBuilder do
 
     @params = {
       plugins: 'asdf|asdf||asdf|||asdf||||asdf||asdf|asdf|||asdf||||asdf|||asdf||',
-      fonts: 'one |true||, two |false||, three |true||, four |false||',
+      fonts: 'one|true,two|false,three|true,four|false',
       agent: 'user',
       version: 'version 1.0.0',
       cookies: 'true',
@@ -32,10 +32,10 @@ describe FingerprintBuilder do
     builder = FingerprintBuilder.new(@user, @params)
     builder.build
     expect(@user.fingerprints.first.fonts).to eq({
-        one: true,
-        two: false,
-        three: true,
-        four: false,
+        one:   'true',
+        two:   'false',
+        three: 'true',
+        four:  'false',
       })
   end
 

@@ -35,7 +35,15 @@ class FingerprintBuilder
   end
 
   def build_font_hash
-    
+    fonts = {}
+
+    pre = params[:fonts].split(',')
+    pre.each do|font|
+      s = font.split('|')
+      fonts[s.first.to_sym] = s.last
+    end
+
+    fonts
   end
 
 end
