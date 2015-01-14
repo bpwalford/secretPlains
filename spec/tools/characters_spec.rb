@@ -1,4 +1,3 @@
-require_relative '../../app/models/comparers/characters_comparer'
 require 'rails_helper'
 
 describe 'CharactersComparer' do
@@ -34,6 +33,40 @@ describe 'CharactersComparer' do
     #   }
     # }
 
+    @partial_two  = 'ffbb  **'
+    @owt_laitrap  = '*bA%*bGG'
+    # {
+    #   :match  =>  0.5,
+    #   :size   =>  0,
+    #   :new    =>  4,
+    #   :subbed => -4,
+    #   :spaces => -2,
+    #   :diffs  =>  {
+    #     'f' => -2,
+    #     ' ' => -2,
+    #     'A' =>  1,
+    #     '%' =>  1,
+    #     'G' =>  2,
+    #   }
+    # }
+
+    @partial_three  = 'a'
+    @eerht_laitrap  = 'abc123!@#F'
+    # {
+    #   :match  =>  0.5,
+    #   :size   =>  0,
+    #   :new    =>  4,
+    #   :subbed => -4,
+    #   :spaces => -2,
+    #   :diffs  =>  {
+    #     'f' => -2,
+    #     ' ' => -2,
+    #     'A' =>  1,
+    #     '%' =>  1,
+    #     'G' =>  2,
+    #   }
+    # }
+
     @no_match = 'a1@uuu'
     @hctam_on = 'w5^ooo'
     # {
@@ -59,6 +92,7 @@ describe 'CharactersComparer' do
     # }
   end
 
+
   context 'returns a hash of all calculated differences' do
 
     it 'gets a calculated match' do
@@ -67,7 +101,17 @@ describe 'CharactersComparer' do
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
       expect(result[:match]).to eq(0.8)
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:match]).to eq(0.5)
+
+      result = CharactersComparer.new(@partial_three, @eerht_laitrap).evaluate
+      expect(result[:match]).to eq(0.1)
+
+      # result = CharactersComparer.new(@no_match, @hctam_on).evaluate
+      # expect(result[:match]).to eq(0.0)
     end
+
 
     it 'gets the difference in size' do
       result = CharactersComparer.new(@match, @hctam).evaluate
@@ -75,7 +119,11 @@ describe 'CharactersComparer' do
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
       expect(result[:size]).to eq(2)
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:size]).to eq(0)
     end
+
 
     it 'gets the number of added characters' do
       result = CharactersComparer.new(@match, @hctam).evaluate
@@ -83,15 +131,23 @@ describe 'CharactersComparer' do
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
       expect(result[:added]).to eq(3)
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:added]).to eq(4)
     end
+
 
     it 'gets the number of characters taken out' do
       result = CharactersComparer.new(@match, @hctam).evaluate
       expect(result[:subbed]).to eq(0)
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
-      expect(result[:subbed]).to eq(-2)
+      expect(result[:subbed]).to eq(4)
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:subbed]).to eq(0.8)
     end
+
 
     it 'gets the number of different spaces' do
       result = CharactersComparer.new(@match, @hctam).evaluate
@@ -99,7 +155,11 @@ describe 'CharactersComparer' do
 
       result = CharactersComparer.new(@partial, @laitrap).evaluate
       expect(result[:spaces]).to eq(-1)
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:spaces]).to eq(-2)
     end
+
 
     it 'gets differences of specific characters' do
       result = CharactersComparer.new(@match, @hctam).evaluate
@@ -114,6 +174,15 @@ describe 'CharactersComparer' do
           ' ' => -1,
           '3' => -1,
           '^' => -1,
+        })
+
+      result = CharactersComparer.new(@partial_two, @owt_laitrap).evaluate
+      expect(result[:diffs]).to eq({
+          'f' => -2,
+          ' ' => -2,
+          'A' =>  1,
+          '%' =>  1,
+          'G' =>  2,
         })
     end
 

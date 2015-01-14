@@ -39,6 +39,7 @@ class CharactersComparer
 
   def get_match
     diff = get_diff(original) {|l,k| altered.count(l) != original.count(l) && !k.include?(l)}.to_f
+    puts (original.length - diff).to_f / original.length.to_f
     (original.length - diff).to_f / original.length.to_f
   end
 
