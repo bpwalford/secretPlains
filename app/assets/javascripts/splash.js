@@ -46,6 +46,7 @@ function setPageState(){
 $(document).ready(function(){
 
   setPageState();
+  setPrint();
 
   $(".login-link").click(function() {
     $(".splash-page").fadeOut(500);
