@@ -28,5 +28,4 @@ class Levenshtein
 
     matrix.last.last
   end
-
 end

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :fingerprints
+  has_many :differences
 
   def email_to_username
     chars = self.email.split("")
