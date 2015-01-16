@@ -2,18 +2,18 @@
 %html
   %head
     %title secretPlains
-    =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    =stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     =csrf_meta_tags
 
 
   %body
-    =javascript_include_tag 'application', 'data-turbolinks-track' => true
+    =javascript_include_tag "application", "data-turbolinks-track" => true
 
     .navbar.navbar-default
       .navbar-header.pull-right
         -if current_user
-          = link_to "profile", dashboard_path, class: "navbar-brand btn"
-          = link_to "settings", user_path(current_user), class: "navbar-brand btn"
+          = link_to "profile", dashboard_path, class: "navbar-brand btn" unless current_page?("/dashboard")
+          = link_to "settings", user_path(current_user), class: "navbar-brand btn" unless current_page?("/users/#{current_user.id}")
           = link_to "logout", logout_path, class: "navbar-brand btn"
         -else
           = link_to "home", root_path, class: "navbar-brand btn"
