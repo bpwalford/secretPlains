@@ -1,33 +1,12 @@
-function setPrint(){
+function setPrint(postPath, redirectPath){
   fingerPrinter = new FingerPrinter();
-  print = fingerPrinter.fingerPrint;
+  var print = fingerPrinter.fingerPrint;
 
-  var height = screen.height.toString();
-  var width  = screen.width.toString();
-  var dimensions = height + 'x' + width;
+  console.log(print);
 
-  $("input#plugins").val(print['plugins']);
-  $("input#fonts").val(print['fonts']);
-  $("input#version").val(print['version']);
-  $("input#language").val(print['language']);
-  $("input#agent").val(print['agent']);
-  $("input#cookies").val(print['cookies']);
-  $("input#screen").val(dimensions);
-
-  $("input#session_plugins").val(print['plugins']);
-  $("input#session_fonts").val(print['fonts']);
-  $("input#session_version").val(print['version']);
-  $("input#session_language").val(print['language']);
-  $("input#session_agent").val(print['agent']);
-  $("input#session_cookies").val(print['cookies']);
-  $("input#session_screen").val(dimensions);
-
-  $.getJSON("http://www.telize.com/geoip?callback=?", function(json) {
-    $("input#ip").val(json.ip);
-    $("input#country").val(json.country);
-    $("input#session_ip").val(json.ip);
-    $("input#session_country").val(json.country);
-  });
+  $.post(postPath, print, function() {
+    document.location = redirectPath;
+  })
 };
 
 function setPageState(){
@@ -43,11 +22,8 @@ function setPageState(){
   }
 }
 
-$(document).ready(function(){
-
+$(function () {
   setPageState();
-  setPrint();
-
   $(".login-link").click(function() {
     $(".splash-page").fadeOut(500);
     $(".register").fadeOut(500);
@@ -65,5 +41,4 @@ $(document).ready(function(){
     $(".register").fadeOut(500);
     $(".splash-page").delay(500).fadeIn(1000);
   });
-
 });

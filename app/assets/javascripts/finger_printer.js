@@ -10,9 +10,9 @@ FingerPrinter = function(){
   var fontMap = new Array();
   for(var i in window.fonts) {
     if (detective.detect(window.fonts[i]) == false) {
-      fontMap.push(window.fonts[i] + "|false")
+      fontMap += window.fonts[i] + "|false,";
     } else {
-      fontMap.push(window.fonts[i] + "|true")
+      fontMap += window.fonts[i] + "|true,";
     }
   }
   fingerPrint['fonts'] = fontMap
@@ -25,6 +25,16 @@ FingerPrinter = function(){
   fingerPrint['language'] = language
   var userAgent = navigator.userAgent
   fingerPrint['agent'] = userAgent
+
+  var height = screen.height.toString();
+  var width  = screen.width.toString();
+  var dimensions = height + 'x' + width;
+  fingerPrint['dimensions'] = dimensions;
+
+  $.getJSON("http://www.telize.com/geoip?callback=?", function(json) {
+    fingerPrint['ip'] = json.ip
+    fingerPrint['country'] = json.country
+  })
 
   this.fingerPrint = fingerPrint
 }

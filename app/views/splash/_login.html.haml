@@ -10,13 +10,4 @@
             = params[:notice]
       = form_for(:session, url: logging_in_path) do |f|
         = f.text_field :email, class: "form-control", placeholder: "email"
-        = f.hidden_field :plugins
-        = f.hidden_field :fonts
-        = f.hidden_field :version
-        = f.hidden_field :cookies
-        = f.hidden_field :language
-        = f.hidden_field :agent
-        = f.hidden_field :screen
-        = f.hidden_field :ip
-        = f.hidden_field :country
         = f.submit "Login", class: "btn-lg pull-right"

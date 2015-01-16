@@ -10,13 +10,4 @@
             = params[:notice]
       = form_tag(users_path, method: :post) do
         = email_field_tag :email, nil, {class: 'form-control', placeholder: 'email'}
-        = hidden_field_tag :plugins
-        = hidden_field_tag :fonts
-        = hidden_field_tag :version
-        = hidden_field_tag :cookies
-        = hidden_field_tag :language
-        = hidden_field_tag :agent
-        = hidden_field_tag :screen
-        = hidden_field_tag :ip
-        = hidden_field_tag :country
         = submit_tag 'Submit', class: 'btn-lg pull-right'

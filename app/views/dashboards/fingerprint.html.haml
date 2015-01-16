@@ -1,0 +1,7 @@
+%h1 scanning
+
+- content_for :javascripts do
+  :javascript
+    $(function () {
+      setPrint('#{record_fingerprint_path}', '#{dashboard_path}');
+    });

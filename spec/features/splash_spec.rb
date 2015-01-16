@@ -18,7 +18,7 @@ feature 'splash' do
       fill_in "email", with: @user.email
     end
     click_on "Login"
-    expect(page).to have_content("test")
+    expect(page).to have_content("scanning")
   end
 
   scenario 'users cannot log in with wrong password' do

@@ -7,8 +7,6 @@
 
 
   %body
-    =javascript_include_tag "application", "data-turbolinks-track" => true
-
     .navbar.navbar-default
       .navbar-header.pull-right
         -if current_user
@@ -24,3 +22,6 @@
     .container
       -# = notice
       = yield
+
+    = javascript_include_tag "application"
+    = content_for(:javascripts)
