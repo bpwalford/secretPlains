@@ -1,11 +1,17 @@
 .form {
 
-  .exit {
+  button.exit {
     position: relative;
     bottom: 45px;
     left: 126px;
     font-weight: 900;
     color: gray;
+    background: transparent;
+    outline-color: white;
+
+    &:focus {
+      color: rgb(103, 175, 233);
+    }
 
     &:hover {
       color: rgb(103, 175, 233);

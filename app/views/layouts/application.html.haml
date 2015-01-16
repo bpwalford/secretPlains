@@ -16,10 +16,10 @@
           = link_to "settings", user_path(current_user), class: "navbar-brand btn" unless current_page?("/users/#{current_user.id}")
           = link_to "logout", logout_path, class: "navbar-brand btn"
         -else
-          = link_to "home", root_path, class: "navbar-brand btn"
+          = link_to "home", root_path, class: "navbar-brand btn" unless current_page?("/")
           = link_to "about", root_path, class: "navbar-brand btn"
-          %a.btn.navbar-brand.register-link= "register"
-          %a.btn.navbar-brand.login-link= "login"
+          %button.btn.navbar-brand.register-link= "register"
+          %button.btn.navbar-brand.login-link= "login"
 
     .container
       -# = notice
