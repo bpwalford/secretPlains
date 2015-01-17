@@ -4,6 +4,7 @@ root 'splash#index'
 get 'testprint883' => 'splash#test'
 
 get 'dashboard' => 'dashboards#index', as: :dashboard
+get 'test' => 'dashboards#test'
 get 'fingerprint' => 'dashboards#fingerprint', as: :fingerprint
 post 'fingerprint' => 'dashboards#record_fingerprint', as: :record_fingerprint
 

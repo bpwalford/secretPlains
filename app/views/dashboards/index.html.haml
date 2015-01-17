@@ -1,8 +1,7 @@
 .dashboard
   .col-md-12
-    %h1.page-header.text-center
-      Hello,
+    %h1.page-header
+      Welcome,
       = current_user.email_to_username
-    %p
-      = current_user.fingerprints.first.print
--# %h1= current_user.ips.last.ip
+  .col-md-12
+    #bar-demo

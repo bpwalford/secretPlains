@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require spinner.js 
+//= require d3
+//= require spinner.js
 //= require plugin_finder.js
 //= require font_list.js
 //= require font_detector.js

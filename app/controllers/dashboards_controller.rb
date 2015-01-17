@@ -7,7 +7,6 @@ class DashboardsController < ApplicationController
   end
 
   def record_fingerprint
-    # binding.pry
     if current_user.fingerprints.count == 0
       FingerprintBuilder.new(current_user, params).build
     else
@@ -15,6 +14,9 @@ class DashboardsController < ApplicationController
       DifferenceBuilder.new(current_user, fingerprint).build
     end
     redirect_to dashboard_path
+  end
+
+  def test
   end
 
 end
