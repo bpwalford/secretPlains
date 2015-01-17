@@ -4,7 +4,7 @@ FingerPrinter = function(){
 
   var pluginFinder = new PluginFinder;
   var plugins = pluginFinder.identify();
-  fingerPrint['plugins'] = plugins
+  fingerPrint['plugins'] = plugins;
 
   var detective = new FontDetector();
   var fontMap = new Array();
@@ -15,26 +15,21 @@ FingerPrinter = function(){
       fontMap += window.fonts[i] + "|true,";
     }
   }
-  fingerPrint['fonts'] = fontMap
+  fingerPrint['fonts'] = fontMap;
 
-  var browserVersion = navigator.appVersion
-  fingerPrint['version'] = browserVersion
-  var cookies = navigator.cookieEnabled
-  fingerPrint['cookies'] = cookies
-  var language = navigator.language
-  fingerPrint['language'] = language
-  var userAgent = navigator.userAgent
-  fingerPrint['agent'] = userAgent
+  var browserVersion = navigator.appVersion;
+  fingerPrint['version'] = browserVersion;
+  var cookies = navigator.cookieEnabled;
+  fingerPrint['cookies'] = cookies;
+  var language = navigator.language;
+  fingerPrint['language'] = language;
+  var userAgent = navigator.userAgent;
+  fingerPrint['agent'] = userAgent;
 
   var height = screen.height.toString();
   var width  = screen.width.toString();
   var dimensions = height + 'x' + width;
-  fingerPrint['dimensions'] = dimensions;
-
-  $.getJSON("http://www.telize.com/geoip?callback=?", function(json) {
-    fingerPrint['ip'] = json.ip
-    fingerPrint['country'] = json.country
-  })
+  fingerPrint['screen'] = dimensions;
 
   this.fingerPrint = fingerPrint
 }

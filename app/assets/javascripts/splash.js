@@ -1,10 +1,15 @@
 function setPrint(postPath, redirectPath){
   fingerPrinter = new FingerPrinter();
-  var print = fingerPrinter.fingerPrint;
+  var newPrint = fingerPrinter.fingerPrint;
 
-  console.log(print);
+  // var geoIp ={};
+  //
+  // function getgeoip(json) {
+  //   geoIp.ip = json.ip;
+  //   geoIp.country = json.country
+  // }
 
-  $.post(postPath, print, function() {
+  $.post(postPath, newPrint, function() {
     document.location = redirectPath;
   })
 };

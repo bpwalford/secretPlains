@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def create
     user = User.new(params.permit(:email))
     if user.save
-      # FingerprintBuilder.new(user, params).build
       session[:user_id] = user.id
       redirect_to fingerprint_path
     else
