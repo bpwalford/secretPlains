@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
 root 'splash#index'
-get 'testprint883' => 'splash#test'
 
-get 'test' => 'dashboards#test'
 get 'dashboard' => 'dashboards#index', as: :dashboard
 get 'fingerprint' => 'dashboards#fingerprint', as: :fingerprint
 post 'fingerprint' => 'dashboards#record_fingerprint', as: :record_fingerprint
+get 'user_fingerprint' => 'get_fingerprint#retrieve', as: :user_fingerprint
+
+get 'testprint883' => 'splash#test'
 
 resources :users
 
