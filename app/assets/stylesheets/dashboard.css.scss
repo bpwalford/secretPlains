@@ -1,8 +1,6 @@
 .dashboard {
 
-  div.bar {
-    display: inline-block;
-    width: 20px;
-    margin-right: 10px;
+  .small {
+    box-shadow: 5px 5px 10px 10px rgb(103, 175, 233);
   }
 }

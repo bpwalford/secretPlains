@@ -18,6 +18,7 @@ var width  = '1000';
 var height = '700';
 var radius = '250';
 
+
 // calculate node placement
 function calculateTheta(i) {
   var scale = d3.scale.linear()
@@ -40,6 +41,7 @@ function calculateY(d, i) {
   return y;
 }
 
+
 // helper functions
 function randomRgbNum() {
   return Math.round(Math.random()*255).toString();
@@ -48,13 +50,13 @@ function randomRgbNum() {
 function collapseNodes(){
   svg.selectAll('.small')
     .transition()
-    .attr('fill', 'orange');
+    .attr('r', '0');
 }
 
 function inflateNodes() {
   svg.selectAll('.small')
     .transition()
-    .attr('fill', 'green');
+    .attr('r', small);
 }
 
 
@@ -68,6 +70,7 @@ var circles = svg.selectAll('circle')
   .data(things)
   .enter()
   .append('circle')
+
 
 // default circle attributes
 circles
@@ -84,30 +87,28 @@ circles
                      randomRgbNum() + ', ' +
                      randomRgbNum() + ')';
   })
+  .attr('stroke', '#gray')
+  .attr('stroke-width', '1')
+
 
 // circles on click alterations
 circles
   .on('click', function(d) {
     d3.select(this)
-      .transition()
-      .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'))
-      .attr('r', this.r = (this.r.animVal.value === small ? big : small))
-      .attr('cx', function(d, i) {
-        if (this.cx.animVal.value === width/2) {
-          // inflateNodes();
-          return d.x;
-        } else {
-          // collapseNodes();
-          return width/2;
-        }
-      })
-      .attr('cy', function(d, i) {
-        if (this.cy.animVal.value === height/2) {
-          return d.y;
-        } else {
-          return height/2;
-        }
-      });
+      .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
+    if (this.classList[0] === 'big') {
+      collapseNodes();
+      d3.select(this).transition()
+                     .attr('r', big)
+                     .attr('cx', width/2)
+                     .attr('cy', height/2);
+    } else {
+      inflateNodes();
+      d3.select(this).transition()
+                     .attr('r', small)
+                     .attr('cx', function(d) { return d.x })
+                     .attr('cy', function(d) { return d.y });
+    }
   })
 
 // var text = svg.selectAll('text')
