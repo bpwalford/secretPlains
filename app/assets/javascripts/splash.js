@@ -2,17 +2,23 @@ function setPrint(postPath, redirectPath){
   fingerPrinter = new FingerPrinter();
   var newPrint = fingerPrinter.fingerPrint;
 
-  // var geoIp ={};
-  //
-  // function getgeoip(json) {
-  //   geoIp.ip = json.ip;
-  //   geoIp.country = json.country
-  // }
-
-  $.post(postPath, newPrint, function() {
-    document.location = redirectPath;
-  })
+  $.getJSON("http://www.telize.com/geoip?callback=?")
+    .then(function(json) {
+      return {
+        ip: json.ip,
+        country: json.country
+      };
+    }).then(doStuffWithGeoIp(postPath, newPrint, redirectPath));
 };
+
+function doStuffWithGeoIp(postPath, newPrint, redirectPath) {
+  return function(geoIp) {
+    console.log(geoIp);
+    $.post(postPath, newPrint, function() {
+      document.location = redirectPath;
+    })
+  }
+}
 
 function setPageState(){
   var path  = window.location.href;

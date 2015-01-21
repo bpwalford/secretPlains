@@ -33,8 +33,9 @@ class DifferenceBuilder
 
     # this only works if the plugins stay in the same order and new plugins
     # are added onto the end, which they aren't becuase they are sorted alphabetically
-    (0..fingerprint.plugins.length-1).each do |i|
-      (0..fingerprint.plugins[i].length-1).each do |ii|
+    # fingerprint.plugins & user.fingerprints.plugin
+    fingerprint.plugins.each_with_index do |plugins, i|
+      plugins.each_index do |ii|
         old_plugins = user.fingerprints[-2].plugins
 
         if old_plugins[i] && old_plugins[i][ii]
