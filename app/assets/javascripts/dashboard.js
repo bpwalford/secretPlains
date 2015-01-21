@@ -54,6 +54,10 @@ $.get('/user_fingerprint')
     svg.selectAll('.small')
       .transition()
       .attr('r', '0');
+
+    svg.selectAll('text')
+      .transition()
+      .attr('font-size', '0')
   }
 
   function inflateNodes() {
@@ -61,6 +65,11 @@ $.get('/user_fingerprint')
       .transition()
       .delay(300)
       .attr('r', small);
+
+    svg.selectAll('text')
+      .transition()
+      .delay(300)
+      .attr('font-size', '15')
   }
 
 
@@ -76,45 +85,52 @@ $.get('/user_fingerprint')
     .data(data)
     .enter()
     .append('circle')
-    .append('text')
-    .text(function(d) { return d.val })
 
-  circles
-    .attr('cx', function(d, i) {
-      return calculateX(d, i);
-    })
-    .attr('cy', function(d, i) {
-      return calculateY(d, i);
-    })
-    .attr('r', small)
-    .attr('class', 'small')
-    // .attr('fill', function() {
-    //   return  'rgb(' + randomRgbNum() + ', ' +
-    //                    randomRgbNum() + ', ' +
-    //                    randomRgbNum() + ')';
-    // })
-    .attr('fill', 'rgb(103, 175, 233)')
-    .attr('stroke', 'silver')
-    .attr('stroke-width', '5')
+  circles.attr('cx', function(d, i) {
+           return calculateX(d, i);
+         })
+         .attr('cy', function(d, i) {
+           return calculateY(d, i);
+         })
+         .attr('r', small)
+         .attr('class', 'small')
+         // .attr('fill', function() {
+         //   return  'rgb(' + randomRgbNum() + ', ' +
+         //                    randomRgbNum() + ', ' +
+         //                    randomRgbNum() + ')';
+         // })
+         .attr('fill', 'rgb(103, 175, 233)')
+         .attr('stroke', 'silver')
+         .attr('stroke-width', '5')
+
+  var labels = svg.selectAll('text')
+    .data(data)
+    .enter()
+    .append('text')
+    .text(function(d) { return d.type })
+
+  labels.attr('x', function(d) { return d.x - ((small/2) + 20)})
+        .attr('y', function(d) { return d.y + 3 })
+        .attr('font-size', '15')
+        .attr('fill', 'gray');
 
   // circles on click alterations
-  circles
-    .on('click', function(d) {
-      d3.select(this)
-        .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
-      if (this.classList[0] === 'big') {
-        collapseNodes();
-        d3.select(this).transition()
-                       .delay(300)
-                       .attr('cx', width/2)
-                       .attr('cy', height/2)
-                       .attr('r', big);
-      } else {
-        inflateNodes();
-        d3.select(this).transition()
-                       .attr('r', small)
-                       .attr('cx', function(d) { return d.x })
-                       .attr('cy', function(d) { return d.y });
-      }
-    })
+  circles.on('click', function(d) {
+    d3.select(this)
+      .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
+    if (this.classList[0] === 'big') {
+      collapseNodes();
+      d3.select(this).transition()
+                     .delay(300)
+                     .attr('cx', width/2)
+                     .attr('cy', height/2)
+                     .attr('r', big);
+    } else {
+      inflateNodes();
+      d3.select(this).transition()
+                     .attr('r', small)
+                     .attr('cx', function(d) { return d.x })
+                     .attr('cy', function(d) { return d.y });
+    }
+  })
 });
