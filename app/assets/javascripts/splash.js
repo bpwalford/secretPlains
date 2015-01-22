@@ -2,7 +2,7 @@ function setPrint(postPath, redirectPath){
   fingerPrinter = new FingerPrinter();
   var newPrint = fingerPrinter.fingerPrint;
 
-  $.getJSON("http://www.telize.com/geoip?callback=?")
+  $.getJSON("https://www.telize.com/geoip?callback=?")
     .then(function(json) {
       return {
         ip: json.ip,
