@@ -150,8 +150,16 @@ $.get('/user_fingerprint')
     .append('text')
     .text(function(d) { return d.type });
 
-  labels.attr('x', function(d) { return d.x - ((small/2) + 20)})
-        .attr('y', function(d) { return d.y + 3 })
+  // labels.attr('x', function(d) { return d.x - ((small/2) + 20)})
+        // .attr('y', function(d) { return d.y + 3 })
+  labels.attr('x', function(d) {
+          var attrs = d3.select(this).node().getBBox();
+          return d.x - attrs.width/2 - 3;
+        })
+        .attr('y', function(d) {
+          var attrs = d3.select(this).node().getBBox();
+          return d.y + attrs.height/2 - 3;
+        })
         .attr('font-size', '15')
         .attr('fill', 'silver');
 
