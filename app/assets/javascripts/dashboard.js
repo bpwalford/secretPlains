@@ -19,9 +19,10 @@ $.get('/user_fingerprint')
 
   var small  = 60;
   var big    = 100;
-  var width  = '570';
+  var width  = '1100';
   var height = '570';
   var radius = '210';
+  var lineRadius = '105';
 
 
 // calculate node placement
@@ -33,16 +34,16 @@ $.get('/user_fingerprint')
     return scale(i);
   }
 
-  function calculateX(d, i) {
+  function calculateX(d, i, r) {
     var theta = calculateTheta(i);
-    var x = (width/2) + radius * Math.sin(theta);
+    var x = (width/2) + r * Math.sin(theta);
     d.x = x;
     return x;
   }
 
-  function calculateY(d, i) {
+  function calculateY(d, i, r) {
     var theta = calculateTheta(i);
-    var y = (height/2) + radius * Math.cos(theta);
+    var y = (height/2) + r * Math.cos(theta);
     d.y = y;
     return y;
   }
@@ -64,7 +65,8 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      .attr('x', 100 - 34)
+      .delay(300)
+      .attr('x', width - 134)
       .attr('y', 100 - 49)
 
     d3.selectAll('.' + c)
@@ -89,8 +91,8 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      .attr('x', width/2 - 34)
-      .attr('y', height/2 - 49)
+      .attr('x', width - 69)
+      .attr('y', '0')
 
     d3.selectAll('.' + c)
       .style('display', 'none');
@@ -111,8 +113,8 @@ $.get('/user_fingerprint')
     .enter()
     .append('circle')
 
-  circles.attr('cx', function(d, i) { return calculateX(d, i); })
-         .attr('cy', function(d, i) { return calculateY(d, i); })
+  circles.attr('cx', function(d, i) { return calculateX(d, i, radius); })
+         .attr('cy', function(d, i) { return calculateY(d, i, radius); })
          .attr('r', small)
          .attr('class', 'small')
          .attr('fill', 'rgb(103, 175, 233)')
@@ -123,8 +125,8 @@ $.get('/user_fingerprint')
     .attr('xlink:href', '/assets/fingerprint.png')
     .attr('height', '96')
     .attr('width', '69')
-    .attr('x', width/2 - 34)
-    .attr('y', height/2 - 49)
+    .attr('x', width - 69)
+    .attr('y', '0')
     .attr('class', 'fingerprint-image');
 
   // Lines
@@ -136,8 +138,8 @@ $.get('/user_fingerprint')
 
   lines.attr('stroke', 'rgb(103, 175, 233)')
        .attr('stroke-width', '1')
-       .attr('x1', width/2)
-       .attr('y1', height/2)
+       .attr('x1', width - 34)
+       .attr('y1', '49')
        .attr('x2', function(d) { return d.x; })
        .attr('y2', function(d) { return d.y; })
 
@@ -150,8 +152,6 @@ $.get('/user_fingerprint')
     .append('text')
     .text(function(d) { return d.type });
 
-  // labels.attr('x', function(d) { return d.x - ((small/2) + 20)})
-        // .attr('y', function(d) { return d.y + 3 })
   labels.attr('x', function(d) {
           var attrs = d3.select(this).node().getBBox();
           return d.x - attrs.width/2 - 3;
@@ -174,7 +174,7 @@ $.get('/user_fingerprint')
       d3.select(this)
         .transition()
         .delay(300)
-        .attr('cx', 100)
+        .attr('cx', width - 100)
         .attr('cy', 100)
         .attr('r', big);
     } else {
@@ -195,10 +195,10 @@ $.get('/user_fingerprint')
     .append('div')
     .attr('class', function(d) { return d.class + ' attribute'; })
 
-  var foo = $('.attribute')
+  var attrList = $('.attribute')
 
   for (var i = 0; i < data.length; i++) {
-    $(foo[i]).text(data[i].val);
+    $(attrList[i]).text(data[i].val);
   }
 
 });
