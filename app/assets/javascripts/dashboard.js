@@ -23,6 +23,8 @@ $.get('/user_fingerprint')
   var height = '570';
   var radius = '210';
   var lineRadius = '105';
+  var fontSmall = '15';
+  var fontBig = '25';
 
 
 // calculate node placement
@@ -48,6 +50,7 @@ $.get('/user_fingerprint')
     return y;
   }
 
+
 // collapse and inflate full print sequences
 // **************************************************************************
   function collapseNodes(c){
@@ -57,19 +60,21 @@ $.get('/user_fingerprint')
 
     svg.selectAll('text')
       .transition()
-      .attr('font-size', '0')
+      .attr('font-size', '0');
 
     svg.selectAll('line')
       .transition()
-      .attr('opacity', '0')
+      .attr('opacity', '0');
 
     svg.selectAll('.fingerprint-image')
       .transition()
       .delay(300)
-      .attr('x', width - 134)
-      .attr('y', 100 - 49)
+      .attr('x', width - 144)
+      .attr('y', 100 - 39);
 
     d3.selectAll('.' + c)
+      .transition()
+      .delay(600)
       .style('display', 'block');
   }
 
@@ -82,89 +87,122 @@ $.get('/user_fingerprint')
     svg.selectAll('text')
       .transition()
       .delay(300)
-      .attr('font-size', '15')
+      .attr('font-size', fontSmall);
 
     svg.selectAll('line')
       .transition()
       .delay(300)
-      .attr('opacity', '1')
+      .attr('opacity', '1');
 
     svg.selectAll('.fingerprint-image')
       .transition()
       .attr('x', width - 69)
-      .attr('y', '0')
+      .attr('y', '0');
 
     d3.selectAll('.' + c)
       .style('display', 'none');
   }
 
 
-// onload fingerprint defaults and styles
+// draw canvas
 // **************************************************************************
   var svg = d3.select('#fingerprint')
     .append('svg')
     .attr('width', width)
     .attr('height', height);
 
-  // Nodes
-  // *********************************
-  var circles = svg.selectAll('circle')
-    .data(data)
-    .enter()
-    .append('circle')
 
-  circles.attr('cx', function(d, i) { return calculateX(d, i, radius); })
-         .attr('cy', function(d, i) { return calculateY(d, i, radius); })
-         .attr('r', small)
-         .attr('class', 'small')
-         .attr('fill', 'rgb(103, 175, 233)')
+// drop shadow filter
+// **************************************************************************
+  var defs = svg.append("defs");
 
-  // Fingerprint Image
-  // *********************************
-  var fingerprintImage = svg.append('svg:image')
-    .attr('xlink:href', '/assets/fingerprint.png')
-    .attr('height', '96')
-    .attr('width', '69')
-    .attr('x', width - 69)
-    .attr('y', '0')
-    .attr('class', 'fingerprint-image');
+  var filter = defs.append("filter")
+  .attr("id", "dropshadow")
 
-  // Lines
-  // *********************************
+  filter.append("feGaussianBlur")
+  .attr("in", "SourceAlpha")
+  .attr("stdDeviation", 4)
+  .attr("result", "blur");
+  filter.append("feOffset")
+  .attr("in", "blur")
+  .attr("dx", 2)
+  .attr("dy", 2)
+  .attr("result", "offsetBlur");
+
+  var feMerge = filter.append("feMerge");
+
+  feMerge.append("feMergeNode")
+  .attr("in", "offsetBlur")
+  feMerge.append("feMergeNode")
+  .attr("in", "SourceGraphic");
+
+
+// draw daigram elements
+// **************************************************************************
   var lines = svg.selectAll('line')
     .data(data)
     .enter()
     .append('line');
 
-  lines.attr('stroke', 'rgb(103, 175, 233)')
-       .attr('stroke-width', '1')
-       .attr('x1', width - 34)
-       .attr('y1', '49')
-       .attr('x2', function(d) { return d.x; })
-       .attr('y2', function(d) { return d.y; })
+  var circles = svg.selectAll('circle')
+    .data(data)
+    .enter()
+    .append('circle')
 
+  var fingerprintImage = svg.append('svg:image')
 
-  // Labels
-  // *********************************
   var labels = svg.selectAll('text')
     .data(data)
     .enter()
     .append('text')
     .text(function(d) { return d.type });
 
-  labels.attr('x', function(d) {
-          var attrs = d3.select(this).node().getBBox();
-          return d.x - attrs.width/2 - 3;
-        })
-        .attr('y', function(d) {
-          var attrs = d3.select(this).node().getBBox();
-          return d.y + attrs.height/2 - 3;
-        })
-        .attr('font-size', '15')
-        .attr('fill', 'gray');
+
+// add attributes to svg elements
+// **************************************************************************
+  circles.attr({
+    'cx': function(d, i) { return calculateX(d, i, radius); },
+    'cy': function(d, i) { return calculateY(d, i, radius); },
+    'r': small,
+    'class': 'small',
+    'fill': 'rgb(103, 175, 233)',
+    'filter': 'url(#dropshadow)',
+  });
+
+  fingerprintImage.attr({
+    'xlink:href': '/assets/fingerprint.png',
+    'height': '96',
+    'width': '69',
+    'x': width - 69,
+    'y': '0',
+    'class': 'fingerprint-image',
+  });
+
+  lines.attr({
+    'stroke': 'rgb(103, 175, 233)',
+    'stroke-width': '1',
+    'x1': width - 34,
+    'y1': '49',
+    'x2': function(d) { return d.x; },
+    'y2': function(d) { return d.y; },
+    // 'filter': 'url(#dropshadow)',
+  });
+
+  labels.attr({
+    'x': function(d) {
+      var attrs = d3.select(this).node().getBBox();
+      return d.x - attrs.width/2 - 3;
+    },
+    'y': function(d) {
+      var attrs = d3.select(this).node().getBBox();
+      return d.y + attrs.height/2 - 3;
+    },
+    'font-size': fontSmall,
+    'fill': 'gray'
+  });
 
 
-// Click events
+// circle event listeners
 // **************************************************************************
   circles.on('click', function(d) {
     d3.select(this)
@@ -174,8 +212,8 @@ $.get('/user_fingerprint')
       d3.select(this)
         .transition()
         .delay(300)
-        .attr('cx', width - 100)
-        .attr('cy', 100)
+        .attr('cx', width - 110)
+        .attr('cy', 110)
         .attr('r', big);
     } else {
       inflateNodes(d.class);
@@ -186,6 +224,18 @@ $.get('/user_fingerprint')
         .attr('cy', function(d) { return d.y });
     }
   })
+
+  circles.on('mouseover', function() {
+    d3.select(this)
+      .transition()
+      .attr('opacity', '0.7');
+  });
+
+  circles.on('mouseout',  function() {
+    d3.select(this)
+      .transition()
+      .attr('opacity', '1');
+  });
 
 // Text Boxes
 // **************************************************************************
@@ -202,13 +252,23 @@ $.get('/user_fingerprint')
     var $unLi = $list.append('<li>' + fontsObj.uninstalled + '</li>');
   }
 
+  // create attribute div
   d3.select('.attributes').selectAll('div')
     .data(data)
     .enter()
     .append('div')
-    .attr('class', function(d) { return d.class + ' attribute'; })
+    .attr('class', function(d) { return d.class + ' attribute'; });
 
   var attrList = $('.attribute')
+
+  // create attribute title
+  d3.select('.labels').selectAll('div')
+    .data(data)
+    .enter()
+    .append('div')
+    .attr('class', function(d) { return d.class + ' label'; });
+
+  var labelList = $('.label')
 
   // **** this works b/c attrList and data are in the same order **** //
   for (var i = 0; i < data.length; i++) {
@@ -222,12 +282,7 @@ $.get('/user_fingerprint')
     } else {
       $(elem).text(datum);
     }
+
+    $(labelList[i]).text(data[i].type)
   }
-
 });
-
-
-
-
-// center bubble labels
-// draft bubble contents

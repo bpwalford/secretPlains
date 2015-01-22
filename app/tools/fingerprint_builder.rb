@@ -31,6 +31,14 @@ class FingerprintBuilder
     pre.map{|p| p.gsub!(/\|\|\||\|\|/, '|')}
     pre.map{|p| matrix << p.split('|')}
 
+    matrix.pop
+
+    matrix.each do |plugin|
+      plugin.each_index do |i|
+        plugin.delete_at(i) if plugin[i] == ''
+      end
+    end
+
     matrix
   end
 
