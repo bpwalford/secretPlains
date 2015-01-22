@@ -4,19 +4,19 @@ $.get('/user_fingerprint')
   .then(function(json) {
 
   var data = [
-    {type: 'cookies', val: json.cookies},
-    {type: 'plugins', val: json.plugins},
-    {type: 'country', val: json.country},
-    {type: 'ip', val: json.ip},
-    {type: 'fonts', val: json.fonts},
-    {type: 'language', val: json.language},
-    {type: 'screen size', val: json.screen},
-    {type: 'browser version', val: json.browser_version},
-    {type: 'user agent', val: json.user_agent},
+    {type: 'cookies',         class: 'cookies',         val: json.cookies},
+    {type: 'plugins',         class: 'plugins',         val: json.plugins},
+    {type: 'country',         class: 'country',         val: json.country},
+    {type: 'ip',              class: 'ip',              val: json.ip},
+    {type: 'fonts',           class: 'fonts',           val: json.fonts},
+    {type: 'language',        class: 'language',        val: json.language},
+    {type: 'screen size',     class: 'screen-size',     val: json.screen},
+    {type: 'browser version', class: 'browser-version', val: json.browser_version},
+    {type: 'user agent',      class: 'user-agent',      val: json.user_agent},
   ]
 
   var small  = 60;
-  var big    = 200;
+  var big    = 100;
   var width  = '570';
   var height = '570';
   var radius = '210';
@@ -50,7 +50,7 @@ $.get('/user_fingerprint')
   }
 
   // helper functions
-  function collapseNodes(){
+  function collapseNodes(c){
     svg.selectAll('.small')
       .transition()
       .attr('r', '0');
@@ -62,9 +62,12 @@ $.get('/user_fingerprint')
     svg.selectAll('line')
       .transition()
       .attr('opacity', '0')
+
+    d3.selectAll('.' + c)
+      .style('display', 'block');
   }
 
-  function inflateNodes() {
+  function inflateNodes(c) {
     svg.selectAll('.small')
       .transition()
       .delay(300)
@@ -79,6 +82,9 @@ $.get('/user_fingerprint')
       .transition()
       .delay(300)
       .attr('opacity', '1')
+
+    d3.selectAll('.' + c)
+      .style('display', 'none');
   }
 
 
@@ -107,7 +113,6 @@ $.get('/user_fingerprint')
          .attr('r', small)
          .attr('class', 'small')
          .attr('fill', 'rgb(103, 175, 233)')
-        //  .attr('stroke-width', '5')
 
 
   // line attributes
@@ -142,15 +147,15 @@ $.get('/user_fingerprint')
     d3.select(this)
       .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
     if (this.classList[0] === 'big') {
-      collapseNodes();
+      collapseNodes(d.class);
       d3.select(this)
         .transition()
         .delay(300)
-        .attr('cx', width/2)
-        .attr('cy', height/2)
+        .attr('cx', 100)
+        .attr('cy', 100)
         .attr('r', big);
     } else {
-      inflateNodes();
+      inflateNodes(d.class);
       d3.select(this)
         .transition()
         .attr('r', small)
@@ -158,6 +163,24 @@ $.get('/user_fingerprint')
         .attr('cy', function(d) { return d.y });
     }
   })
+
+  // text box
+  d3.select('.attributes').selectAll('div')
+    .data(data)
+    .enter()
+    .append('div')
+    .attr('class', function(d) { return d.class + ' attribute'; })
+    .style({
+      'border': 'solid 1px black',
+      'display': 'none',
+    })
+
+  var foo = $('.attribute')
+
+  for (var i = 0; i < data.length; i++) {
+    $(foo[i]).text(data[i].val);
+  }
+
 });
 
 
@@ -165,5 +188,3 @@ $.get('/user_fingerprint')
 
 // center bubble labels
 // draft bubble contents
-// make text clickable (maybe)
-// fill focus bubbles with content
