@@ -3,6 +3,8 @@
 $.get('/user_fingerprint')
   .then(function(json) {
 
+// data and constants
+// **************************************************************************
   var data = [
     {type: 'cookies',         class: 'cookies',         val: json.cookies},
     {type: 'plugins',         class: 'plugins',         val: json.plugins},
@@ -20,14 +22,10 @@ $.get('/user_fingerprint')
   var width  = '570';
   var height = '570';
   var radius = '210';
-  // var small  = 70;
-  // var big    = 300;
-  // var width  = '1110';
-  // var height = '700';
-  // var radius = '250';
 
 
-  // calculate node placement
+// calculate node placement
+// **************************************************************************
   function calculateTheta(i) {
     var scale = d3.scale.linear()
       .domain([0, data.length])
@@ -49,7 +47,8 @@ $.get('/user_fingerprint')
     return y;
   }
 
-  // helper functions
+// collapse and inflate full print sequences
+// **************************************************************************
   function collapseNodes(c){
     svg.selectAll('.small')
       .transition()
@@ -62,6 +61,11 @@ $.get('/user_fingerprint')
     svg.selectAll('line')
       .transition()
       .attr('opacity', '0')
+
+    svg.selectAll('.fingerprint-image')
+      .transition()
+      .attr('x', 100 - 34)
+      .attr('y', 100 - 49)
 
     d3.selectAll('.' + c)
       .style('display', 'block');
@@ -83,26 +87,25 @@ $.get('/user_fingerprint')
       .delay(300)
       .attr('opacity', '1')
 
+    svg.selectAll('.fingerprint-image')
+      .transition()
+      .attr('x', width/2 - 34)
+      .attr('y', height/2 - 49)
+
     d3.selectAll('.' + c)
       .style('display', 'none');
   }
 
 
-  // canvas
+// onload fingerprint defaults and styles
+// **************************************************************************
   var svg = d3.select('#fingerprint')
     .append('svg')
     .attr('width', width)
     .attr('height', height);
 
-  // fingerprint picture
-  var fingerprintImage = svg.append('svg:image')
-    .attr('xlink:href', '/assets/fingerprint.png')
-    .attr('height', '96')
-    .attr('width', '69')
-    .attr('x', width/2 - 34)
-    .attr('y', height/2 - 49);
-
-  // circle attributes
+  // Nodes
+  // *********************************
   var circles = svg.selectAll('circle')
     .data(data)
     .enter()
@@ -114,8 +117,18 @@ $.get('/user_fingerprint')
          .attr('class', 'small')
          .attr('fill', 'rgb(103, 175, 233)')
 
+  // Fingerprint Image
+  // *********************************
+  var fingerprintImage = svg.append('svg:image')
+    .attr('xlink:href', '/assets/fingerprint.png')
+    .attr('height', '96')
+    .attr('width', '69')
+    .attr('x', width/2 - 34)
+    .attr('y', height/2 - 49)
+    .attr('class', 'fingerprint-image');
 
-  // line attributes
+  // Lines
+  // *********************************
   var lines = svg.selectAll('line')
     .data(data)
     .enter()
@@ -129,7 +142,8 @@ $.get('/user_fingerprint')
        .attr('y2', function(d) { return d.y; })
 
 
-  // text attributes
+  // Labels
+  // *********************************
   var labels = svg.selectAll('text')
     .data(data)
     .enter()
@@ -142,7 +156,8 @@ $.get('/user_fingerprint')
         .attr('fill', 'silver');
 
 
-  // circles on click alterations
+// Click events
+// **************************************************************************
   circles.on('click', function(d) {
     d3.select(this)
       .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
@@ -164,16 +179,13 @@ $.get('/user_fingerprint')
     }
   })
 
-  // text box
+//Text Boxes
+// **************************************************************************
   d3.select('.attributes').selectAll('div')
     .data(data)
     .enter()
     .append('div')
     .attr('class', function(d) { return d.class + ' attribute'; })
-    .style({
-      'border': 'solid 1px black',
-      'display': 'none',
-    })
 
   var foo = $('.attribute')
 

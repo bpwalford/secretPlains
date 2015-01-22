@@ -8,12 +8,13 @@ function setPrint(postPath, redirectPath){
         ip: json.ip,
         country: json.country
       };
-    }).then(doStuffWithGeoIp(postPath, newPrint, redirectPath));
+    }).then(addGeoIp(postPath, newPrint, redirectPath));
 };
 
-function doStuffWithGeoIp(postPath, newPrint, redirectPath) {
+function addGeoIp(postPath, newPrint, redirectPath) {
   return function(geoIp) {
-    console.log(geoIp);
+    newPrint.ip = geoIp.ip
+    newPrint.country = geoIp.country
     $.post(postPath, newPrint, function() {
       document.location = redirectPath;
     })
