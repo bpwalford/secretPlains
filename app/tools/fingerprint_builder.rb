@@ -35,12 +35,19 @@ class FingerprintBuilder
   end
 
   def build_font_hash
-    fonts = {}
+    fonts = {
+      installed: [],
+      uninstalled: [],
+    }
 
     pre = params[:fonts].split(',')
     pre.each do |font|
       s = font.split('|')
-      fonts[s.first.to_sym] = s.last
+      if s.last == 'true'
+        fonts[:installed] << s.first + ' '
+      else
+        fonts[:uninstalled] << s.first + ' '
+      end
     end
 
     fonts

@@ -161,7 +161,7 @@ $.get('/user_fingerprint')
           return d.y + attrs.height/2 - 3;
         })
         .attr('font-size', '15')
-        .attr('fill', 'silver');
+        .attr('fill', 'gray');
 
 
 // Click events
@@ -187,8 +187,21 @@ $.get('/user_fingerprint')
     }
   })
 
-//Text Boxes
+// Text Boxes
 // **************************************************************************
+  function parsePlugins(plugins, elem) {
+    var $list = $(elem).append('<ul></ul>').find('ul');
+    for (var i = 0; i < plugins.length; i++) {
+      $list.append('<li>' + plugins[i] + '</li>')
+    }
+  }
+
+  function parseFonts(fontsObj, elem) {
+    var $list = $(elem).append('<ul></ul>').find('ul');
+    var $inLi = $list.append('<li>' + fontsObj.installed +'</li>');
+    var $unLi = $list.append('<li>' + fontsObj.uninstalled + '</li>');
+  }
+
   d3.select('.attributes').selectAll('div')
     .data(data)
     .enter()
@@ -197,8 +210,18 @@ $.get('/user_fingerprint')
 
   var attrList = $('.attribute')
 
+  // **** this works b/c attrList and data are in the same order **** //
   for (var i = 0; i < data.length; i++) {
-    $(attrList[i]).text(data[i].val);
+    var elem = attrList[i];
+    var datum = data[i].val;
+
+    if (data[i].type === 'plugins') {
+      parsePlugins(datum, elem);
+    } else if (data[i].type === 'fonts') {
+      parseFonts(datum, elem);
+    } else {
+      $(elem).text(datum);
+    }
   }
 
 });

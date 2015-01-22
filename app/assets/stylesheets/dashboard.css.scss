@@ -1,11 +1,26 @@
 .dashboard {
   width: 100%;
 
+  .well {
+    background: linear-gradient(#F0F0F0, #D0D0D0);
+    border-radius: 10px;
+  }
+
   .visual-container {
     width: 100%;
 
     .attribute {
       display: none;
+      position: absolute;
+      left: 40px;
+      top: 40px;
+      width: 75%;
+      height: 80%;
+    }
+
+    .fonts {
+      overflow: scroll;
+      font-size: 12px;
     }
   }
 }
