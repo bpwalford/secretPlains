@@ -88,6 +88,13 @@ $.get('/user_fingerprint')
     .attr('width', width)
     .attr('height', height);
 
+  // fingerprint picture
+  var fingerprintImage = svg.append('svg:image')
+    .attr('xlink:href', '/assets/fingerprint.png')
+    .attr('height', '96')
+    .attr('width', '69')
+    .attr('x', width/2 - 34)
+    .attr('y', height/2 - 49);
 
   // circle attributes
   var circles = svg.selectAll('circle')
