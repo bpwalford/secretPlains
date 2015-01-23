@@ -168,7 +168,7 @@ $.get('/user_fingerprint')
   });
 
   fingerprintImage.attr({
-    'xlink:href': '/assets/images/fingerprint.png',
+    'xlink:href': '<%= asset_path("fingerprint.png") %>',
     'height': '96',
     'width': '69',
     'x': width - 69,
@@ -286,7 +286,7 @@ $.get('/user_fingerprint')
 
 // style print attributes
 // write descriptions (not sure where to put those)
-// fix navbar for login users
+// fix navbar for logged in users
 // fix difference calculations
 // build comparing interface
 // add ui nav buttons
