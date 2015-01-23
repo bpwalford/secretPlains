@@ -168,7 +168,7 @@ $.get('/user_fingerprint')
   });
 
   fingerprintImage.attr({
-    'xlink:href': '/assets/fingerprint.png',
+    'xlink:href': '/assets/images/fingerprint.png',
     'height': '96',
     'width': '69',
     'x': width - 69,
