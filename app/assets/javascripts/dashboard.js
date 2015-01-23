@@ -22,9 +22,7 @@ $.get('/user_fingerprint')
   var width  = '1100';
   var height = '570';
   var radius = '210';
-  var lineRadius = '105';
-  var fontSmall = '15';
-  var fontBig = '25';
+  var font = '15';
 
 
 // calculate node placement
@@ -87,7 +85,7 @@ $.get('/user_fingerprint')
     svg.selectAll('text')
       .transition()
       .delay(300)
-      .attr('font-size', fontSmall);
+      .attr('font-size', font);
 
     svg.selectAll('line')
       .transition()
@@ -185,7 +183,6 @@ $.get('/user_fingerprint')
     'y1': '49',
     'x2': function(d) { return d.x; },
     'y2': function(d) { return d.y; },
-    // 'filter': 'url(#dropshadow)',
   });
 
   labels.attr({
@@ -197,7 +194,7 @@ $.get('/user_fingerprint')
       var attrs = d3.select(this).node().getBBox();
       return d.y + attrs.height/2 - 3;
     },
-    'font-size': fontSmall,
+    'font-size': font,
     'fill': 'gray'
   });
 
@@ -286,3 +283,11 @@ $.get('/user_fingerprint')
     $(labelList[i]).text(data[i].type)
   }
 });
+
+// style print attributes
+// write descriptions (not sure where to put those)
+// fix navbar for login users
+// fix difference calculations
+// build comparing interface
+// add ui nav buttons
+// build graphing interface
