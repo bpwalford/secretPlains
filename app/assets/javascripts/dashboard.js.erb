@@ -90,7 +90,7 @@ $.get('/user_fingerprint')
     svg.selectAll('line')
       .transition()
       .delay(300)
-      .attr('opacity', '1');
+      .attr('opacity', '0.3');
 
     svg.selectAll('.fingerprint-image')
       .transition()
@@ -112,27 +112,27 @@ $.get('/user_fingerprint')
 
 // drop shadow filter
 // **************************************************************************
-  var defs = svg.append("defs");
+  var defs = svg.append('defs');
 
-  var filter = defs.append("filter")
-  .attr("id", "dropshadow")
+  var shadow = defs.append('filter')
+    .attr('id', 'dropshadow')
 
-  filter.append("feGaussianBlur")
-  .attr("in", "SourceAlpha")
-  .attr("stdDeviation", 4)
-  .attr("result", "blur");
-  filter.append("feOffset")
-  .attr("in", "blur")
-  .attr("dx", 2)
-  .attr("dy", 2)
-  .attr("result", "offsetBlur");
+  shadow.append('feGaussianBlur')
+    .attr('in', 'SourceAlpha')
+    .attr('stdDeviation', 4)
+    .attr('result', 'blur');
+  shadow.append('feOffset')
+    .attr('in', 'blur')
+    .attr('dx', 2)
+    .attr('dy', 2)
+    .attr('result', 'offsetBlur');
 
-  var feMerge = filter.append("feMerge");
+  var feMerge = shadow.append('feMerge');
 
-  feMerge.append("feMergeNode")
-  .attr("in", "offsetBlur")
-  feMerge.append("feMergeNode")
-  .attr("in", "SourceGraphic");
+  feMerge.append('feMergeNode')
+    .attr('in', 'offsetBlur')
+  feMerge.append('feMergeNode')
+    .attr('in', 'SourceGraphic');
 
 
 // draw daigram elements
@@ -146,6 +146,16 @@ $.get('/user_fingerprint')
     .data(data)
     .enter()
     .append('circle')
+
+  var sphere = svg.append('defs')
+    .append('radialGradient')
+    .attr('id', 'gradient')
+  sphere.append('stop')
+    .attr('offset', '1%')
+    .attr('stop-color', 'white')
+  sphere.append('stop')
+    .attr('offset', '99%')
+    .attr('stop-color', 'rgb(103, 175, 233)')
 
   var fingerprintImage = svg.append('svg:image')
 
@@ -162,8 +172,9 @@ $.get('/user_fingerprint')
     'cx': function(d, i) { return calculateX(d, i, radius); },
     'cy': function(d, i) { return calculateY(d, i, radius); },
     'r': small,
-    'class': 'small',
-    'fill': 'rgb(103, 175, 233)',
+    'class': 'small circle',
+    'opacity': '0.5',
+    'fill': 'url(#gradient)',
     'filter': 'url(#dropshadow)',
   });
 
@@ -179,6 +190,7 @@ $.get('/user_fingerprint')
   lines.attr({
     'stroke': 'rgb(103, 175, 233)',
     'stroke-width': '1',
+    'opacity': '0.3',
     'x1': width - 34,
     'y1': '49',
     'x2': function(d) { return d.x; },
@@ -225,13 +237,13 @@ $.get('/user_fingerprint')
   circles.on('mouseover', function() {
     d3.select(this)
       .transition()
-      .attr('opacity', '0.7');
+      .attr('opacity', '0.8');
   });
 
   circles.on('mouseout',  function() {
     d3.select(this)
       .transition()
-      .attr('opacity', '1');
+      .attr('opacity', '0.5');
   });
 
 // Text Boxes
@@ -258,29 +270,20 @@ $.get('/user_fingerprint')
 
   var attrList = $('.attribute')
 
-  // create attribute title
-  d3.select('.labels').selectAll('div')
-    .data(data)
-    .enter()
-    .append('div')
-    .attr('class', function(d) { return d.class + ' label'; });
-
-  var labelList = $('.label')
-
   // **** this works b/c attrList and data are in the same order **** //
   for (var i = 0; i < data.length; i++) {
     var elem = attrList[i];
     var datum = data[i].val;
+
+    elem = $(elem).append('<h3>' + data[i].type + '</h3>')
 
     if (data[i].type === 'plugins') {
       parsePlugins(datum, elem);
     } else if (data[i].type === 'fonts') {
       parseFonts(datum, elem);
     } else {
-      $(elem).text(datum);
+      $(elem).append('<p>' + datum + '</p>')
     }
-
-    $(labelList[i]).text(data[i].type)
   }
 });
 
