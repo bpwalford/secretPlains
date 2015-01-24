@@ -94,8 +94,10 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      .attr('x', width - 69)
-      .attr('y', '0');
+      // .attr('x', width - 69)
+      // .attr('y', '0');
+      .attr('x', width/2 - 34)
+      .attr('y', height/2 - 43)
 
     d3.selectAll('.' + c)
       .style('display', 'none');
@@ -173,7 +175,7 @@ $.get('/user_fingerprint')
     'cy': function(d, i) { return calculateY(d, i, radius); },
     'r': small,
     'class': 'small circle',
-    'opacity': '0.5',
+    'opacity': '0.8',
     'fill': 'url(#gradient)',
     'filter': 'url(#dropshadow)',
   });
@@ -182,17 +184,21 @@ $.get('/user_fingerprint')
     'xlink:href': '<%= asset_path("fingerprint.png") %>',
     'height': '96',
     'width': '69',
-    'x': width - 69,
-    'y': '0',
+    // 'x': width - 69,
+    // 'y': '0',
+    'x': width/2 - 34,
+    'y': height/2 - 43,
     'class': 'fingerprint-image',
   });
 
   lines.attr({
     'stroke': 'rgb(103, 175, 233)',
-    'stroke-width': '1',
+    'stroke-width': '2',
     'opacity': '0.3',
-    'x1': width - 34,
-    'y1': '49',
+    // 'x1': width - 34,
+    // 'y1': '49',
+    'x1': width/2,
+    'y1': height/2,
     'x2': function(d) { return d.x; },
     'y2': function(d) { return d.y; },
   });
@@ -207,7 +213,8 @@ $.get('/user_fingerprint')
       return d.y + attrs.height/2 - 3;
     },
     'font-size': font,
-    'fill': 'gray'
+    'fill': 'gray',
+    'font-family': 'Cantarell'
   });
 
 
@@ -237,13 +244,13 @@ $.get('/user_fingerprint')
   circles.on('mouseover', function() {
     d3.select(this)
       .transition()
-      .attr('opacity', '0.8');
+      .attr('opacity', '0.5');
   });
 
   circles.on('mouseout',  function() {
     d3.select(this)
       .transition()
-      .attr('opacity', '0.5');
+      .attr('opacity', '0.8');
   });
 
 // Text Boxes
@@ -286,11 +293,3 @@ $.get('/user_fingerprint')
     }
   }
 });
-
-// style print attributes
-// write descriptions (not sure where to put those)
-// fix navbar for logged in users
-// fix difference calculations
-// build comparing interface
-// add ui nav buttons
-// build graphing interface

@@ -1,10 +1,11 @@
 .dashboard {
   width: 100%;
 
-  .well {
-    background: linear-gradient(#F0F0F0, #D0D0D0);
-    border-radius: 10px;
-  }
+  // .well {
+  //   background: linear-gradient(#F0F0F0, #D0D0D0);
+  //   background: transparent;
+  //   border-radius: 10px;
+  // }
 
   .visual-container {
     width: 100%;
@@ -26,6 +27,7 @@
     .fonts {
       overflow: scroll;
       font-size: 12px;
+      text-align: justify;
     }
   }
 }
