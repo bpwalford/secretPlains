@@ -1,0 +1,25 @@
+
+.about {
+  width: 100%;
+
+  .about-box {
+    width: 50%;
+    padding: 3% 6%;
+    text-align: justify;
+    background: white;
+    margin: 10% auto;
+    font-family: "Cantarell" sans-serif;
+    border: solid 3px rgb(238, 238, 238);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px gray;
+
+    h1 {
+      border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+      padding-bottom: 2%;
+    }
+
+    p {
+      padding-top: 2%;
+    }
+  }
+}

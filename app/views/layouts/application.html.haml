@@ -9,17 +9,17 @@
   %body
     .header
       .brand
-        = link_to "s e c r e t P l a i n s", root_path unless page("/", "/fingerprint") || !current_user
+        = link_to "s e c r e t P l a i n s", root_path unless page("/", "/fingerprint")
       .links
         -if current_user
           =link_to "logout", logout_path, class: "btn"
           =link_to "settings", user_path(current_user), class: "btn" unless page("/users/#{current_user.id}")
-          =link_to "about", root_path, class: "btn" unless page("/about")
+          =link_to "about", about_path, class: "btn" unless page("/about")
           =link_to "profile", dashboard_path, class: "btn" unless page("/dashboard", "/fingerprint")
         -else
           %a.btn.login-link= "login"
           %a.btn.register-link= "register"
-          =link_to "about", root_path, class: "btn" unless page("/about")
+          =link_to "about", about_path, class: "btn" unless page("/about")
           =link_to "home", root_path, class: "btn" unless page("/")
 
     .container

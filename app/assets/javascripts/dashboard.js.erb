@@ -177,7 +177,6 @@ $.get('/user_fingerprint')
     'cy': function(d, i) { return calculateY(d, i, radius); },
     'r': small,
     'class': 'small circle',
-    'opacity': '0.8',
     'fill': 'url(#gradient)',
     'filter': 'url(#dropshadow)',
   });
@@ -268,7 +267,7 @@ $.get('/user_fingerprint')
     $list.append('<li>' + fontsObj.uninstalled + '</li>');
   }
 
-  // create attribute div
+  // create attribute divs
   d3.select('.attributes').selectAll('div')
     .data(data)
     .enter()
