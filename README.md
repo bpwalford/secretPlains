@@ -3,6 +3,6 @@ secretPlains
 
 [![Build Status](https://travis-ci.org/bpwalford/secretPlains.svg?branch=master)](https://travis-ci.org/bpwalford/secretPlains)
 
-secretPlains is a place that a user can visit to see how their online presence can be interpreted. This is part experiment to see what can be calculated about visitors starting with minimal information, and partially a service which shows users how their presence can be interpreted. Users will provide nothing but email and password. As the app grows the options for user input will possibly be expanded. Once a user account is created, secretPlains will build a profile so the user can see how their profile grows over time.
+The [wikipedia](http://en.wikipedia.org/wiki/Device_fingerprint) definition for a device fingerprint is "<em>information collected about a remote computing device for the purpose of identification. Fingerprints can be used to fully or partially identify individual users or devices even when cookies are turned off.</em>" secretPlains is a place where users can get a sense of what information is in their device fingerprint and examine how it changes over time.
 
 [visit site](secret-plains-2512.herokuapp.com)
