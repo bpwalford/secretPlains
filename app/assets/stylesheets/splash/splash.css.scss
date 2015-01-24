@@ -1,6 +1,8 @@
 .splash-page {
 
-  display: none;
+  p, span {
+    background: rgba(255, 255, 255, 0.8);
+  }
 
   .splash-title {
     margin-top: 18%;
