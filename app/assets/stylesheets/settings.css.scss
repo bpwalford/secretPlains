@@ -1,0 +1,28 @@
+
+.settings {
+  width: 100%;
+  margin-top: 25vh;
+
+  span {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .btn-lg {
+    display: block;
+    width: 166px;
+    margin: 5% auto;
+    font-family: "Cantarell" sans-serif;
+    background-color: white;
+    border: solid 3px rgb(238, 238, 238);
+
+    a {
+        color: red;
+      font-weight: 900;
+
+      &:hover {
+      color: gray;
+        text-decoration: none;
+      }
+    }
+  }
+}

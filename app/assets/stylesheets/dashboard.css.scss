@@ -1,12 +1,6 @@
 .dashboard {
   width: 100%;
 
-  // .well {
-  //   background: linear-gradient(#F0F0F0, #D0D0D0);
-  //   background: transparent;
-  //   border-radius: 10px;
-  // }
-
   .visual-container {
     width: 100%;
 
@@ -19,9 +13,18 @@
       height: 71%;
       box-shadow: 4px 5px 26px gray;
       border-radius: 15px;
-      background: #EEE;
+      background: linear-gradient(white, #EEE);
       padding: 2%;
       overflow: scroll;
+
+      h2 {
+        padding: 2%;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        margin-top: 2%;
+      }
     }
 
     .fonts {

@@ -9,7 +9,7 @@ $.get('/user_fingerprint')
     {type: 'cookies',         class: 'cookies',         val: json.cookies},
     {type: 'plugins',         class: 'plugins',         val: json.plugins},
     {type: 'country',         class: 'country',         val: json.country},
-    {type: 'ip',              class: 'ip',              val: json.ip},
+    {type: 'ip address',      class: 'ip',              val: json.ip},
     {type: 'fonts',           class: 'fonts',           val: json.fonts},
     {type: 'language',        class: 'language',        val: json.language},
     {type: 'screen size',     class: 'screen-size',     val: json.screen},
@@ -68,7 +68,7 @@ $.get('/user_fingerprint')
       .transition()
       .delay(300)
       .attr('x', width - 144)
-      .attr('y', 100 - 39);
+      .attr('y', 280 - 39);
 
     d3.selectAll('.' + c)
       .transition()
@@ -94,8 +94,6 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      // .attr('x', width - 69)
-      // .attr('y', '0');
       .attr('x', width/2 - 34)
       .attr('y', height/2 - 43)
 
@@ -120,14 +118,18 @@ $.get('/user_fingerprint')
     .attr('id', 'dropshadow')
 
   shadow.append('feGaussianBlur')
-    .attr('in', 'SourceAlpha')
-    .attr('stdDeviation', 4)
-    .attr('result', 'blur');
+    .attr({
+      'in': 'SourceAlpha',
+      'stdDeviation': 4,
+      'result': 'blur',
+    });
   shadow.append('feOffset')
-    .attr('in', 'blur')
-    .attr('dx', 2)
-    .attr('dy', 2)
-    .attr('result', 'offsetBlur');
+    .attr({
+      'in': 'blur',
+      'dx': 2,
+      'dy': 2,
+      'result': 'offsetBlur',
+    });
 
   var feMerge = shadow.append('feMerge');
 
@@ -184,8 +186,6 @@ $.get('/user_fingerprint')
     'xlink:href': '<%= asset_path("fingerprint.png") %>',
     'height': '96',
     'width': '69',
-    // 'x': width - 69,
-    // 'y': '0',
     'x': width/2 - 34,
     'y': height/2 - 43,
     'class': 'fingerprint-image',
@@ -195,8 +195,6 @@ $.get('/user_fingerprint')
     'stroke': 'rgb(103, 175, 233)',
     'stroke-width': '2',
     'opacity': '0.3',
-    // 'x1': width - 34,
-    // 'y1': '49',
     'x1': width/2,
     'y1': height/2,
     'x2': function(d) { return d.x; },
@@ -229,7 +227,7 @@ $.get('/user_fingerprint')
         .transition()
         .delay(300)
         .attr('cx', width - 110)
-        .attr('cy', 110)
+        .attr('cy', 290)
         .attr('r', big);
     } else {
       inflateNodes(d.class);
@@ -250,7 +248,7 @@ $.get('/user_fingerprint')
   circles.on('mouseout',  function() {
     d3.select(this)
       .transition()
-      .attr('opacity', '0.8');
+      .attr('opacity', '1');
   });
 
 // Text Boxes
@@ -264,8 +262,10 @@ $.get('/user_fingerprint')
 
   function parseFonts(fontsObj, elem) {
     var $list = $(elem).append('<ul></ul>').find('ul');
-    var $inLi = $list.append('<li>' + fontsObj.installed +'</li>');
-    var $unLi = $list.append('<li>' + fontsObj.uninstalled + '</li>');
+    $list.append('<h4>' + 'installed fonts' + '</h4>')
+    $list.append('<li>' + fontsObj.installed +'</li>');
+    $list.append('<h4>' + 'uninstalled fonts' + '</h4>')
+    $list.append('<li>' + fontsObj.uninstalled + '</li>');
   }
 
   // create attribute div
@@ -282,7 +282,7 @@ $.get('/user_fingerprint')
     var elem = attrList[i];
     var datum = data[i].val;
 
-    elem = $(elem).append('<h3>' + data[i].type + '</h3>')
+    elem = $(elem).append('<h2>' + data[i].type + '</h2>')
 
     if (data[i].type === 'plugins') {
       parsePlugins(datum, elem);
