@@ -15,7 +15,7 @@ $.get('/user_fingerprint')
     {type: 'screen size',     class: 'screen-size',     val: json.screen},
     {type: 'browser version', class: 'browser-version', val: json.browser_version},
     {type: 'user agent',      class: 'user-agent',      val: json.user_agent},
-  ]
+  ];
 
   var small  = 60;
   var big    = 100;
@@ -34,16 +34,16 @@ $.get('/user_fingerprint')
     return scale(i);
   }
 
-  function calculateX(d, i, r) {
+  function calculateX(d, i, radius) {
     var theta = calculateTheta(i);
-    var x = (width/2) + r * Math.sin(theta);
+    var x = (width/2) + radius * Math.sin(theta);
     d.x = x;
     return x;
   }
 
-  function calculateY(d, i, r) {
+  function calculateY(d, i, radius) {
     var theta = calculateTheta(i);
-    var y = (height/2) + r * Math.cos(theta);
+    var y = (height/2) + radius * Math.cos(theta);
     d.y = y;
     return y;
   }
@@ -51,7 +51,7 @@ $.get('/user_fingerprint')
 
 // collapse and inflate full print sequences
 // **************************************************************************
-  function collapseNodes(c){
+  function collapseNodes(className){
     svg.selectAll('.small')
       .transition()
       .attr('r', '0');
@@ -69,13 +69,13 @@ $.get('/user_fingerprint')
       .attr('x', width - 144)
       .attr('y', 280 - 39);
 
-    d3.selectAll('.' + c)
+    d3.selectAll('.' + className)
       .transition()
       .delay(600)
       .style('display', 'block');
   }
 
-  function inflateNodes(c) {
+  function inflateNodes(className) {
     svg.selectAll('.small')
       .transition()
       .delay(300)
@@ -94,9 +94,9 @@ $.get('/user_fingerprint')
     svg.selectAll('.fingerprint-image')
       .transition()
       .attr('x', width/2 - 34)
-      .attr('y', height/2 - 43)
+      .attr('y', height/2 - 43);
 
-    d3.selectAll('.' + c)
+    d3.selectAll('.' + className)
       .style('display', 'none');
   }
 
@@ -114,7 +114,7 @@ $.get('/user_fingerprint')
   var defs = svg.append('defs');
 
   var shadow = defs.append('filter')
-    .attr('id', 'dropshadow')
+    .attr('id', 'dropshadow');
 
   shadow.append('feGaussianBlur')
     .attr({
@@ -133,7 +133,7 @@ $.get('/user_fingerprint')
   var feMerge = shadow.append('feMerge');
 
   feMerge.append('feMergeNode')
-    .attr('in', 'offsetBlur')
+    .attr('in', 'offsetBlur');
   feMerge.append('feMergeNode')
     .attr('in', 'SourceGraphic');
 
@@ -148,19 +148,19 @@ $.get('/user_fingerprint')
   var circles = svg.selectAll('circle')
     .data(data)
     .enter()
-    .append('circle')
+    .append('circle');
 
   var sphere = svg.append('defs')
     .append('radialGradient')
-    .attr('id', 'gradient')
+    .attr('id', 'gradient');
   sphere.append('stop')
     .attr('offset', '1%')
-    .attr('stop-color', 'white')
+    .attr('stop-color', 'white');
   sphere.append('stop')
     .attr('offset', '99%')
-    .attr('stop-color', 'rgb(103, 175, 233)')
+    .attr('stop-color', 'rgb(103, 175, 233)');
 
-  var fingerprintImage = svg.append('svg:image')
+  var fingerprintImage = svg.append('svg:image');
 
   var labels = svg.selectAll('text')
     .data(data)
@@ -229,9 +229,6 @@ $.get('/user_fingerprint')
           'r': big,
           'opacity': 1,
         });
-        // .attr('cx', width - 110)
-        // .attr('cy', 290)
-        // .attr('r', big);
     } else {
       inflateNodes(d.class);
       d3.select(this)
@@ -241,10 +238,7 @@ $.get('/user_fingerprint')
           'cy': function(d) { return d.y },
           'r': small,
           'opacity': 1,
-        })
-        // .attr('r', small)
-        // .attr('cx', function(d) { return d.x })
-        // .attr('cy', function(d) { return d.y });
+        });
     }
   })
 
@@ -273,16 +267,30 @@ $.get('/user_fingerprint')
   function parsePlugins(plugins, elem) {
     var $list = $(elem).append('<ul></ul>').find('ul');
     for (var i = 0; i < plugins.length; i++) {
-      $list.append('<li>' + plugins[i] + '</li>')
+      $list.append('<li>' + plugins[i] + '</li>');
     }
+  }
+
+  function formatFonts(list) {
+    var formatted = '';
+
+    for (var i = 0; i < list.length; i++) {
+      formatted += list[i] + ', ';
+    }
+
+    return formatted;
   }
 
   function parseFonts(fontsObj, elem) {
     var $list = $(elem).append('<ul></ul>').find('ul');
-    $list.append('<h4>' + 'installed fonts' + '</h4>')
-    $list.append('<li>' + fontsObj.installed +'</li>');
-    $list.append('<h4>' + 'uninstalled fonts' + '</h4>')
-    $list.append('<li>' + fontsObj.uninstalled + '</li>');
+
+    $list.append('<h4>' + 'installed fonts' + '</h4>');
+    var installed = formatFonts(fontsObj.installed);
+    $list.append('<li>' + installed +'</li>');
+
+    var uninstalled = formatFonts(fontsObj.uninstalled);
+    $list.append('<h4>' + 'uninstalled fonts' + '</h4>');
+    $list.append('<li>' + uninstalled + '</li>');
   }
 
   // create attribute divs
@@ -292,21 +300,21 @@ $.get('/user_fingerprint')
     .append('div')
     .attr('class', function(d) { return d.class + ' attribute'; });
 
-  var attrList = $('.attribute')
+  var attrList = $('.attribute');
 
   // **** this works b/c attrList and data are in the same order **** //
   for (var i = 0; i < data.length; i++) {
     var elem = attrList[i];
     var datum = data[i].val;
 
-    elem = $(elem).append('<h2>' + data[i].type + '</h2>')
+    elem = $(elem).append('<h2>' + data[i].type + '</h2>');
 
     if (data[i].type === 'plugins') {
       parsePlugins(datum, elem);
     } else if (data[i].type === 'fonts') {
       parseFonts(datum, elem);
     } else {
-      $(elem).append('<p>' + datum + '</p>')
+      $(elem).append('<p>' + datum + '</p>');
     }
   }
 });

@@ -49,12 +49,13 @@ class FingerprintBuilder
     }
 
     pre = params[:fonts].split(',')
+    
     pre.each do |font|
       s = font.split('|')
       if s.last == 'true'
-        fonts[:installed] << s.first + ' '
+        fonts[:installed] << s.first
       else
-        fonts[:uninstalled] << s.first + ' '
+        fonts[:uninstalled] << s.first
       end
     end
 
