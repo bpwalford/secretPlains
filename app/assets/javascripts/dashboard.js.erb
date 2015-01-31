@@ -66,7 +66,7 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      .delay(300)
+      // .delay(300)
       .attr('x', width - 144)
       .attr('y', 280 - 39);
 
@@ -224,7 +224,7 @@ $.get('/user_fingerprint')
       collapseNodes(d.class);
       d3.select(this)
         .transition()
-        .delay(300)
+        // .delay(300)
         .attr('cx', width - 110)
         .attr('cy', 290)
         .attr('r', big);
@@ -238,16 +238,24 @@ $.get('/user_fingerprint')
     }
   })
 
-  circles.on('mouseover', function() {
+  circles.on('mouseover', function(d) {
     d3.select(this)
-      .transition()
-      .attr('opacity', '0.5');
+      var xVal = Math.round(this.cx.animVal.value);
+      if (xVal === Math.round(d.x) || xVal === width - 110) {
+        d3.select(this)
+        .transition()
+        .attr('opacity', '0.5');
+      }
   });
 
-  circles.on('mouseout',  function() {
+  circles.on('mouseout',  function(d) {
     d3.select(this)
-      .transition()
-      .attr('opacity', '1');
+      var xVal = Math.round(this.cx.animVal.value);
+      if (xVal === Math.round(d.x) || xVal === width - 110) {
+        d3.select(this)
+        .transition()
+        .attr('opacity', '1');
+      }
   });
 
 // Text Boxes
