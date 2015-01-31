@@ -66,7 +66,6 @@ $.get('/user_fingerprint')
 
     svg.selectAll('.fingerprint-image')
       .transition()
-      // .delay(300)
       .attr('x', width - 144)
       .attr('y', 280 - 39);
 
@@ -224,17 +223,28 @@ $.get('/user_fingerprint')
       collapseNodes(d.class);
       d3.select(this)
         .transition()
-        // .delay(300)
-        .attr('cx', width - 110)
-        .attr('cy', 290)
-        .attr('r', big);
+        .attr({
+          'cx': width - 110,
+          'cy': 290,
+          'r': big,
+          'opacity': 1,
+        });
+        // .attr('cx', width - 110)
+        // .attr('cy', 290)
+        // .attr('r', big);
     } else {
       inflateNodes(d.class);
       d3.select(this)
         .transition()
-        .attr('r', small)
-        .attr('cx', function(d) { return d.x })
-        .attr('cy', function(d) { return d.y });
+        .attr({
+          'cx': function(d) { return d.x },
+          'cy': function(d) { return d.y },
+          'r': small,
+          'opacity': 1,
+        })
+        // .attr('r', small)
+        // .attr('cx', function(d) { return d.x })
+        // .attr('cy', function(d) { return d.y });
     }
   })
 
