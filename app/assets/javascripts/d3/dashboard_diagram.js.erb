@@ -1,0 +1,184 @@
+'use strict';
+
+var small  = 80;
+var big    = 150;
+var width  = $(window).width();
+var height = $(window).height() - 75;
+var smallDimension = width > height ? height : width;
+var radius = (smallDimension / 2) - 100;
+var focusedNodeX = width - 310;
+var font = '18';
+
+$.get('/user_fingerprint')
+  .then(function(json) {
+
+  // data
+  // **************************************************************************
+  var data = [
+    {type: 'cookies',         class: 'cookies',         val: json.cookies},
+    {type: 'plugins',         class: 'plugins',         val: json.plugins},
+    {type: 'country',         class: 'country',         val: json.country},
+    {type: 'ip address',      class: 'ip',              val: json.ip},
+    {type: 'fonts',           class: 'fonts',           val: json.fonts},
+    {type: 'language',        class: 'language',        val: json.language},
+    {type: 'screen size',     class: 'screen-size',     val: json.screen},
+    {type: 'browser version', class: 'browser-version', val: json.browser_version},
+    {type: 'user agent',      class: 'user-agent',      val: json.user_agent},
+  ];
+
+
+// draw canvas and diagram elements
+// **************************************************************************
+  var svg = d3.select('#fingerprint')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+  var lines = svg.selectAll('line')
+    .data(data)
+    .enter()
+    .append('line');
+
+  var circles = svg.selectAll('circle')
+    .data(data)
+    .enter()
+    .append('circle');
+
+  var sphere = svg.append('defs')
+    .append('radialGradient')
+    .attr('id', 'gradient');
+  sphere.append('stop')
+    .attr('offset', '20%')
+    .attr('stop-color', 'rgb(103, 175, 233)');
+  sphere.append('stop')
+    .attr('offset', '99%')
+    .attr('stop-color', 'rgba(255, 255, 255, 0.3)');
+
+  var fingerprintImage = svg.append('svg:image');
+
+  var labels = svg.selectAll('text')
+    .data(data)
+    .enter()
+    .append('text')
+    .text(function(d) { return d.type });
+
+
+// add attributes to diagram elements
+// **************************************************************************
+  circles.attr({
+    'cx': function(d, i) { return calculateX(d, i, radius, data); },
+    'cy': function(d, i) { return calculateY(d, i, radius, data); },
+    'r': small,
+    'class': 'small circle',
+    'fill': 'url(#gradient)',
+  });
+
+  fingerprintImage.attr({
+    'xlink:href': '<%= asset_path("fingerprint.png") %>',
+    'height': '96',
+    'width': '69',
+    'x': width/2 - 34,
+    'y': height/2 - 43,
+    'class': 'fingerprint-image',
+  });
+
+  lines.attr({
+    'stroke': 'rgb(103, 175, 233)',
+    'stroke-width': '2',
+    'opacity': '0.3',
+    'x1': width/2,
+    'y1': height/2,
+    'x2': function(d) { return d.x; },
+    'y2': function(d) { return d.y; },
+  });
+
+  labels.attr({
+    'x': function(d) {
+      var attrs = d3.select(this).node().getBBox();
+      return d.x - attrs.width/2 - 10;
+    },
+    'y': function(d) {
+      var attrs = d3.select(this).node().getBBox();
+      return d.y + attrs.height/2 - 3;
+    },
+    'font-size': font,
+    'fill': '#545454',
+    'font-family': 'Cantarell'
+  });
+
+
+// circle event listeners
+// **************************************************************************
+  circles.on('click', function(d) {
+    d3.select(this)
+      .attr('class', (this.classList[0] === 'big' ? 'small' : 'big'));
+    if (this.classList[0] === 'big') {
+      collapseNodes(d.class, svg);
+      d3.select(this)
+        .transition()
+        .attr({
+          'cx': focusedNodeX,
+          'cy': 290,
+          'r': big,
+          'opacity': 1,
+        });
+    } else {
+      inflateNodes(d.class, svg);
+      d3.select(this)
+        .transition()
+        .attr({
+          'cx': function(d) { return d.x },
+          'cy': function(d) { return d.y },
+          'r': small,
+          'opacity': 1,
+        });
+    }
+  })
+
+  circles.on('mouseover', function(d) {
+    d3.select(this)
+    var xVal = Math.round(this.cx.animVal.value);
+    if (xVal === Math.round(d.x) || xVal === focusedNodeX) {
+      d3.select(this)
+        .transition()
+        .attr('opacity', '0.5');
+    }
+  });
+
+  circles.on('mouseout',  function(d) {
+    d3.select(this)
+    var xVal = Math.round(this.cx.animVal.value);
+    if (xVal === Math.round(d.x) || xVal === focusedNodeX) {
+      d3.select(this)
+        .transition()
+        .attr('opacity', '1');
+    }
+  });
+
+
+// create attribute text boxes
+// ****************************************************************************
+  d3.select('.attributes').selectAll('div')
+    .data(data)
+    .enter()
+    .append('div')
+    .attr('class', function(d) { return d.class + ' attribute'; });
+
+  var attrList = $('.attribute');
+
+  // **** this works b/c attrList and data are in the same order **** //
+  for (var i = 0; i < data.length; i++) {
+    var elem = attrList[i];
+    var datum = data[i].val;
+
+    elem = $(elem).append('<h2>' + data[i].type + '</h2>');
+
+    if (data[i].type === 'plugins') {
+      parsePlugins(datum, elem);
+    } else if (data[i].type === 'fonts') {
+      parseFonts(datum, elem);
+    } else {
+      $(elem).append('<p>' + datum + '</p>');
+    }
+  }
+});
