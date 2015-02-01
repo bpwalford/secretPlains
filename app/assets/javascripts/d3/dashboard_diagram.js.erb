@@ -1,13 +1,13 @@
 'use strict';
 
-var small  = 80;
-var big    = 150;
-var width  = $(window).width();
-var height = $(window).height() - 75;
+var width          = $(window).width();
+var height         = $(window).height() - 75;
 var smallDimension = width > height ? height : width;
-var radius = (smallDimension / 2) - 100;
-var focusedNodeX = width - 310;
-var font = '18';
+var radius         = (smallDimension / 2) - 100;
+var small          = smallDimension / 8.5;
+var big            = smallDimension / 5;
+var focusedNodeX   = width - (width/5);
+var font           = '18';
 
 $.get('/user_fingerprint')
   .then(function(json) {
