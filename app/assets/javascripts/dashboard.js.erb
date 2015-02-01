@@ -154,11 +154,13 @@ $.get('/user_fingerprint')
     .append('radialGradient')
     .attr('id', 'gradient');
   sphere.append('stop')
-    .attr('offset', '1%')
-    .attr('stop-color', 'white');
-  sphere.append('stop')
-    .attr('offset', '99%')
+    .attr('offset', '10%')
+    // .attr('stop-color', 'white');
     .attr('stop-color', 'rgb(103, 175, 233)');
+  sphere.append('stop')
+    .attr('offset', '90%')
+    // .attr('stop-color', 'rgb(103, 175, 233)');
+    .attr('stop-color', 'white');
 
   var fingerprintImage = svg.append('svg:image');
 
@@ -177,7 +179,7 @@ $.get('/user_fingerprint')
     'r': small,
     'class': 'small circle',
     'fill': 'url(#gradient)',
-    'filter': 'url(#dropshadow)',
+    // 'filter': 'url(#dropshadow)',
   });
 
   fingerprintImage.attr({

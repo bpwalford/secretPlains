@@ -2,6 +2,7 @@
 
   p, span {
     background: rgba(255, 255, 255, 0.8);
+    opacity: 0.8;
   }
 
   p {
@@ -110,8 +111,8 @@
     .line {
     position: absolute;
     border-left: solid 2px rgb(238, 238, 238);
+    // border-left: solid 2px gray;
     z-index: -1;
-    // border-left: solid 3px black;
 
     @for $i from 1 through $num {
       &:nth-child(#{$i}) {
@@ -138,8 +139,8 @@
   .lineh {
     position: absolute;
     border-bottom: solid 2px rgb(238, 238, 238);
+    // border-bottom: solid 2px gray;
     z-index: -1;
-    // border-bottom: solid 3px black;
 
     @for $i from 1 through $num {
       &:nth-child(#{$i}) {

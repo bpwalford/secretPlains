@@ -17,6 +17,9 @@ body {
     font-family: 'Cantarell', sans-serif;
   }
 
+  // background: radial-gradient(#EEEEEE, white);
+  // background: #969696;
+
   .header {
     background: transparent;
     font-family: 'Cantarell', sans-serif;
@@ -26,8 +29,8 @@ body {
       float: left;
       padding-left: 2%;
       font-size: 2em;
-      // color: rgb(192, 192, 192);
-      color: black;
+      color: rgb(192, 192, 192);
+      // color: black;
 
       &:hover {
         color: rgb(103, 175, 233);
