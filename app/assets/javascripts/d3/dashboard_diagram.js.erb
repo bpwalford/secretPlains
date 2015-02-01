@@ -22,7 +22,7 @@ $.get('/user_fingerprint')
     {type: 'fonts',           class: 'fonts',           val: json.fonts},
     {type: 'language',        class: 'language',        val: json.language},
     {type: 'screen size',     class: 'screen-size',     val: json.screen},
-    {type: 'browser version', class: 'browser-version', val: json.browser_version},
+    {type: 'browser',         class: 'browser-version', val: json.browser_version},
     {type: 'user agent',      class: 'user-agent',      val: json.user_agent},
   ];
 
@@ -48,10 +48,13 @@ $.get('/user_fingerprint')
     .append('radialGradient')
     .attr('id', 'gradient');
   sphere.append('stop')
-    .attr('offset', '20%')
+    .attr('offset', '1%')
+    .attr('stop-color', 'rgb(255, 255, 255)');
+  sphere.append('stop')
+    .attr('offset', '90%')
     .attr('stop-color', 'rgb(103, 175, 233)');
   sphere.append('stop')
-    .attr('offset', '99%')
+    .attr('offset', '150%')
     .attr('stop-color', 'rgba(255, 255, 255, 0.3)');
 
   var fingerprintImage = svg.append('svg:image');
