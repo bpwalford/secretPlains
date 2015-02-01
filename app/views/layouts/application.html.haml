@@ -22,8 +22,7 @@
           =link_to "about", about_path, class: "btn" unless page("/about")
           =link_to "home", root_path, class: "btn" unless page("/")
 
-    .container
-      = yield
+    = yield
 
     = javascript_include_tag "application"
     = content_for(:javascripts)
