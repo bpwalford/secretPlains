@@ -5,15 +5,25 @@ class Levenshtein
     @count = 0;
   end
 
-  def distance(str1, str2)
-    return str2.length if str1.empty?
-    return str1.length if str2.empty?
+  def distance(first, second)
+    matrix = [(0..first.length).to_a]
+    (1..second.length).each do |j|
+      matrix << [j] + [0] * (first.length)
+    end
 
-    @count += 1
-    return distance(str1[1..-1], str2[1..-1]) if str1[0] == str2[0]
-    l1 = distance(str1, str2[1..-1])
-    l2 = distance(str1[1..-1], str2)
-    l3 = distance(str1[1..-1], str2[1..-1])
-    return 1 + [l1,l2,l3].min
+    (1..second.length).each do |i|
+      (1..first.length).each do |j|
+        if first[j-1] == second[i-1]
+          matrix[i][j] = matrix[i-1][j-1]
+        else
+          matrix[i][j] = [
+            matrix[i-1][j],
+            matrix[i][j-1],
+            matrix[i-1][j-1],
+          ].min + 1
+        end
+      end
+    end
+    return matrix.last.last
   end
 end

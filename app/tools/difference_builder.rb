@@ -10,8 +10,8 @@ class DifferenceBuilder
     Difference.create!(
       original_id: original,
       altered_id: altered,
-      # plugins_intersection: ,
-      # plugins_lev: ,
+      plugins_intersection: (original.plugins & altered.plugins).flatten,
+      plugins_lev: plugin_lev,
       # user_agent_intersection: ,
       # user_agent_lev: ,
       # browser_intersection: ,
@@ -27,6 +27,32 @@ class DifferenceBuilder
   end
 
   private
+
+  def plugin_lev
+    intersection = original.plugins & altered.plugins
+
+    original_diffs = (original.plugins - intersection).flatten
+    altered_diffs  = (altered.plugins - intersection).flatten
+
+    original_unique_diffs = original_diffs - altered_diffs
+    altered_unique_diffs  = altered_diffs - original_diffs
+
+    first = ''
+    original.plugins.each do |plugin|
+      plugin.each do |part|
+        first +=  part
+      end
+    end
+
+    second = ''
+    altered.plugins.each do |plugin|
+      plugin.each do |part|
+        second += part
+      end
+    end
+
+    Levenshtein.new.distance(first, second)
+  end
 
 end
 
