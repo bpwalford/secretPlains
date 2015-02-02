@@ -1,7 +1,7 @@
 class Fingerprint < ActiveRecord::Base
 
   belongs_to :user
-  has_one :difference, dependent: :destroy
+  has_many :differences, dependent: :destroy
 
   serialize :plugins
   serialize :fonts

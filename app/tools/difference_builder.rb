@@ -24,10 +24,6 @@ class DifferenceBuilder
 
   private
 
-  def calculate_diff(&block)
-    user.fingerprints[-2] == yield
-  end
-
   def calculate_plugins_diff
     total_levenshtein_distance = 0
 

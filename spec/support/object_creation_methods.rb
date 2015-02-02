@@ -15,14 +15,12 @@ module ObjectCreationMethods
     defaults = {
       user: create_user,
       plugins: [
-        ['plugin_one', 'v 1.0.0'],
-        ['plugin_$','v2.3a']
+        ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
+        ['plugin_two', 'v 3.5.3']
       ],
       fonts: {
-        font1: true,
-        font2: false,
-        font3: true,
-        font4: false
+        installed:   ['font1', 'font2', 'font3'],
+        uninstalled: ['font4', 'font5', 'font6'] 
       },
       user_agent: 'user_agent, browser, v1.2.3 %%',
       browser_version: 'version 1.3ba.6 %%',
@@ -37,6 +35,11 @@ module ObjectCreationMethods
 
   def create_fingerprint(overrides = {})
     new_fingerprint(overrides).tap(&:save!)
+  end
+
+  def intersection_match?(actual, expected)
+    expected.each{|i| return false if !actual.include?(i)}
+    true
   end
 
 end
