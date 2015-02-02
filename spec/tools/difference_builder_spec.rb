@@ -43,7 +43,7 @@ describe DifferenceBuilder do
       it 'plugin index changes' do
         altered = create_fingerprint(
           plugins: [
-            ['plugin_two', 'v 3.5.3']
+            ['plugin_two', 'v 3.5.3'],
             ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
           ]
         )
@@ -246,7 +246,7 @@ describe DifferenceBuilder do
   end
 
 
-  context 'detects when a fingerprint has not alterations' do
+  context 'detects when a fingerprint has no alterations' do
 
     it 'gets the intersection for user agent' do
       altered = create_fingerprint
@@ -299,31 +299,31 @@ describe DifferenceBuilder do
     it 'detects if the cookies have changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.cookies).to eq(false)
+      expect(diff.cookies).to eq(true)
     end
 
     it 'detects if the language has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.language).to eq(false)
+      expect(diff.language).to eq(true)
     end
 
     it 'detects if the ip has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.ip).to eq(false)
+      expect(diff.ip).to eq(true)
     end
 
     it 'detects if the screen size has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.screen).to eq(false)
+      expect(diff.screen).to eq(true)
     end
 
     it 'detects if the geoip calced country has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.country).to eq(false)
+      expect(diff.country).to eq(true)
     end
 
   end
