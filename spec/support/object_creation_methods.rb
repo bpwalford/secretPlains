@@ -20,7 +20,7 @@ module ObjectCreationMethods
       ],
       fonts: {
         installed:   ['font1', 'font2', 'font3'],
-        uninstalled: ['font4', 'font5', 'font6'] 
+        uninstalled: ['font4', 'font5', 'font6']
       },
       user_agent: 'user_agent, browser, v1.2.3 %%',
       browser_version: 'version 1.3ba.6 %%',

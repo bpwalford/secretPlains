@@ -13,18 +13,25 @@ describe DifferenceBuilder do
 
     context 'existing plugins are altered' do
 
-      it 'full plugin removed' do
+      it 'gets levenshtein when full plugin removed' do
         altered = create_fingerprint(
           plugins: [ ['plugin_one', 'v 1.0.0', 'asdf !@#$'] ]
         )
         diff = DifferenceBuilder.new(@original, altered).build
         expect(diff.plugins_lev).to eq(17)
+      end
+
+      it 'gets intersection when full plugin removed' do
+        altered = create_fingerprint(
+          plugins: [ ['plugin_one', 'v 1.0.0', 'asdf !@#$'] ]
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         expect(diff.plugins_intersection).to eq(
           ['plugin_one', 'v 1.0.0', 'asdf !@#$']
         )
       end
 
-      it 'plugin attributes change' do
+      it 'gets levenshtein when plugin attributes change' do
         altered = create_fingerprint(
           plugins: [
             ['plg_one', 'v 1.0.0', 'asdf new !@#$'],
@@ -33,6 +40,16 @@ describe DifferenceBuilder do
         )
         diff = DifferenceBuilder.new(@original, altered).build
         expect(diff.plugins_lev).to eq(7)
+      end
+
+      it 'gets intersection when plugin attributes change' do
+        altered = create_fingerprint(
+          plugins: [
+            ['plg_one', 'v 1.0.0', 'asdf new !@#$'],
+            ['plugin_two', 'v 3.5.3']
+          ]
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         matched = intersection_match?(
           diff.plugins_intersection,
           ['plugin_two', 'v 3.5.3', 'v 1.0.0']
@@ -40,7 +57,7 @@ describe DifferenceBuilder do
         expect(matched).to eq(true)
       end
 
-      it 'plugin index changes' do
+      it 'get levenshtein when plugin index changes' do
         altered = create_fingerprint(
           plugins: [
             ['plugin_two', 'v 3.5.3'],
@@ -49,6 +66,16 @@ describe DifferenceBuilder do
         )
         diff = DifferenceBuilder.new(@original, altered).build
         expect(diff.plugins_lev).to eq(0)
+      end
+
+      it 'gets intersection when plugin index changes' do
+        altered = create_fingerprint(
+          plugins: [
+            ['plugin_two', 'v 3.5.3'],
+            ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
+          ]
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         matched = intersection_match?(
           diff.plugins_intersection,
           ['plugin_two', 'v 3.5.3', 'plugin_one', 'v 1.0.0', 'asdf !@#$']
@@ -60,7 +87,7 @@ describe DifferenceBuilder do
 
     context 'new plugins added' do
 
-      it 'added to the end' do
+      it 'gets levenshtein when added to the end' do
         altered = create_fingerprint(
           plugins: [
             ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
@@ -69,7 +96,18 @@ describe DifferenceBuilder do
           ]
         )
         diff = DifferenceBuilder.new(@original, altered).build
-        expext(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_lev).to eq(15)
+      end
+
+      it 'gets intersection when added to the end' do
+        altered = create_fingerprint(
+          plugins: [
+            ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
+            ['plugin_two', 'v 3.5.3'],
+            ['plugin_thr', 'v 1.0']
+          ]
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         matched = intersection_match?(
           diff.plugins_intersection,
           ['plugin_two', 'v 3.5.3', 'plugin_one', 'v 1.0.0', 'asdf !@#$']
@@ -77,7 +115,7 @@ describe DifferenceBuilder do
         expect(matched).to eq(true)
       end
 
-      it 'added to beginning' do
+      it 'gets levenshtein when added to beginning' do
         altered = create_fingerprint(
           plugins: [
             ['plugin_thr', 'v 1.0'],
@@ -86,7 +124,18 @@ describe DifferenceBuilder do
           ],
         )
         diff = DifferenceBuilder.new(@original, altered).build
-        expext(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_lev).to eq(15)
+      end
+
+      it 'gets intersection when added to beginning' do
+        altered = create_fingerprint(
+          plugins: [
+            ['plugin_thr', 'v 1.0'],
+            ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
+            ['plugin_two', 'v 3.5.3']
+          ],
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         matched = intersection_match?(
           diff.plugins_intersection,
           ['plugin_two', 'v 3.5.3', 'plugin_one', 'v 1.0.0', 'asdf !@#$']
@@ -94,7 +143,7 @@ describe DifferenceBuilder do
         expect(matched).to eq(true)
       end
 
-      it 'added to middle' do
+      it 'gets levenshtein when added to middle' do
         altered = create_fingerprint(
           plugins: [
             ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
@@ -103,7 +152,18 @@ describe DifferenceBuilder do
           ],
         )
         diff = DifferenceBuilder.new(@original, altered).build
-        expext(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_lev).to eq(15)
+      end
+
+      it 'gets intersection when added to middle' do
+        altered = create_fingerprint(
+          plugins: [
+            ['plugin_one', 'v 1.0.0', 'asdf !@#$'],
+            ['plugin_thr', 'v 1.0'],
+            ['plugin_two', 'v 3.5.3']
+          ]
+        )
+        diff = DifferenceBuilder.new(@original, altered).build
         matched = intersection_match?(
           diff.plugins_intersection,
           ['plugin_two', 'v 3.5.3', 'plugin_one', 'v 1.0.0', 'asdf !@#$']
@@ -119,14 +179,14 @@ describe DifferenceBuilder do
         altered = create_fingerprint(
           plugins: [
             ['plugin_thr'],
-            ['plugin', 'v 3.5.3'], # -4
+            ['plugin', 'v 3.5.3'],
             ['plugin_fou'],
-            ['plugin_one', 'v 1.0.1'], # -9 + 1
+            ['plugin_one', 'v 1.0.1'],
             ['plugin_fiv'],
           ],
         )
         diff = DifferenceBuilder.new(@original, altered).build
-        expect(diff.plugins_lev).to eq(44)
+        expect(diff.plugins_lev).to eq(34)
         matched = intersection_match?(
           diff.plugins_intersection,
           ['v 3.5.3', 'plugin_one']
