@@ -203,12 +203,13 @@ describe DifferenceBuilder do
 
     it 'gets the intersection for user agent' do
       altered = create_fingerprint(
-        user_agent: 'user_agent, browser52, v1.2.3, %%asdf'
+      # 'user_agent, browser, v1.2.3 %%'
+        user_agent: 'user_agent, browser52, v1.2.3 %%asdf'
       )
       diff = DifferenceBuilder.new(@original, altered).build
       matched = intersection_match?(
         diff.user_agent_intersection,
-        ['user_agent,', 'v1.2.3,']
+        ['user_agent,', 'v1.2.3']
       )
       expect(matched).to eq(true)
     end
@@ -218,12 +219,12 @@ describe DifferenceBuilder do
         user_agent: 'user_agent, browser52, v1.2.3, %%asdf '
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.user_agent_lev).to eq(7)
+      expect(diff.user_agent_lev).to eq(8)
     end
 
     it 'gets the intersection for browser version' do
       altered = create_fingerprint(
-        broswer_version: 'versSion 1.3ba.6 % !%'
+        browser_version: 'versSion 1.3ba.6 % !%'
       )
       diff = DifferenceBuilder.new(@original, altered).build
       expect(diff.browser_intersection).to eq(['1.3ba.6'])
@@ -255,8 +256,8 @@ describe DifferenceBuilder do
     it 'gets the percent difference for installed fonts' do
       altered = create_fingerprint(
         fonts: {
-          installed:   ['font1', 'font2', 'font6'],
-          uninstalled: ['font4', 'font5', 'font3']
+          installed:   ['font1', 'font2', 'font6', 'font5'],
+          uninstalled: ['font4', 'font3']
         }
       )
       diff = DifferenceBuilder.new(@original, altered).build
@@ -268,7 +269,7 @@ describe DifferenceBuilder do
         cookies: 'false'
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.cookies).to eq(true)
+      expect(diff.cookies).to eq(false)
     end
 
     it 'detects if the language has changed' do
@@ -276,7 +277,7 @@ describe DifferenceBuilder do
         language: 'foo'
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.language).to eq(true)
+      expect(diff.language).to eq(false)
     end
 
     it 'detects if the ip has changed' do
@@ -284,7 +285,7 @@ describe DifferenceBuilder do
         ip: 'foo'
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.ip).to eq(true)
+      expect(diff.ip).to eq(false)
     end
 
     it 'detects if the screen size has changed' do
@@ -292,7 +293,7 @@ describe DifferenceBuilder do
         screen: 'foo'
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.screen).to eq(true)
+      expect(diff.screen).to eq(false)
     end
 
     it 'detects if the geoip calced country has changed' do
@@ -300,7 +301,7 @@ describe DifferenceBuilder do
         country: 'foo'
       )
       diff = DifferenceBuilder.new(@original, altered).build
-      expect(diff.country).to eq(true)
+      expect(diff.country).to eq(false)
     end
 
   end
