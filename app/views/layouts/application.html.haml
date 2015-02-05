@@ -21,7 +21,9 @@
               %li{"role" => "presentation"}
                 =link_to "profile", dashboard_path unless page("/dashboard", "/fingerprint")
               %li{"role" => "presentation"}
-                %a= "compare"
+                %a.diagram-link= "fingerprint"
+              %li{"role" => "presentation"}
+                %a.compare-link= "compare"
               %li{"role" => "presentation"}
                 =link_to "about", about_path unless page("/about")
               %li{"role" => "presentation"}
