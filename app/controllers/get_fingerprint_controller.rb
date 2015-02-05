@@ -5,4 +5,8 @@ class GetFingerprintController < ApplicationController
     render json: fingerprint
   end
 
+  def compare
+    # binding.pry
+  end
+
 end

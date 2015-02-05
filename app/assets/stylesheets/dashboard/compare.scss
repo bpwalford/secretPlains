@@ -1,3 +1,16 @@
 .compare-prints {
   display: none;
+
+  .compare {
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: solid 3px rgb(238, 238, 238);
+    background: white;
+    padding: 3%;
+
+    .form-control {
+      margin-bottom: 5%;
+    }
+  }
 }

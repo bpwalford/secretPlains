@@ -1,3 +1,21 @@
 .compare
-  %h1
-    TEST
+  .form
+    =form_tag('/comparison', remote: true, method: :get) do
+
+      =collection_select(:fingerprint_one,
+        :fingerprint_id,
+        current_user.fingerprints.all,
+        :id,
+        :created_at,
+        {include_blank: 'select'},
+        {class: 'form-control'})
+
+      =collection_select(:fingerprint_two,
+        :fingerprint_id,
+        current_user.fingerprints.all,
+        :id,
+        :created_at,
+        {include_blank: 'select'},
+        {class: 'form-control'})
+
+      =submit_tag 'submit', class: 'btn btn-default'

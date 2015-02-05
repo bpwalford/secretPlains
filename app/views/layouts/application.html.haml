@@ -20,10 +20,11 @@
                 =link_to "home", root_path unless page("/")
               %li{"role" => "presentation"}
                 =link_to "profile", dashboard_path unless page("/dashboard", "/fingerprint")
-              %li{"role" => "presentation"}
-                %a.diagram-link= "fingerprint"
-              %li{"role" => "presentation"}
-                %a.compare-link= "compare"
+              -if page("/dashboard")
+                %li{"role" => "presentation"}
+                  %a.diagram-link= "fingerprint"
+                %li{"role" => "presentation"}
+                  %a.compare-link= "compare"
               %li{"role" => "presentation"}
                 =link_to "about", about_path unless page("/about")
               %li{"role" => "presentation"}

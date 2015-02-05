@@ -76,6 +76,8 @@ body {
     }
 
     &:hover .dropdown-menu {
+      box-shadow: none;
+      border: solid 3px rgb(238, 238, 238);
       display: block;
       transition: display 0.5 ease;
     }
