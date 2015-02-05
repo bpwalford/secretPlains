@@ -6,7 +6,4 @@ class SplashController < ApplicationController
   def about
   end
 
-  def test
-  end
-
 end
