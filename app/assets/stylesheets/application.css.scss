@@ -12,43 +12,72 @@
 }
 
 body {
-
   h1, h2, h3, h4 {
     font-family: 'Cantarell', sans-serif;
   }
+}
 
-  // background: radial-gradient(#EEEEEE, white);
-  // background: #969696;
+.header {
+  background: transparent;
+  font-family: 'Cantarell', sans-serif;
+  height: 50px;
+  width: 100%;
 
-  .header {
-    background: transparent;
-    font-family: 'Cantarell', sans-serif;
-    height: 50px;
-    width: 100%;
+  .splash-nav {
+    float: right;
+  }
 
-    .brand a {
-      float: left;
-      padding-left: 2%;
+  .brand a {
+    float: left;
+    padding-left: 2%;
+    font-size: 2em;
+    color: rgb(192, 192, 192);
+
+    &:hover {
+      color: rgb(103, 175, 233);
+      text-decoration: none;
+    }
+  }
+
+  .links  a{
+    color: rgb(192, 192, 192);
+    font-size: 1.5em;
+    padding-right: 2%;
+
+    &:hover {
+      color: rgb(103, 175, 233);
+      text-decoration: none;
+    }
+  }
+
+  .dropdown {
+
+    ul {
+      margin-right: 8px;
+      margin-top: -8px;
+    }
+
+    button {
+      border: none;
       font-size: 2em;
       color: rgb(192, 192, 192);
-      // color: black;
+      transition: color 0.5s ease;
+
+      &:focus, &:active {
+        background: none;
+        border: none;
+      }
 
       &:hover {
+        background: none;
         color: rgb(103, 175, 233);
-        text-decoration: none;
+        transition: color 0.5s ease;
       }
     }
 
-    .links  a{
-      float: right;
-      color: rgb(192, 192, 192);
-      font-size: 1.5em;
-      padding-right: 2%;
-
-      &:hover {
-        color: rgb(103, 175, 233);
-        text-decoration: none;
-      }
+    &:hover .dropdown-menu {
+      display: block;
+      transition: display 0.5 ease;
     }
   }
 }

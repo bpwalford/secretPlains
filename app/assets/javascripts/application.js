@@ -6,3 +6,4 @@
 //= require fingerprinting/font_list.js
 //= require fingerprinting/font_detector.js
 //= require_tree .
+//= require bootstrap-sprockets

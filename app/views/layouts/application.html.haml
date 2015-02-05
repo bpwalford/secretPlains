@@ -9,18 +9,29 @@
   %body
     .header
       .brand
-        = link_to "s e c r e t P l a i n s", root_path unless page("/", "/fingerprint")
+        = link_to "s e c r e t P l a i n s", root_path if page("/about") && !current_user
       .links
         -if current_user
-          =link_to "logout", logout_path, class: "btn"
-          =link_to "settings", user_path(current_user), class: "btn" unless page("/users/#{current_user.id}")
-          =link_to "about", about_path, class: "btn" unless page("/about")
-          =link_to "profile", dashboard_path, class: "btn" unless page("/dashboard", "/fingerprint")
+          .dropdown.pull-right
+            %button.btn.btn-default.dropdown-toggle{"type" => "button", "data-toggle" => "dropdown"}
+              %span.glyphicon.glyphicon-th
+            %ul.dropdown-menu{"role" => "menu"}
+              %li{"role" => "presentation"}
+                =link_to "home", root_path unless page("/")
+              %li{"role" => "presentation"}
+                =link_to "profile", dashboard_path unless page("/dashboard", "/fingerprint")
+              %li{"role" => "presentation"}
+                =link_to "about", about_path unless page("/about")
+              %li{"role" => "presentation"}
+                =link_to "settings", user_path(current_user) unless page("/users/#{current_user.id}")
+              %li.divider
+              %li{"role" => "presentation"}
+                =link_to "logout", logout_path
         -else
-          %a.btn.login-link= "login"
-          %a.btn.register-link= "register"
-          =link_to "about", about_path, class: "btn" unless page("/about")
-          =link_to "home", root_path, class: "btn" unless page("/")
+          %a.btn.login-link.splash-nav= "login"
+          %a.btn.register-link.splash-nav= "register"
+          =link_to "about", about_path, class: "btn splash-nav" unless page("/about")
+          =link_to "home", root_path, class: "btn splash-nav" unless page("/")
 
     = yield
 
