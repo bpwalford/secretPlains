@@ -91,8 +91,7 @@
 
     // set top and left sides
     @if $distance < 20 {
-      $difference: 20 - $distance;
-      $distance: $distance + $difference;
+      $distance: $distance + random(20);
     // set right and bottom sides
   } @else if (100 - $distance - $size) < 20 {
       $difference: 100 - $distance - $size;
@@ -148,7 +147,7 @@
         $top: random(90%)+10;
         top: setProximity($top);
 
-        $minimum: 40%;
+        $minimum: 30%;
         $left: random(60%);
         $width: random(70%);
         width: setLines($width, $left, $minimum);

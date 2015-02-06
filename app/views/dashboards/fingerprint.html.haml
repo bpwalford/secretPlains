@@ -29,5 +29,7 @@
       var spinner = new Spinner(opts).spin(target);
 
     $(function () {
-      setPrint('#{record_fingerprint_path}', '#{dashboard_path}');
+      setTimeout(function () {
+        setPrint('#{record_fingerprint_path}', '#{dashboard_path}');
+      }, 0);
     });
