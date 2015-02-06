@@ -79,4 +79,12 @@ describe FingerprintBuilder do
     expect(@user.fingerprints.first.country).to eq('USA')
   end
 
+  it 'does not build a new fingerprint if the last one is identitcal' do
+    builder = FingerprintBuilder.new(@user, @params)
+    builder.build
+    builder = FingerprintBuilder.new(@user, @params)
+    builder.build
+    expect(@user.fingerprints.all.count).to eq(1)
+  end
+
 end

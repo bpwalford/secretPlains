@@ -8,7 +8,7 @@ class FingerprintBuilder
   end
 
   def build
-    Fingerprint.create!(
+    new_fingerprint = Fingerprint.new(
       user: user,
       plugins: build_plugin_matrix,
       fonts: build_font_hash,
@@ -20,6 +20,7 @@ class FingerprintBuilder
       ip: params[:ip],
       country: params[:country],
     )
+    new_fingerprint.save if altered_fingerprint?(new_fingerprint)
   end
 
   private
@@ -27,9 +28,9 @@ class FingerprintBuilder
   def build_plugin_matrix
     matrix = []
 
-    pre = params[:plugins].split('||||')
-    pre.map{|p| p.gsub!(/\|\|\||\|\|/, '|')}
-    pre.map{|p| matrix << p.split('|')}
+    plugin_list = params[:plugins].split('||||')
+    plugin_list.map{|p| p.gsub!(/\|\|\||\|\|/, '|')}
+    plugin_list.map{|p| matrix << p.split('|')}
 
     matrix.pop
 
@@ -48,9 +49,9 @@ class FingerprintBuilder
       uninstalled: [],
     }
 
-    pre = params[:fonts].split(',')
-    
-    pre.each do |font|
+    font_list = params[:fonts].split(',')
+
+    font_list.each do |font|
       s = font.split('|')
       if s.last == 'true'
         fonts[:installed] << s.first
@@ -60,6 +61,18 @@ class FingerprintBuilder
     end
 
     fonts
+  end
+
+  def altered_fingerprint?(new_fingerprint)
+    if user.fingerprints.count == 0
+      return true
+    else
+      last_fingerprint = user.fingerprints.last
+      last_fingerprint_attrs = last_fingerprint.attributes.except('created_at', 'updated_at', 'id')
+      new_fingerprint_attrs = new_fingerprint.attributes.except('created_at', 'updated_at', 'id')
+
+      return false if last_fingerprint_attrs == new_fingerprint_attrs
+    end
   end
 
 end
