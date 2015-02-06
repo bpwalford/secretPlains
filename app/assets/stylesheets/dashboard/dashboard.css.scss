@@ -1,3 +1,5 @@
+@import '../mixins';
+
 .dashboard {
   width: 100%;
 
@@ -40,5 +42,19 @@
 
   .results {
     display: none;
+    .foo {
+      @include box-border();
+    }
+  }
+
+  .search-icon {
+    display: none;
+    color: rgb(238, 238, 238);
+    left: 4px;
+    top: 4px;
+
+    &:hover {
+      color: black;
+    }
   }
 }
