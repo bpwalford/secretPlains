@@ -73,6 +73,7 @@ class FingerprintBuilder
 
       return false if last_fingerprint_attrs == new_fingerprint_attrs
     end
+    true
   end
 
 end

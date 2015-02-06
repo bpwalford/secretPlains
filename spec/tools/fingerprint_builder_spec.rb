@@ -79,12 +79,31 @@ describe FingerprintBuilder do
     expect(@user.fingerprints.first.country).to eq('USA')
   end
 
-  it 'does not build a new fingerprint if the last one is identitcal' do
+  it 'does not build a new fingerprint if the last one is identical' do
     builder = FingerprintBuilder.new(@user, @params)
     builder.build
     builder = FingerprintBuilder.new(@user, @params)
     builder.build
-    expect(@user.fingerprints.all.count).to eq(1)
+    expect(@user.fingerprints.count).to eq(1)
+  end
+
+  it 'builds a new fingerprint if the last on is not identical' do
+    diff = {
+      plugins: 'asdf|asdf||asdf|||asdf|||',
+      fonts: 'one|true,two|false,three|true,four|false',
+      agent: 'user',
+      version: 'version 1.0.0',
+      cookies: 'true',
+      language: 'language',
+      ip: '123.4.5675.3',
+      screen: '900x500',
+      country: 'USA',
+    }
+    builder = FingerprintBuilder.new(@user, @params)
+    builder.build
+    builder = FingerprintBuilder.new(@user, diff)
+    builder.build
+    expect(@user.fingerprints.count).to eq(2)
   end
 
 end
