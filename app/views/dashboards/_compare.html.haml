@@ -1,21 +1,24 @@
 .compare
   .form
+    %h2 compare fingerprints
     =form_tag('/comparison', remote: true, method: :get) do
-
-      =collection_select(:fingerprint_one,
-        :fingerprint_id,
-        current_user.fingerprints.all,
-        :id,
-        :created_at,
-        {include_blank: 'select'},
-        {class: 'form-control'})
-
-      =collection_select(:fingerprint_two,
-        :fingerprint_id,
-        current_user.fingerprints.all,
-        :id,
-        :created_at,
-        {include_blank: 'select'},
-        {class: 'form-control'})
-
-      =submit_tag 'submit', class: 'btn btn-default'
+      .row
+        .col-md-6
+          =collection_select(:fingerprint_one,
+            :fingerprint_id,
+            current_user.fingerprints.all,
+            :id,
+            :created_at,
+            {},
+            {class: 'form-control'})
+        .col-md-6
+          =collection_select(:fingerprint_two,
+            :fingerprint_id,
+            current_user.fingerprints.all,
+            :id,
+            :created_at,
+            {},
+            {class: 'form-control'})
+      .row
+        .col-md-12
+          =submit_tag 'submit', class: 'btn-lg pull-right'

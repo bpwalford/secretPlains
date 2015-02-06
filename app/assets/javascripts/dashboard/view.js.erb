@@ -9,8 +9,18 @@ $(function () {
     $('.diagram').delay(500).fadeIn(500);
   });
 
-  $('.compare .btn').click(function () {
-    $('.compare').fadeOut(500);
-    $('#spinner').delay(500).fadeIn(200)
+  $('.compare .btn-lg').on('click',function () {
+      $('.form').fadeOut(300);
+      $(this).delay(400).queue(function () {
+        $('.compare-prints').animate({
+          width:28,
+          height:28,
+          padding:0,
+          'margin-left':'94%',
+          'margin-top':'-39',
+        }, 800);
+      });
+    $('#spinner').delay(500).fadeIn(200);
   });
+
 });
