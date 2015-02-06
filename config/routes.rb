@@ -7,7 +7,6 @@ get  'about'            => 'splash#about', as: :about
 get  'user_fingerprint' => 'get_fingerprint#retrieve', as: :user_fingerprint
 
 get  'comparison'       => 'dashboards#compare', as: :comparison
-
 get  'dashboard'        => 'dashboards#index', as: :dashboard
 get  'fingerprint'      => 'dashboards#fingerprint', as: :fingerprint
 post 'fingerprint'      => 'dashboards#record_fingerprint', as: :record_fingerprint
