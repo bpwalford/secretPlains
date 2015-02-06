@@ -1,1 +1,3 @@
-$('#foo').html("<%= j render partial: 'dashboards/difference' %>")
+$('.results').html("<%= j render partial: 'dashboards/difference' %>");
+$('#spinner').delay(200).fadeOut(100);
+$('.results').delay(800).fadeIn(100);
