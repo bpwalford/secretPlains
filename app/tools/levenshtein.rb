@@ -1,10 +1,4 @@
 class Levenshtein
-  attr_reader :count
-
-  def initialize
-    @count = 0;
-  end
-
   def distance(first, second)
     matrix = [(0..first.length).to_a]
     (1..second.length).each do |j|
