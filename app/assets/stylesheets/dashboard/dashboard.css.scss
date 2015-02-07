@@ -25,4 +25,19 @@
       transition: color 0.5s ease;
     }
   }
+
+  .diagram-link {
+    @include box-border();
+    color: rgb(192, 192, 192);
+    font-size: 1.6em;
+    position: absolute;
+    margin-left: 1%;
+    margin-top: 5%;
+    padding: 10px;
+
+    &:hover {
+      color: rgb(103, 175, 233);
+      transition: color 0.5s ease;
+    }
+  }
 }
