@@ -6,6 +6,8 @@
     .lineh
 
 .container
+  -if notice
+    %h4.notice= notice
   .login-box= render 'login'
   .register-box= render 'users/new'
   .splash-page

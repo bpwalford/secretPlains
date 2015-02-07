@@ -21,21 +21,11 @@ function addGeoIp(postPath, newPrint, redirectPath) {
   }
 }
 
-function setPageState(){
-  var path  = window.location.href;
-  var param = path.split('+');
-
-  if(param[param.length -1] == 'fingerprint') {
-    $(".login").fadeIn(200);
-  } else if(param[param.length -1] == 'valid') {
-    $(".register").fadeIn(200);
-  } else {
-    $(".splash-page").fadeIn(1000);
-  }
-}
-
 $(function () {
-  setPageState();
+  setTimeout(function () {
+    $('.notice').fadeOut(3000);
+  }, 2000);
+
   $(".login-link").click(function() {
     $(".splash-page").fadeOut(500);
     $(".register").fadeOut(500);

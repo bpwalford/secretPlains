@@ -17,68 +17,12 @@ body {
   }
 }
 
-.header {
-  background: transparent;
-  font-family: 'Cantarell', sans-serif;
-  height: 50px;
-  width: 100%;
-
-  .splash-nav {
-    float: right;
-  }
-
-  .brand a {
-    float: left;
-    padding-left: 2%;
-    font-size: 2em;
-    color: rgb(192, 192, 192);
-
-    &:hover {
-      color: rgb(103, 175, 233);
-      text-decoration: none;
-    }
-  }
-
-  .links  a{
-    color: rgb(192, 192, 192);
-    font-size: 1.5em;
-    padding-right: 2%;
-
-    &:hover {
-      color: rgb(103, 175, 233);
-      text-decoration: none;
-    }
-  }
-
-  .dropdown {
-
-    ul {
-      margin-right: 45px;
-      margin-top: -45px;
-    }
-
-    button {
-      border: none;
-      font-size: 2em;
-      color: rgb(192, 192, 192);
-      transition: color 0.5s ease;
-
-      &:focus, &:active {
-        background: none;
-        border: none;
-      }
-
-      &:hover {
-        background: none;
-        color: rgb(103, 175, 233);
-        transition: color 0.5s ease;
-      }
-    }
-
-    &:hover .dropdown-menu {
-      box-shadow: none;
-      display: block;
-      @include box-border();
-    }
-  }
+.notice {
+  @include box-border();
+  color: red;
+  text-align: center;
+  padding: 21px;
+  width: 30%;
+  margin-left: 24%;
+  position: absolute;
 }
