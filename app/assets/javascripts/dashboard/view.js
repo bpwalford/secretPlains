@@ -13,8 +13,9 @@ var Dashboard = {
   inflateSearch: function () {
     $('.compare-prints').animate({
       width:'40%',
-      height:300,
-      padding:'3%',
+      height:330,
+      padding:'0% 3%',
+      'margin-top':'10vh',
       'margin-left':'30%',
     }, 800);
     $('.search-icon').fadeOut(400);
