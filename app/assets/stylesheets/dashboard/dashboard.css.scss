@@ -47,14 +47,18 @@
     }
   }
 
-  .search-icon {
+  .remove {
     display: none;
-    color: rgb(238, 238, 238);
-    left: 4px;
-    top: 4px;
+  }
+
+  .search-icon {
+    // display: none;
+    color: rgb(192, 192, 192);
+    left: 7px;
+    top: 7px;
 
     &:hover {
-      color: black;
+      color: rgb(103, 175, 233);
     }
   }
 }

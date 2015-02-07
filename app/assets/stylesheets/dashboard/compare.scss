@@ -1,14 +1,19 @@
 @import '../mixins';
 
 .compare-prints {
-  display: none;
+  // display: none;
   @include box-border();
-  width: 40%;
-  margin: 0 auto;
-  padding: 3%;
-  height: 300px;
+  // width: 40%;
+  // margin: 0 auto;
+  // padding: 3%;
+  // height: 300px;
+  width: 36px;
+  height: 36px;
+  margin-left: 1%;
+  margin-top: -39px;
 
   .form {
+    display: none;
     .form-control {
       margin-bottom: 5%;
     }
