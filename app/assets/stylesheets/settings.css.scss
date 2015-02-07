@@ -1,3 +1,4 @@
+@import 'mixins';
 
 .settings {
   width: 100%;
@@ -8,12 +9,11 @@
   }
 
   .btn-lg {
+    @include box-border();
     display: block;
     width: 166px;
     margin: 5% auto;
     font-family: "Cantarell" sans-serif;
-    background-color: white;
-    border: solid 3px rgb(238, 238, 238);
 
     a {
         color: red;

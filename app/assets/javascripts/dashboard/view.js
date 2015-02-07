@@ -2,13 +2,12 @@ var Dashboard = {
   collapseSearch: function () {
     $('.form').fadeOut(300);
     $('.compare-prints').delay(400).animate({
-      width:36,
-      height:36,
+      width:50,
+      height:50,
       padding:0,
       'margin-left':'1%',
       'margin-top':'-39',
     }, 800);
-    $('.search-icon').delay(500).fadeIn(300);
     $('.search-icon').delay(700).fadeIn(300);
   },
   inflateSearch: function () {
@@ -25,22 +24,19 @@ var Dashboard = {
 
 
 $(function () {
-  // when compare is clicked and diagram is present
-  $('.compare-link').click(function () {
-    $('.diagram').fadeOut(500);
-    $('.compare-prints').delay(500).fadeIn(500);
-  });
   // when in compare view and changing to diagram
   $('.diagram-link').click(function () {
     Dashboard.collapseSearch();
     $('.results').fadeOut(300);
     $('.diagram').delay(500).fadeIn(500);
   });
+
   // when seach button is clicked, i.e. results are displayed
   $('.compare').on('click', '.btn-lg', function () {
     Dashboard.collapseSearch();
     $('#spinner').delay(500).fadeIn(200);
   });
+
   // starting a new seach when in search view
   $('.compare-prints').on('click', '.search-icon', function () {
     $('.diagram').fadeOut(300);
