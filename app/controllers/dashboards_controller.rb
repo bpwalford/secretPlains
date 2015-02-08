@@ -19,7 +19,9 @@ class DashboardsController < ApplicationController
   def compare
     @original = Fingerprint.find(params[:fingerprint_one][:fingerprint_id])
     @altered = Fingerprint.find(params[:fingerprint_two][:fingerprint_id])
-    @difference = DifferenceBuilder.new(@original, @altered).build
+    @difference = DifferenceBuilder.new(
+      DifferenceCalculater.new(@original, @altered, Levenshtein.new)
+    ).build
   end
 
 end
