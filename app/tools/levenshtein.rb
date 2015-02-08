@@ -1,5 +1,5 @@
 class Levenshtein
-  def distance(first, second)
+  def get_distance(first, second)
     matrix = [(0..first.length).to_a]
     (1..second.length).each do |j|
       matrix << [j] + [0] * (first.length)

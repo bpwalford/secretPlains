@@ -1,55 +1,72 @@
+require 'calculator_components/intersection_calculater'
+require 'calculator_components/distance_calculater'
+
 class DifferenceCalculater
-  attr_reader :distance_calculator
+
+  include IntersectionCalculater
+  include DistanceCalculater
+
+  attr_reader :distance_method
   attr_accessor :original, :altered
 
-  def initialize(original, altered, distance_calculator)
+  def initialize(original, altered, distance_method)
     @original = original
     @altered = altered
-    @distance_calculator = distance_calculator
+    @distance_method = distance_method
   end
 
+# intersections
+# ***************************************************************************
   def plugins_intersection
-    original.plugins.flatten & altered.plugins.flatten
-  end
-
-  def plugins_lev
-    intersection = plugins_intersection
-    original_diffs = (original.plugins.flatten - intersection)
-    altered_diffs  = (altered.plugins.flatten - intersection)
-
-    first = ''
-    original_diffs.each do |plugin|
-      first +=  plugin
-    end
-
-    second = ''
-    altered_diffs.each do |plugin|
-      second += plugin
-    end
-
-    distance_calculator.distance(first, second)
+    calculate_intersection(original.plugins, altered.plugins)
   end
 
   def user_agent_intersection
-    original.user_agent.split(' ') & altered.user_agent.split(' ')
-  end
-
-  def user_agent_lev
-    distance_calculator.distance(original.user_agent, altered.user_agent)
+    calculate_intersection(original.user_agent, altered.user_agent)
   end
 
   def browser_intersection
-    original.browser_version.split(' ') & altered.browser_version.split(' ')
-  end
-
-  def browser_lev
-    distance_calculator.distance(original.browser_version, altered.browser_version)
+    calculate_intersection(original.browser_version, altered.browser_version)
   end
 
   def fonts_intersection
-    persisted_fonts = original.fonts[:installed] - altered.fonts[:uninstalled]
+    calculate_intersection(original.fonts[:installed], altered.fonts[:installed])
   end
 
+# distance measurments
+# ***************************************************************************
+  def plugins_distance
+    intersection = plugins_intersection
+    calculate_distance(
+      original.plugins,
+      altered.plugins,
+      intersection,
+      distance_method
+    )
+  end
+
+  def user_agent_distance
+    intersection = user_agent_intersection
+    calculate_distance(
+      original.user_agent.split(' '),
+      altered.user_agent.split(' '),
+      intersection,
+      distance_method
+    )
+  end
+
+  def browser_distance
+    intersection = browser_intersection
+    calculate_distance(
+      original.browser_version.split(' '),
+      altered.browser_version.split(' '),
+      intersection,
+      distance_method
+    )
+  end
+
+# percent calculations
+# ***************************************************************************
   def percent_font_match
     new_fonts = altered.fonts[:installed].length
     matched = 0
@@ -61,6 +78,8 @@ class DifferenceCalculater
     matched.to_f/new_fonts.to_f
   end
 
+# boolean matched
+# ***************************************************************************
   def cookies
     original.cookies == altered.cookies
   end
