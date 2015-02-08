@@ -1,10 +1,12 @@
 require 'calculator_components/intersection_calculater'
 require 'calculator_components/distance_calculater'
+require 'calculator_components/percent_match_calculater'
 
 class DifferenceCalculater
 
   include IntersectionCalculater
   include DistanceCalculater
+  include PercentMatchCalculater
 
   attr_reader :distance_method
   attr_accessor :original, :altered
@@ -67,15 +69,12 @@ class DifferenceCalculater
 
 # percent calculations
 # ***************************************************************************
-  def percent_font_match
-    new_fonts = altered.fonts[:installed].length
-    matched = 0
+  def original_to_altered_font_match
+    percent_match(original.fonts[:installed], altered.fonts[:installed])
+  end
 
-    original.fonts[:installed].each do |font|
-      matched += 1 if altered.fonts[:installed].include?(font)
-    end
-
-    matched.to_f/new_fonts.to_f
+  def altered_to_original_font_match
+    percent_match(altered.fonts[:installed], original.fonts[:installed])
   end
 
 # boolean matched

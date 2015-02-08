@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207202908) do
+ActiveRecord::Schema.define(version: 20150208215752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150207202908) do
     t.text     "browser_intersection"
     t.integer  "browser_lev"
     t.text     "fonts_intersection"
-    t.decimal  "percent_font_match",      precision: 3, scale: 2
+    t.decimal  "original_to_altered_font_match", precision: 3, scale: 2
     t.boolean  "cookies"
     t.boolean  "language"
     t.boolean  "ip"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150207202908) do
     t.boolean  "country"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "altered_to_original_font_match", precision: 3, scale: 2
   end
 
   create_table "fingerprints", force: true do |t|

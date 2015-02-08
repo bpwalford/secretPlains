@@ -19,8 +19,3 @@ module DistanceCalculater
   end
 
 end
-
-# need explaination
-#   why is intersection removed
-#   why is it sorted
-#   what is significant about the distance, why is this process meaningful
