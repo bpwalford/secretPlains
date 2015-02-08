@@ -20,10 +20,6 @@ class DashboardsController < ApplicationController
     @original = Fingerprint.find(params[:fingerprint_one][:fingerprint_id])
     @altered = Fingerprint.find(params[:fingerprint_two][:fingerprint_id])
     @difference = DifferenceBuilder.new(@original, @altered).build
-
-    respond_to do |format|
-      format.js {}
-    end
   end
 
 end
