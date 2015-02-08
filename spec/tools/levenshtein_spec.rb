@@ -17,23 +17,23 @@ describe Levenshtein do
   end
 
   it 'returns the levenshtein distance for two partially matched strings' do
-    distance = Levenshtein.new.distance(@one, @two)
+    distance = Levenshtein.new.get_distance(@one, @two)
     expect(distance).to eq(3)
 
-    distance = Levenshtein.new.distance(@three, @four)
+    distance = Levenshtein.new.get_distance(@three, @four)
     expect(distance).to eq(6)
 
-    distance = Levenshtein.new.distance(@nine, @ten)
+    distance = Levenshtein.new.get_distance(@nine, @ten)
     expect(distance).to eq(13)
   end
 
   it 'return zero for matching stings' do
-    distance = Levenshtein.new.distance(@five, @six)
+    distance = Levenshtein.new.get_distance(@five, @six)
     expect(distance).to eq(0)
   end
 
   it 'return length of longer string is nothing matchs' do
-    distance = Levenshtein.new.distance(@seven, @eight)
+    distance = Levenshtein.new.get_distance(@seven, @eight)
     expect(distance).to eq(12)
   end
 

@@ -2,7 +2,8 @@ module ObjectCreationMethods
 
   def new_user(overrides = {})
     defaults = {
-      email: Faker::Internet::email
+      email: Faker::Internet::email,
+      password: 'asdf'
     }
     User.new(defaults.merge(overrides))
   end

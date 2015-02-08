@@ -77,7 +77,7 @@ class DifferenceCalculater
     percent_match(altered.fonts[:installed], original.fonts[:installed])
   end
 
-# boolean matched
+# boolean matches
 # ***************************************************************************
   def cookies
     original.cookies == altered.cookies
