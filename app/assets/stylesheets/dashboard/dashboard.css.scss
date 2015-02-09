@@ -11,6 +11,8 @@
     display: none;
     .foo {
       @include box-border();
+      height: 85vh;
+      overflow: scroll;
     }
   }
 
