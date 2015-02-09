@@ -20,7 +20,7 @@ require 'spec_helper'
 #
 #       difference = Difference.new(fingerprint, other)
 #
-#       expect(difference.plugins_lev).to eq(PluginsDifference.new(["foo", "bar"], ["bar", "baz"]))
+#       expect(difference.plugins_distance).to eq(PluginsDifference.new(["foo", "bar"], ["bar", "baz"]))
 #     end
 #   end
 # end

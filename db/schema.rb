@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208215752) do
+ActiveRecord::Schema.define(version: 20150209014541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 20150208215752) do
     t.integer  "original_id"
     t.integer  "altered_id"
     t.text     "plugins_intersection"
-    t.integer  "plugins_lev"
+    t.integer  "plugins_distance"
     t.text     "user_agent_intersection"
-    t.integer  "user_agent_lev"
+    t.integer  "user_agent_distance"
     t.text     "browser_intersection"
-    t.integer  "browser_lev"
+    t.integer  "browser_distance"
     t.text     "fonts_intersection"
     t.decimal  "original_to_altered_font_match", precision: 3, scale: 2
     t.boolean  "cookies"

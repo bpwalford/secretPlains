@@ -20,7 +20,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(17)
+        expect(diff.plugins_distance).to eq(17)
       end
 
       it 'gets intersection when full plugin removed' do
@@ -45,7 +45,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(7)
+        expect(diff.plugins_distance).to eq(7)
       end
 
       it 'gets intersection when plugin attributes change' do
@@ -75,7 +75,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(0)
+        expect(diff.plugins_distance).to eq(0)
       end
 
       it 'gets intersection when plugin index changes' do
@@ -110,7 +110,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_distance).to eq(15)
       end
 
       it 'gets intersection when added to the end' do
@@ -142,7 +142,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_distance).to eq(15)
       end
 
       it 'gets intersection when added to beginning' do
@@ -174,7 +174,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(15)
+        expect(diff.plugins_distance).to eq(15)
       end
 
       it 'gets intersection when added to middle' do
@@ -212,7 +212,7 @@ describe 'difference calculations working together' do
         diff = DifferenceBuilder.new(
           DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
-        expect(diff.plugins_lev).to eq(28)
+        expect(diff.plugins_distance).to eq(28)
         matched = intersection_match?(
           diff.plugins_intersection,
           ['v 3.5.3', 'plugin_one']
@@ -249,7 +249,7 @@ describe 'difference calculations working together' do
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
-      expect(diff.user_agent_lev).to eq(7)
+      expect(diff.user_agent_distance).to eq(7)
     end
 
     it 'gets the intersection for browser version' do
@@ -269,7 +269,7 @@ describe 'difference calculations working together' do
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
-      expect(diff.browser_lev).to eq(2)
+      expect(diff.browser_distance).to eq(2)
     end
 
     it 'gets the intersection of fonts' do
@@ -387,7 +387,7 @@ describe 'difference calculations working together' do
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
-      expect(diff.user_agent_lev).to eq(0)
+      expect(diff.user_agent_distance).to eq(0)
     end
 
     it 'gets the intersection for browser version' do
@@ -407,7 +407,7 @@ describe 'difference calculations working together' do
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
-      expect(diff.browser_lev).to eq(0)
+      expect(diff.browser_distance).to eq(0)
     end
 
     it 'gets the intersection of fonts' do
