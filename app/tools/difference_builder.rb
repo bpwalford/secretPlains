@@ -7,8 +7,8 @@ class DifferenceBuilder
 
   def build
     Difference.create!(
-      original_id: calculater.original,
-      altered_id: calculater.altered,
+      original: calculater.original,
+      altered: calculater.altered,
       plugins_intersection: calculater.plugins_intersection,
       plugins_lev: calculater.plugins_distance,
       user_agent_intersection: calculater.user_agent_intersection,
