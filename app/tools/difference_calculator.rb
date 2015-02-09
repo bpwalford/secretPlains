@@ -1,12 +1,12 @@
-require 'calculator_components/intersection_calculater'
-require 'calculator_components/distance_calculater'
-require 'calculator_components/percent_match_calculater'
+require 'calculator_components/intersection_calculator'
+require 'calculator_components/distance_calculator'
+require 'calculator_components/percent_match_calculator'
 
-class DifferenceCalculater
+class DifferenceCalculator
 
-  include IntersectionCalculater
-  include DistanceCalculater
-  include PercentMatchCalculater
+  include IntersectionCalculator
+  include DistanceCalculator
+  include PercentMatchCalculator
 
   attr_reader :distance_method
   attr_accessor :original, :altered

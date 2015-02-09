@@ -1,4 +1,4 @@
-module PercentMatchCalculater
+module PercentMatchCalculator
 
   def percent_match(original, altered)
     matched = 0

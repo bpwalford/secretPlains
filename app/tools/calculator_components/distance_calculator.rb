@@ -1,4 +1,4 @@
-module DistanceCalculater
+module DistanceCalculator
 
   def calculate_distance(original, altered, intersection, distance_method)
     unique_to_original = (original.flatten - intersection).sort

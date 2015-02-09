@@ -1,4 +1,4 @@
-module IntersectionCalculater
+module IntersectionCalculator
 
   def calculate_intersection(original, altered)
     data_type = original.class

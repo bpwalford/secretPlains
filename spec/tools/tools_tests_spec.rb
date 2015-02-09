@@ -18,7 +18,7 @@ describe 'difference calculations working together' do
           plugins: [ ['plugin_one', 'v 1.0.0', 'asdf !@#$'] ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(17)
       end
@@ -28,7 +28,7 @@ describe 'difference calculations working together' do
           plugins: [ ['plugin_one', 'v 1.0.0', 'asdf !@#$'] ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_intersection).to eq(
           ['plugin_one', 'v 1.0.0', 'asdf !@#$']
@@ -43,7 +43,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(7)
       end
@@ -56,7 +56,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         matched = intersection_match?(
           diff.plugins_intersection,
@@ -73,7 +73,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(0)
       end
@@ -86,7 +86,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         matched = intersection_match?(
           diff.plugins_intersection,
@@ -108,7 +108,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(15)
       end
@@ -122,7 +122,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         matched = intersection_match?(
           diff.plugins_intersection,
@@ -140,7 +140,7 @@ describe 'difference calculations working together' do
           ],
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(15)
       end
@@ -154,7 +154,7 @@ describe 'difference calculations working together' do
           ],
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         matched = intersection_match?(
           diff.plugins_intersection,
@@ -172,7 +172,7 @@ describe 'difference calculations working together' do
           ],
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(15)
       end
@@ -186,7 +186,7 @@ describe 'difference calculations working together' do
           ]
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         matched = intersection_match?(
           diff.plugins_intersection,
@@ -210,7 +210,7 @@ describe 'difference calculations working together' do
           ],
         )
         diff = DifferenceBuilder.new(
-          DifferenceCalculater.new(@original, altered, Levenshtein.new)
+          DifferenceCalculator.new(@original, altered, Levenshtein.new)
         ).build
         expect(diff.plugins_lev).to eq(28)
         matched = intersection_match?(
@@ -233,7 +233,7 @@ describe 'difference calculations working together' do
         user_agent: 'user_agent, browser52, v1.2.3 %%asdf'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       matched = intersection_match?(
         diff.user_agent_intersection,
@@ -247,7 +247,7 @@ describe 'difference calculations working together' do
         user_agent: 'user_agent, browser52, v1.2.3, %%asdf '
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.user_agent_lev).to eq(7)
     end
@@ -257,7 +257,7 @@ describe 'difference calculations working together' do
         browser_version: 'versSion 1.3ba.6 % !%'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.browser_intersection).to eq(['1.3ba.6'])
     end
@@ -267,7 +267,7 @@ describe 'difference calculations working together' do
         browser_version: 'versSion 1.3ba.6 % !%'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.browser_lev).to eq(2)
     end
@@ -280,7 +280,7 @@ describe 'difference calculations working together' do
         }
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       matched = intersection_match?(
         diff.fonts_intersection,
@@ -297,7 +297,7 @@ describe 'difference calculations working together' do
         }
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.original_to_altered_font_match).to eq(0.666666666666667)
     end
@@ -310,7 +310,7 @@ describe 'difference calculations working together' do
         }
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.altered_to_original_font_match).to eq(0.5)
     end
@@ -320,7 +320,7 @@ describe 'difference calculations working together' do
         cookies: 'false'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.cookies).to eq(false)
     end
@@ -330,7 +330,7 @@ describe 'difference calculations working together' do
         language: 'foo'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.language).to eq(false)
     end
@@ -340,7 +340,7 @@ describe 'difference calculations working together' do
         ip: 'foo'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.ip).to eq(false)
     end
@@ -350,7 +350,7 @@ describe 'difference calculations working together' do
         screen: 'foo'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.screen).to eq(false)
     end
@@ -360,7 +360,7 @@ describe 'difference calculations working together' do
         country: 'foo'
       )
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.country).to eq(false)
     end
@@ -373,7 +373,7 @@ describe 'difference calculations working together' do
     it 'gets the intersection for user agent' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       matched = intersection_match?(
         diff.user_agent_intersection,
@@ -385,7 +385,7 @@ describe 'difference calculations working together' do
     it 'gets the levenshtein distance for the user agent' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.user_agent_lev).to eq(0)
     end
@@ -393,7 +393,7 @@ describe 'difference calculations working together' do
     it 'gets the intersection for browser version' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       matched = intersection_match?(
         diff.browser_intersection,
@@ -405,7 +405,7 @@ describe 'difference calculations working together' do
     it 'gets the the levenshtein distance for the browser version' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.browser_lev).to eq(0)
     end
@@ -413,7 +413,7 @@ describe 'difference calculations working together' do
     it 'gets the intersection of fonts' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       matched = intersection_match?(
         diff.fonts_intersection,
@@ -425,7 +425,7 @@ describe 'difference calculations working together' do
     it 'gets the percent difference for installed fonts from original to altered' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.original_to_altered_font_match).to eq(1.0)
     end
@@ -433,7 +433,7 @@ describe 'difference calculations working together' do
     it 'gets the percent difference for installed fonts from altered to original' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.altered_to_original_font_match).to eq(1.0)
     end
@@ -441,7 +441,7 @@ describe 'difference calculations working together' do
     it 'detects if the cookies have changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.cookies).to eq(true)
     end
@@ -449,7 +449,7 @@ describe 'difference calculations working together' do
     it 'detects if the language has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.language).to eq(true)
     end
@@ -457,7 +457,7 @@ describe 'difference calculations working together' do
     it 'detects if the ip has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.ip).to eq(true)
     end
@@ -465,7 +465,7 @@ describe 'difference calculations working together' do
     it 'detects if the screen size has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.screen).to eq(true)
     end
@@ -473,7 +473,7 @@ describe 'difference calculations working together' do
     it 'detects if the geoip calced country has changed' do
       altered = create_fingerprint
       diff = DifferenceBuilder.new(
-        DifferenceCalculater.new(@original, altered, Levenshtein.new)
+        DifferenceCalculator.new(@original, altered, Levenshtein.new)
       ).build
       expect(diff.country).to eq(true)
     end

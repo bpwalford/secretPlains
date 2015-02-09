@@ -1,11 +1,11 @@
 require 'rails_helper'
-require_relative '../../../app/tools/calculator_components/distance_calculater'
+require_relative '../../../app/tools/calculator_components/distance_calculator'
 
-describe DistanceCalculater do
+describe DistanceCalculator do
 
   before do
     class SomeClass
-      include DistanceCalculater
+      include DistanceCalculator
     end
     @object = SomeClass.new
 

@@ -1,11 +1,11 @@
 require 'rails_helper'
-require_relative '../../../app/tools/calculator_components/percent_match_calculater'
+require_relative '../../../app/tools/calculator_components/percent_match_calculator'
 
-describe PercentMatchCalculater do
+describe PercentMatchCalculator do
 
   before do
     class SomeClass
-      include PercentMatchCalculater
+      include PercentMatchCalculator
     end
     @object = SomeClass.new
   end

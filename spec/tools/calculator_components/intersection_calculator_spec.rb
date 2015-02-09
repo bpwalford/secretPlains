@@ -1,11 +1,11 @@
 require 'rails_helper'
-require_relative '../../../app/tools/calculator_components/intersection_calculater'
+require_relative '../../../app/tools/calculator_components/intersection_calculator'
 
-describe IntersectionCalculater do
+describe IntersectionCalculator do
 
   before do
     class SomeClass
-      include IntersectionCalculater
+      include IntersectionCalculator
     end
     @object = SomeClass.new
   end

@@ -42,17 +42,17 @@ describe DifferenceBuilder do
     @user = create_user
     @original = create_fingerprint(user: @user)
     @altered  = create_fingerprint(user: @user)
-    @calculater = SomeCalculationObject.new(@original, @altered)
+    @calculator = SomeCalculationObject.new(@original, @altered)
   end
 
   context 'inserts a new difference into the database' do
     it 'saves new difference' do
-      DifferenceBuilder.new(@calculater).build
+      DifferenceBuilder.new(@calculator).build
       expect(Difference.all.count).to eq(1)
     end
 
     it 'accoiates the new difference with the prints that produced it' do
-      diff = DifferenceBuilder.new(@calculater).build
+      diff = DifferenceBuilder.new(@calculator).build
       expect(diff.original).to eq(@original)
       expect(diff.altered).to eq(@altered)
     end
