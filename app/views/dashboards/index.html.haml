@@ -3,11 +3,12 @@
     .line
     .lineh
 .dashboard
-  .compare-prints= render 'compare'
-  %span.glyphicon.glyphicon-user.diagram-link
-  .diagram= render 'diagram'
   #spinner
+  %span.glyphicon.glyphicon-user.diagram-link
+  .compare-prints= render 'compare'
+  .diagram= render 'diagram'
   .results
+
 
 - content_for :javascripts do
   :javascript

@@ -1,57 +1,7 @@
 .row
-  .col-md-8.col-md-offset-2.foo
-    %h3 plugins_intersection
-    %p= @difference.plugins_intersection
-    %hr
-
-    %h3 plugins_distance
-    %p= @difference.plugins_distance
-    %hr
-
-    %h3 user_agent_intersection
-    %p= @difference.user_agent_intersection
-    %hr
-
-    %h3 user_agent_distance
-    %p= @difference.user_agent_distance
-    %hr
-
-    %h3 browser_intersection
-    %p= @difference.browser_intersection
-    %hr
-
-    %h3 browser_distance
-    %p= @difference.browser_distance
-    %hr
-
-    %h3 fonts_intersection
-    %p= @difference.fonts_intersection
-    %hr
-
-    %h3 original_to_altered_font_match
-    %p= @difference.original_to_altered_font_match
-    %hr
-
-    %h3 altered_to_original_font_match
-    %p= @difference.altered_to_original_font_match
-    %hr
-
-    %h3 cookies
-    %p= @difference.cookies
-    %hr
-
-    %h3 language
-    %p= @difference.language
-    %hr
-
-    %h3 ip
-    %p= @difference.ip
-    %hr
-
-    %h3 screen
-    %p= @difference.screen
-    %hr
-
-    %h3 country
-    %p= @difference.country
-    %hr
+  .col-md-10.col-md-offset-1.comparison-inspector
+    .comparison-nav
+      -@comparable_attributes.keys.each do |attr|
+        %button.btn.btn-default.compare-link{class: attr}= link_to( attr.gsub('_', ' '), get_comparison_path(attribute: attr), remote: true)
+      %hr
+    .attribute

@@ -1,0 +1,22 @@
+@import '../mixins';
+
+.comparison-inspector {
+  @include box-border();
+  height: 85vh;
+  overflow: scroll;
+
+  .comparison-nav {
+    button {
+      width: 10%;
+      margin: 2vh 0 0 0.8%;
+      color: gray;
+      border-color: rgb(238, 238, 238);
+      font-weight: 900;
+      font-family: "Cantarell" sans-serif;
+
+      &:hover {
+        transition: background 0.5s ease;
+      }
+    }
+  }
+}

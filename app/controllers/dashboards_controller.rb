@@ -18,10 +18,27 @@ class DashboardsController < ApplicationController
 
   def compare
     @original = Fingerprint.find(params[:fingerprint_one][:fingerprint_id])
+
     @altered = Fingerprint.find(params[:fingerprint_two][:fingerprint_id])
+
     @difference = DifferenceBuilder.new(
       DifferenceCalculator.new(@original, @altered, Levenshtein.new)
     ).build
+
+    @comparable_attributes = @original.attributes.except(
+      'created_at',
+      'updated_at',
+      'id',
+      'user_id'
+    )
+  end
+
+  def add_comparison_partial
+    partial = params[:attribute]
+
+    respond_to do |format|
+      format.js { render partial: "dashboards/comparisons_js/#{partial}" }
+    end
   end
 
 end

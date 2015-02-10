@@ -28,7 +28,7 @@ class DifferenceCalculator
   end
 
   def browser_intersection
-    calculate_intersection(original.browser_version, altered.browser_version)
+    calculate_intersection(original.browser, altered.browser)
   end
 
   def fonts_intersection
@@ -60,8 +60,8 @@ class DifferenceCalculator
   def browser_distance
     intersection = browser_intersection
     calculate_distance(
-      original.browser_version.split(' '),
-      altered.browser_version.split(' '),
+      original.browser.split(' '),
+      altered.browser.split(' '),
       intersection,
       distance_method
     )

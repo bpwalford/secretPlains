@@ -254,7 +254,7 @@ describe 'difference calculations working together' do
 
     it 'gets the intersection for browser version' do
       altered = create_fingerprint(
-        browser_version: 'versSion 1.3ba.6 % !%'
+        browser: 'versSion 1.3ba.6 % !%'
       )
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)
@@ -264,7 +264,7 @@ describe 'difference calculations working together' do
 
     it 'gets the the levenshtein distance for the browser version' do
       altered = create_fingerprint(
-        browser_version: 'versSion 1.3ba.6 % !%'
+        browser: 'versSion 1.3ba.6 % !%'
       )
       diff = DifferenceBuilder.new(
         DifferenceCalculator.new(@original, altered, Levenshtein.new)

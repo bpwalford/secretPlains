@@ -7,7 +7,7 @@ class Fingerprint < ActiveRecord::Base
   serialize :fonts
 
   def print
-    "#{plugins}#{fonts}#{user_agent}#{browser_version}#{cookies}#{language}"
+    "#{plugins}#{fonts}#{user_agent}#{browser}#{cookies}#{language}"
   end
 
 end

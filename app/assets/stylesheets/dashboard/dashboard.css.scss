@@ -7,13 +7,8 @@
     display: none;
   }
 
-  .results {
+  .result {
     display: none;
-    .foo {
-      @include box-border();
-      height: 85vh;
-      overflow: scroll;
-    }
   }
 
   .search-icon {

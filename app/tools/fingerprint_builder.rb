@@ -13,7 +13,7 @@ class FingerprintBuilder
       plugins: build_plugin_matrix,
       fonts: build_font_hash,
       user_agent: params[:agent],
-      browser_version: params[:version],
+      browser: params[:version],
       cookies: params[:cookies],
       language: params[:language],
       screen: params[:screen],

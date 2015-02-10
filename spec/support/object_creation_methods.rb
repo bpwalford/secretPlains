@@ -24,7 +24,7 @@ module ObjectCreationMethods
         uninstalled: ['font4', 'font5', 'font6']
       },
       user_agent: 'user_agent, browser, v1.2.3 %%',
-      browser_version: 'version 1.3ba.6 %%',
+      browser: 'version 1.3ba.6 %%',
       cookies: 'true',
       language: 'language',
       ip: '123.456.678',

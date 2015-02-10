@@ -46,7 +46,7 @@ describe FingerprintBuilder do
   it 'add a browser version to fingerprint' do
     builder = FingerprintBuilder.new(@user, @params)
     builder.build
-    expect(@user.fingerprints.first.browser_version).to eq('version 1.0.0')
+    expect(@user.fingerprints.first.browser).to eq('version 1.0.0')
   end
 
   it 'add a cookies to fingerprint' do
