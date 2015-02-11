@@ -6,11 +6,11 @@ get  'about'            => 'splash#about', as: :about
 
 get  'user_fingerprint' => 'get_fingerprint#retrieve', as: :user_fingerprint
 
-get  'comparison'       => 'dashboards#compare', as: :comparison
-get  'dashboard'        => 'dashboards#index', as: :dashboard
-get  'fingerprint'      => 'dashboards#fingerprint', as: :fingerprint
-get  'compared-attribure' => 'dashboards#add_comparison_partial', as: :get_comparison
-post 'fingerprint'      => 'dashboards#record_fingerprint', as: :record_fingerprint
+get  'comparison'       => 'dashboard#compare', as: :comparison
+get  'dashboard'        => 'dashboard#index', as: :dashboard
+get  'fingerprint'      => 'dashboard#fingerprint', as: :fingerprint
+get  'compared-attribure' => 'dashboard#add_comparison_partial', as: :get_comparison
+post 'fingerprint'      => 'dashboard#record_fingerprint', as: :record_fingerprint
 
 resources :users
 

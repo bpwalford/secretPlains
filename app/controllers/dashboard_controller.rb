@@ -1,4 +1,4 @@
-class DashboardsController < ApplicationController
+class DashboardController < ApplicationController
 
   def index
   end
@@ -42,7 +42,7 @@ class DashboardsController < ApplicationController
 
     partial = params[:attribute]
     respond_to do |format|
-      format.js { render partial: "dashboards/comparisons_js/#{partial}" }
+      format.js { render partial: "dashboard/comparisons_js/#{partial}" }
     end
   end
 
