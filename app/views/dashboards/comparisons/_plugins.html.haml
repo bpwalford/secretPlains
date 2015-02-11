@@ -1,8 +1,7 @@
 .plugin-comparison-partial
   %h3.page-header
     plugins -
-    %span.match= ' matched' if @difference.plugins_distance == 0
-    %span.no-match= ' not matched' if @difference.plugins_distance != 0
+    -matched(@difference.plugins_distance == 0)
   .row.description
     .col-md-12
       %p

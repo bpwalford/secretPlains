@@ -1,1 +1,44 @@
-%h3 fonts
+.fonts-comparison-partial
+  %h3.page-header
+    fonts -
+    =matched((@difference.altered_to_original_font_match == 1.0 && @difference.original_to_altered_font_match == 1.0))
+  .row.description
+    .col-md-12
+      %p
+        Lorem ipsum dolor sit amet, eum cibo nobis definitiones cu, pri ex nusquam senserit gloriatur, ad his nostrum omittam laboramus. In idque temporibus delicatissimi nam, ne iusto comprehensam vel, paulo fuisset volutpat ne mea. At semper appellantur sea. Autem quodsi intellegam has at, vim brute veniam mediocritatem ei. In tota graeco dicunt vim, numquam platonem hendrerit vim ad. Cum an choro fuisset
+  %h4.page-header
+    metrics
+  .row.metrics
+    .col-md-4
+      %h5
+        fonts installed on original
+        %span= @original.fonts[:installed].count
+    .col-md-4
+      %h5
+        matching installed fonts
+        %span= @difference.fonts_intersection.count
+    .col-md-4
+      %h5
+        fonts installed on altered
+        %span= @altered.fonts[:installed].count
+  %h4.page-header
+    raw data
+  .row.data
+    .col-md-4
+      %h4
+        fonts unique to original:
+      %p
+        - (@original.fonts[:installed] - @difference.fonts_intersection).each do |font|
+          %span{class: 'font-span'}= font
+    .col-md-4
+      %h4
+        fonts in original and altered:
+      %p
+        - @difference.fonts_intersection.each do |font|
+          %span{class: 'font-span'}= font
+    .col-md-4
+      %h4
+        fonts unique to altered:
+      %p
+        - (@altered.fonts[:installed] - @difference.fonts_intersection).each do |font|
+          %span{class: 'font-span'}= font

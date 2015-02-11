@@ -60,6 +60,9 @@ class FingerprintBuilder
       end
     end
 
+    fonts[:installed]   = fonts[:installed].uniq
+    fonts[:uninstalled] = fonts[:uninstalled].uniq
+
     fonts
   end
 

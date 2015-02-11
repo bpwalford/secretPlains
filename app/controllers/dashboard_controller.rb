@@ -37,10 +37,13 @@ class DashboardController < ApplicationController
 
   def add_comparison_partial
     @original = Fingerprint.find(params[:original])
+
     @altered  = Fingerprint.find(params[:altered])
+
     @difference = Difference.find(params[:difference])
 
     partial = params[:attribute]
+
     respond_to do |format|
       format.js { render partial: "dashboard/comparisons_js/#{partial}" }
     end

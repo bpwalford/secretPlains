@@ -1,15 +1,14 @@
 .plugin-comparison-partial
   %h3.page-header
     plugins -
-    %span.match= ' matched' if @difference.plugins_distance == 0
-    %span.no-match= ' not matched' if @difference.plugins_distance != 0
+    =matched(@difference.plugins_distance == 0)
   .row.description
     .col-md-12
       %p
         Lorem ipsum dolor sit amet, eum cibo nobis definitiones cu, pri ex nusquam senserit gloriatur, ad his nostrum omittam laboramus. In idque temporibus delicatissimi nam, ne iusto comprehensam vel, paulo fuisset volutpat ne mea. At semper appellantur sea. Autem quodsi intellegam has at, vim brute veniam mediocritatem ei. In tota graeco dicunt vim, numquam platonem hendrerit vim ad. Cum an choro fuisset
   %h4.page-header
     metrics
-  .row.numbers
+  .row.metrics
     .col-md-4
       %h5
         plugins detected in original:
