@@ -34,6 +34,9 @@ class DashboardsController < ApplicationController
   end
 
   def add_comparison_partial
+    @original = Fingerprint.find(params[:original])
+    @altered  = Fingerprint.find(params[:altered])
+    @difference = Difference.find(params[:difference])
     partial = params[:attribute]
 
     respond_to do |format|
