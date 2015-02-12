@@ -1,0 +1,22 @@
+%h3.page-header
+  ="#{title} - "
+  =matched(match)
+.row.description
+  .col-md-12
+    %p
+      =description
+%h4.page-header
+  metrics
+.row.metrics
+  .col-md-4
+    %h5
+      value in original:
+      %span= original
+  .col-md-4
+    %h5
+      match?:
+      %span= match
+  .col-md-4
+    %h5
+      value in altered:
+      %span= altered

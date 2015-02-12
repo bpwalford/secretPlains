@@ -1,4 +1,7 @@
 .language-comparison-partial
-  %h3.page-header
-    language -
-    =matched(@difference.language)
+  =render 'dashboard/comparisons/boolean_comparison',
+    title: 'language',
+    match: @difference.language,
+    description: make_text(rand(200..400)),
+    original: @original.language,
+    altered: @altered.language

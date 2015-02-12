@@ -1,4 +1,7 @@
 .country-comparison-partial
-  %h3.page-header
-    country -
-    =matched(@difference.country)
+  =render 'dashboard/comparisons/boolean_comparison',
+    title: 'country',
+    match: @difference.country,
+    description: make_text(rand(200..400)),
+    original: @original.country,
+    altered: @altered.country

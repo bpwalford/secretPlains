@@ -1,4 +1,7 @@
 .screen-comparison-partial
-  %h3.page-header
-    screen -
-    =matched(@difference.screen)
+  =render 'dashboard/comparisons/boolean_comparison',
+    title: 'screen',
+    match: @difference.screen,
+    description: make_text(rand(200..400)),
+    original: @original.screen,
+    altered: @altered.screen

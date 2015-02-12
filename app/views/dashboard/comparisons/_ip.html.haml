@@ -1,4 +1,7 @@
 .ip-comparison-partial
-  %h3.page-header
-    ip -
-    =matched(@difference.ip)
+  =render 'dashboard/comparisons/boolean_comparison',
+    title: 'ip',
+    match: @difference.ip,
+    description: make_text(rand(200..400)),
+    original: @original.ip,
+    altered: @altered.ip

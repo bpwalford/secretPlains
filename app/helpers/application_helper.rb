@@ -14,5 +14,16 @@ module ApplicationHelper
       return content_tag(:span, ' not matched', class: 'no-match')
     end
   end
-  
+
+  def make_text(length)
+    words = ['Lorem','ipsum','dolor','sit','amet','eum','cibo','nobis','definitiones','cu','pri','ex','nusquam','senserit','gloriatur','ad','his','nostrum','omittam','laboramus','In','idque','temporibus','delicatissimi','nam','ne','iusto','comprehensam','vel','paulo','fuisset','volutpat','ne','mea','At','semper','appellantur','sea','Autem','quodsi','intellegam','has']
+
+    text = ''
+    length.times do
+      text += "#{words.sample} "
+    end
+
+    text.capitalize
+  end
+
 end

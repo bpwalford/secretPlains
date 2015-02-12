@@ -1,4 +1,7 @@
 .cookies-comparison-partial
-  %h3.page-header
-    cookies -
-    =matched(@difference.cookies)
+  =render 'dashboard/comparisons/boolean_comparison',
+    title: 'cookies',
+    match: @original.cookies == @altered.cookies,
+    description: make_text(rand(200..400)),
+    original: @original.cookies,
+    altered: @altered.cookies
