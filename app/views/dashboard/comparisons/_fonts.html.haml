@@ -11,16 +11,22 @@
   .row.metrics
     .col-md-4
       %h5
-        fonts installed on original
+        fonts detected in original:
         %span= @original.fonts[:installed].count
+      %h5
+        percent match with altered:
+        %span= "#{(@difference.original_to_altered_font_match * 100).to_i} %"
     .col-md-4
       %h5
-        matching installed fonts
+        matching installed fonts:
         %span= @difference.fonts_intersection.count
     .col-md-4
       %h5
-        fonts installed on altered
+        fonts detected in altered:
         %span= @altered.fonts[:installed].count
+      %h5
+        percent match with original:
+        %span= "#{(@difference.altered_to_original_font_match * 100).to_i} %"
   %h4.page-header
     raw data
   .row.data

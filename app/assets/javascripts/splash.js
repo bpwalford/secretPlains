@@ -28,12 +28,14 @@ $(function () {
 
   $(".login-link").click(function() {
     $(".splash-page").fadeOut(500);
+    $(".about").fadeOut(500);
     $(".register").fadeOut(500);
     $(".login").delay(500).fadeIn(500);
   });
 
   $(".register-link").click(function() {
     $(".splash-page").fadeOut(500);
+    $(".about").fadeOut(500);
     $(".login").fadeOut(500);
     $(".register").delay(500).fadeIn(500);
   });
@@ -42,5 +44,6 @@ $(function () {
     $(".login").fadeOut(500);
     $(".register").fadeOut(500);
     $(".splash-page").delay(500).fadeIn(1000);
+    $(".about").delay(500).fadeIn(1000);
   });
 });
