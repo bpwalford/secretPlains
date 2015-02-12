@@ -1,10 +1,15 @@
 .compare
   .form
-    %h2 compare fingerprints
+    %h2
+      compare fingerprints
+      %span
+        %button.pull-right.exit-comparison x
     =form_tag('/comparison', remote: true, method: :get) do
       %h5 - select two fingerprints to compare based on date of creation -
       .row
         .col-md-12
+          %label
+            %em original
           =collection_select(:fingerprint_one,
             :fingerprint_id,
             current_user.fingerprints.all,
@@ -14,6 +19,8 @@
             {class: 'form-control'})
       .row
         .col-md-12
+          %label
+            %em altered
           =collection_select(:fingerprint_two,
             :fingerprint_id,
             current_user.fingerprints.all,

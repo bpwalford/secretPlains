@@ -13,7 +13,7 @@ var Dashboard = {
   inflateSearch: function () {
     $('.compare-prints').animate({
       width:'40%',
-      height:330,
+      height:375,
       padding:'0% 3%',
       'margin-top':'10vh',
       'margin-left':'30%',
@@ -26,7 +26,7 @@ var Dashboard = {
 
 $(function () {
   // when in compare view and changing to diagram
-  $('.diagram-link').click(function () {
+  $('.diagram-link, .exit-comparison').click(function () {
     Dashboard.collapseSearch();
     $('.results').fadeOut(300);
     $('.diagram').delay(500).fadeIn(500);
