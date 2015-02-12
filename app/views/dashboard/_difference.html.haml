@@ -6,8 +6,33 @@
           get_comparison_path(attribute: attr,
             original: @original,
             altered: @altered,
-            difference: @difference), 
+            difference: @difference),
           remote: true,
           class: 'btn btn-default compare-link')
-    %hr
     .compare-attribute
+      .row
+        .col-md-8.col-md-offset-2.comparison-overview
+          -if @matched[:matched] == @matched[:total]
+            %h1.match.page-header.text-center
+              fingerprints are identical
+          -else
+            %h1.no-match.page-header.text-center
+              fingerprints do not match
+          %h2
+            %span=@matched[:matched].length
+            %span out of
+            %span=@matched[:total].length
+            %span attributes match
+          %p
+            - @matched[:matched].each do |match|
+              %span &#8226
+              %span=" #{match.gsub('_', ' ')} "
+          %h2
+            %span= @matched[:total].length - @matched[:matched].length
+            %span out of
+            %span=@matched[:total].length
+            %span attributes conflict
+          %p
+            - @matched[:unique].each do |item|
+              %span &#8226
+              %span=" #{item.gsub('_', ' ')} "

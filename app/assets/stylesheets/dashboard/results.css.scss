@@ -6,11 +6,16 @@
   overflow: scroll;
 
   .comparison-nav {
-    height: 6vh;
+    position: fixed;
+    background: white;
+    width: 82.5%;
+    height: 60px;
+    z-index: 1;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 
     a {
       width: 10%;
-      margin: 2vh 0 0 0.8%;
+      margin: 12px 0 0vh 1%;
       color: gray;
       border-color: rgb(238, 238, 238);
       font-weight: 900;
@@ -23,8 +28,15 @@
     }
   }
 
-  hr {
-    clear: both;
+  .compare-attribute {
+    margin-top: 100px;
+
+    .comparison-overview {
+      @include box-border();
+      text-align: center;
+      padding: 2% 5%;
+      margin-top: 5%;
+    }
   }
 
   .match {

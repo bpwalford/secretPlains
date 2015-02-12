@@ -22,6 +22,10 @@ class DashboardController < ApplicationController
 
     @difference = Difference.where(original: @original, altered: @altered).first
 
+    @matched = matched_attributes(@original, @altered, @original.attributes.except(
+      'id', 'created_at', 'updated_at', 'user_id'
+    ).keys)
+
     @difference = DifferenceBuilder.new(
       DifferenceCalculator.new(@original, @altered, Levenshtein.new)
     ).build if @difference == nil
@@ -46,6 +50,20 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.js { render partial: "dashboard/comparisons_js/#{partial}" }
     end
+  end
+
+  private
+
+  def matched_attributes(original, altered, attrs)
+    attribute_matches = {matched: [], total: [], unique: []}
+
+    attrs.each do |attr|
+      attribute_matches[:total] << attr
+      attribute_matches[:matched] << attr if original.send(attr) == altered.send(attr)
+      attribute_matches[:unique] << attr if original.send(attr) != altered.send(attr)
+    end
+
+    attribute_matches
   end
 
 end
