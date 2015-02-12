@@ -1,4 +1,12 @@
 .browser-comparison-partial
-  %h3.page-header
-    browser -
-    =matched(@difference.browser_distance == 0)
+  = render 'dashboard/comparisons/distance_comparisons',
+    title: 'browser version',
+    match: @difference.browser_distance == 0,
+    description: 'Lorem ipsum dolor sit amet, eum cibo nobis definitiones cu, pri ex nusquam senserit gloriatur, ad his nostrum omittam laboramus. In idque temporibus delicatissimi nam, ne iusto comprehensam vel, paulo fuisset volutpat ne mea. At semper appellantur sea. Autem quodsi intellegam has at, vim brute veniam mediocritatem ei. In tota graeco dicunt vim, numquam platonem hendrerit vim ad. Cum an choro fuisset',
+    type: 'components',
+    original_count: @original.browser.split(' ').count,
+    altered_count: @altered.browser.split(' ').count,
+    distance: @difference.browser_distance,
+    original_components: @original.browser.split(' ').flatten - @difference.browser_intersection,
+    altered_components:@altered.browser.split(' ').flatten - @difference.browser_intersection,
+    intersection: @difference.browser_intersection

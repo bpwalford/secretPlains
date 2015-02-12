@@ -1,0 +1,37 @@
+%h3.page-header
+  ="#{title} - "
+  =matched(match)
+.row.description
+  .col-md-12
+    %p
+      =description
+%h4.page-header
+  metrics
+.row.metrics
+  .col-md-4
+    %h5
+      ="#{type} detected in original:"
+      %span= original_count
+  .col-md-4
+    %h5
+      ="#{type} detected in altered:"
+      %span= altered_count
+  .col-md-4
+    %h5
+      Levenshtein distance from original to altered:
+      %span= distance
+%h4.page-header
+  raw data
+.row.data
+  .col-md-4
+    %h4
+      ="#{type} unique to original:"
+    %p= original_components
+  .col-md-4
+    %h4
+      ="#{type} in original and altered:"
+    %p= intersection
+  .col-md-4
+    %h4
+      ="#{type} unique to altered:"
+    %p= altered_components
