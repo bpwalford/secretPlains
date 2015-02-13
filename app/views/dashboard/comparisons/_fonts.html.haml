@@ -4,46 +4,47 @@
     =matched((@difference.altered_to_original_font_match == 1.0 && @difference.original_to_altered_font_match == 1.0))
   .row.description
     .col-md-12
-      %p= make_text(rand(200..400))
+      %p
+        When building a fingerprint the browser is scanned for 739 possible installed fonts. Comparison between two fingerprints is simply looking at which of those installed fonts exist in both browser fingerprints. The font intersection can then be used to determine which fonts are unique to each fingerprint.
   %h4.page-header
     metrics
   .row.metrics
     .col-md-4
-      %h5
+      %h5.center-title
         fonts detected in original:
         %span= @original.fonts[:installed].count
-      %h5
+      %h5.center-title
         percent match with altered:
         %span= "#{(@difference.original_to_altered_font_match * 100).to_i} %"
-    .col-md-4
-      %h5
+    .col-md-4.center
+      %h5.center-title
         matching installed fonts:
         %span= @difference.fonts_intersection.count
     .col-md-4
-      %h5
+      %h5.center-title
         fonts detected in altered:
         %span= @altered.fonts[:installed].count
-      %h5
+      %h5.center-title
         percent match with original:
         %span= "#{(@difference.altered_to_original_font_match * 100).to_i} %"
   %h4.page-header
     raw data
   .row.data
     .col-md-4
-      %h4
+      %h4.center-title
         fonts unique to original:
-      %p
+      %p.font-results
         - (@original.fonts[:installed] - @difference.fonts_intersection).each do |font|
           %span{class: 'font-span'}= font
     .col-md-4
-      %h4
+      %h4.center-title
         fonts in original and altered:
-      %p
+      %p.font-results
         - @difference.fonts_intersection.each do |font|
           %span{class: 'font-span'}= font
     .col-md-4
-      %h4
+      %h4.center-title
         fonts unique to altered:
-      %p
+      %p.font-results
         - (@altered.fonts[:installed] - @difference.fonts_intersection).each do |font|
           %span{class: 'font-span'}= font

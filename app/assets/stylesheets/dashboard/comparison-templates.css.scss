@@ -1,0 +1,33 @@
+.distance-comparison, .fonts-comparison-partial {
+
+  .description, .font-results {
+    text-align: justify;
+  }
+
+  .center-title {
+    text-align: center;
+  }
+
+  .center {
+    border-left: solid 1px gray;
+    border-right: solid 1px gray;
+  }
+}
+
+.boolean-comparison {
+
+  .description {
+    text-align: justify;
+  }
+
+  .data {
+
+    .left {
+      border-right: solid 1px gray;
+    }
+
+    h4 {
+      text-align: center;
+    }
+  }
+}

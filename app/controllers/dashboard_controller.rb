@@ -12,6 +12,7 @@ class DashboardController < ApplicationController
     else
       fingerprint = FingerprintBuilder.new(current_user, params).build
     end
+    
     redirect_to dashboard_path
   end
 

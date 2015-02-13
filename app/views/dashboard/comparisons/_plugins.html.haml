@@ -2,7 +2,7 @@
   = render 'dashboard/comparisons/distance_comparisons',
     title: 'plugins',
     match: @difference.plugins_distance == 0,
-    description: make_text(rand(200..400)),
+    description: 'Each browser plugin is collected as a list with its name and various other detectable attributes, and placed in another list of plugins. When compared with another fingerprints list of plugins, instead of searching for full plugin matches, every component of each plugin is treated as a single item, where upon the intersection of matching plugin attributes can be removed. The data is broken down this way so as to eliminate any reference to the order of the plugins list, or the order of individual attributes in a plugin. With the matched plugin attributes removed, the remaining plugins in the original fingerprint and altered fingerprint are converted into a strings, and a Levenshtein distance is then calculated to determine how different the differences actually are.',
     type: 'plugins',
     original_count: @original.plugins.count,
     altered_count: @altered.plugins.count,
