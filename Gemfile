@@ -15,6 +15,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'd3js-rails', '~> 3.1.6'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'rspec-rails'

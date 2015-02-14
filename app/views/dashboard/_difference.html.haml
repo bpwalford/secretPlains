@@ -1,5 +1,5 @@
 .row
-  .col-md-10.col-md-offset-1.comparison-inspector
+  .comparison-inspector
     .comparison-nav
       -@comparable_attributes.keys.each do |attr|
         .compare-link{class: attr}= link_to( attr.gsub('_', ' '),
@@ -9,7 +9,7 @@
             difference: @difference),
           remote: true,
           class: 'btn btn-default compare-link')
-    .compare-attribute
+    .compare-attribute.col-md-8.col-md-offset-2
       .row
         .col-md-8.col-md-offset-2.comparison-overview
           -if @matched[:matched] == @matched[:total]

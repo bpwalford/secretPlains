@@ -10,6 +10,11 @@
     float: right;
   }
 
+  .fa {
+    @include box-border();
+    padding: 8px 11px;
+  }
+
   .brand a {
     float: left;
     padding-left: 2%;

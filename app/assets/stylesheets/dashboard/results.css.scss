@@ -1,26 +1,24 @@
 @import '../mixins';
 
 .comparison-inspector {
-  @include box-border();
+  margin-top: 1%;
   height: 85vh;
   overflow: scroll;
 
   .comparison-nav {
+    @include box-border();
     position: fixed;
     background: white;
-    width: 82.5%;
-    height: 60px;
-    z-index: 1;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    margin-left: 2%;
+    padding: 11px;
 
     a {
-      width: 10%;
-      margin: 12px 0 0vh 1%;
+      width: 100%;
+      margin: 0 0 4vh 1%;
       color: gray;
       border-color: rgb(238, 238, 238);
       font-weight: 900;
       font-family: "Cantarell" sans-serif;
-      float: left;
 
       &:hover {
         transition: background 0.5s ease;
@@ -29,7 +27,6 @@
   }
 
   .compare-attribute {
-    margin-top: 100px;
 
     .comparison-overview {
       @include box-border();

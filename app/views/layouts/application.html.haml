@@ -5,6 +5,7 @@
     =stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     =csrf_meta_tags
     %link{:href => "//fonts.googleapis.com/css?family=Cantarell", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", :rel => "stylesheet"}/
 
   %body
     .header
@@ -14,7 +15,7 @@
         -if current_user
           .dropdown.pull-right
             %button.btn.btn-default.dropdown-toggle{"type" => "button", "data-toggle" => "dropdown"}
-              %span.glyphicon.glyphicon-th
+              %span.fa.fa-bars
             %ul.dropdown-menu{"role" => "menu"}
               %li{"role" => "presentation"}
                 =link_to "home", root_path unless page("/")

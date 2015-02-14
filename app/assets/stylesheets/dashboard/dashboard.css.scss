@@ -13,9 +13,9 @@
 
   .search-icon {
     color: rgb(192, 192, 192);
-    left: 10px;
-    top: 10px;
-    font-size: 1.6em;
+    margin-left: 6px;
+    margin-top: 7px;
+    font-size: 2.3em;
 
     &:hover {
       color: rgb(103, 175, 233);
@@ -29,8 +29,8 @@
     font-size: 1.6em;
     position: absolute;
     margin-left: 1%;
-    margin-top: 5%;
-    padding: 10px;
+    margin-top: 6px;
+    padding: 11px;
 
     &:hover {
       color: rgb(103, 175, 233);

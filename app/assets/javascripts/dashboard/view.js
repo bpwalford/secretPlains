@@ -5,8 +5,8 @@ var Dashboard = {
       width:50,
       height:50,
       padding:0,
-      'margin-left':'1%',
-      'margin-top':'-39',
+      'margin-left':'6%',
+      'margin-top':'-3%',
     }, 800);
     $('.search-icon').delay(700).fadeIn(300);
   },
