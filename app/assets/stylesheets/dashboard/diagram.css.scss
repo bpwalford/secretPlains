@@ -1,6 +1,10 @@
 @import '../mixins';
 
 .diagram {
+  position: absolute;
+  top: 5vh;
+  z-index: -1;
+
   .visual-container {
     width: 100%;
 
