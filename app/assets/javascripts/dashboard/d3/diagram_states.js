@@ -16,7 +16,8 @@ function collapseNodes(className, svg){
   svg.selectAll('.fingerprint-image')
     .transition()
     .attr('x', focusedNodeX - 34)
-    .attr('y', 280 - 39);
+    // .attr('y', 280 - 39);
+    .attr('y', 280);
 
   d3.selectAll('.' + className)
     .transition()
