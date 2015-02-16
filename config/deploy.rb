@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.3.5'
 
-set :application, 'secretPlains'
+set :application, 'secretplains'
 set :repo_url, 'https://github.com/bpwalford/secretplains'
 
 # Default branch is :master
@@ -9,7 +9,7 @@ set :repo_url, 'https://github.com/bpwalford/secretplains'
 set :branch,      fetch(:branch, 'capistrano')
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
+set :deploy_to, '/var/www/secretplains'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -46,12 +46,12 @@ namespace :deploy do
     end
   end
 
-  task :restart do
-    on roles(:web), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
-  after 'deploy:publishing', 'deploy:restart'
+  # task :restart do
+  #   on roles(:web), in: :sequence, wait: 5 do
+  #     execute :touch, release_path.join('tmp/restart.txt')
+  #   end
+  # end
+  #
+  # after 'deploy:publishing', 'deploy:restart'
 
 end
