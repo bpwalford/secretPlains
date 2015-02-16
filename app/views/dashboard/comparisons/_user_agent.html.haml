@@ -7,6 +7,6 @@
     original_count: @original.user_agent.split(' ').count,
     altered_count: @altered.user_agent.split(' ').count,
     distance: @difference.user_agent_distance,
-    original_components: @original.user_agent.split(' ').flatten - @difference.user_agent_intersection,
-    altered_components:@altered.user_agent.split(' ').flatten - @difference.user_agent_intersection,
-    intersection: @difference.user_agent_intersection
+    original_components: format_array(@original.user_agent.split(' ').flatten - @difference.user_agent_intersection),
+    altered_components: format_array(@altered.user_agent.split(' ').flatten - @difference.user_agent_intersection),
+    intersection: format_array(@difference.user_agent_intersection)

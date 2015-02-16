@@ -26,4 +26,22 @@ module ApplicationHelper
     text.capitalize
   end
 
+  def format_array(array)
+    return content_tag(:em, 'blank') if array.length == 0
+
+    array = array.to_s
+    array = array.gsub('"', '')
+    array[0] = ''
+    array[-1] = ''
+    return content_tag(:span, array)
+  end
+
+  def format_fonts(font_array)
+    return content_tag(:em, 'blank') if font_array.length == 0
+
+    font_string = ''
+    font_array.each{|f| font_string += "#{f} "}
+    return content_tag(:span, font_string)
+  end
+
 end

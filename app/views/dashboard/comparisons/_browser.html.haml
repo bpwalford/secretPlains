@@ -7,6 +7,6 @@
     original_count: @original.browser.split(' ').count,
     altered_count: @altered.browser.split(' ').count,
     distance: @difference.browser_distance,
-    original_components: @original.browser.split(' ').flatten - @difference.browser_intersection,
-    altered_components:@altered.browser.split(' ').flatten - @difference.browser_intersection,
-    intersection: @difference.browser_intersection
+    original_components: format_array(@original.browser.split(' ').flatten - @difference.browser_intersection),
+    altered_components: format_array(@altered.browser.split(' ').flatten - @difference.browser_intersection),
+    intersection: format_array(@difference.browser_intersection)

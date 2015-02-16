@@ -2,6 +2,10 @@
 
   .description, .font-results {
     text-align: justify;
+
+    h4 {
+      line-height: 1.5em;
+    }
   }
 
   .center-title {
@@ -12,12 +16,19 @@
     border-left: solid 1px gray;
     border-right: solid 1px gray;
   }
+
+  .data {
+    text-align: justify;
+  }
 }
 
 .boolean-comparison {
 
   .description {
     text-align: justify;
+    h4 {
+      line-height: 1.5em;
+    }
   }
 
   .data {
@@ -27,7 +38,7 @@
     }
 
     h4 {
-      text-align: center;
+      // text-align: center;
     }
   }
 }

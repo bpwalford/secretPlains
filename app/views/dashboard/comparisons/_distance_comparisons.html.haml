@@ -1,12 +1,12 @@
 .distance-comparison
-  %h3.page-header
+  %h2.page-header
     ="#{title} - "
     =matched(match)
   .row.description
     .col-md-12
-      %p
+      %h4
         =description
-  %h4.page-header
+  %h3.page-header
     metrics
   .row.metrics
     .col-md-4
@@ -21,18 +21,20 @@
       %h5.center-title
         Levenshtein distance from original to altered:
         %span= distance
-  %h4.page-header
+  %h3.page-header
     data
   .row.data
-    .col-md-4
-      %h4.center-title
+    .col-md-12
+      %h4.page-header
         ="#{type} unique to original:"
       %p= original_components
-    .col-md-4
-      %h4.center-title
+  .row.data
+    .col-md-12
+      %h4.page-header
         ="#{type} in original and altered:"
       %p= intersection
-    .col-md-4
-      %h4.center-title
+  .row.data
+    .col-md-12
+      %h4.page-header
         ="#{type} unique to altered:"
       %p= altered_components

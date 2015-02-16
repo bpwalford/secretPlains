@@ -1,12 +1,12 @@
 .fonts-comparison-partial
-  %h3.page-header
+  %h2.page-header
     fonts -
     =matched((@difference.altered_to_original_font_match == 1.0 && @difference.original_to_altered_font_match == 1.0))
   .row.description
     .col-md-12
-      %p
+      %h4
         When building a fingerprint the browser is scanned for 739 possible installed fonts. Comparison between two fingerprints is simply looking at which of those installed fonts exist in both browser fingerprints. The font intersection can then be used to determine which fonts are unique to each fingerprint.
-  %h4.page-header
+  %h3.page-header
     metrics
   .row.metrics
     .col-md-4
@@ -27,24 +27,29 @@
       %h5.center-title
         percent match with original:
         %span= "#{(@difference.altered_to_original_font_match * 100).to_i} %"
-  %h4.page-header
+  %h3.page-header
     raw data
   .row.data
-    .col-md-4
-      %h4.center-title
+    .col-md-12
+      %h4.page-header
         fonts unique to original:
       %p.font-results
-        - (@original.fonts[:installed] - @difference.fonts_intersection).each do |font|
-          %span{class: 'font-span'}= font
-    .col-md-4
-      %h4.center-title
+        =format_fonts(@original.fonts[:installed] - @difference.fonts_intersection)
+        -# - (@original.fonts[:installed] - @difference.fonts_intersection).each do |font|
+          -# %span{class: 'font-span'}= font
+  .row.data
+    .col-md-12
+      %h4.page-header
         fonts in original and altered:
       %p.font-results
-        - @difference.fonts_intersection.each do |font|
-          %span{class: 'font-span'}= font
-    .col-md-4
-      %h4.center-title
+        =format_fonts(@difference.fonts_intersection)
+        -# - @difference.fonts_intersection.each do |font|
+          -# %span{class: 'font-span'}= font
+  .row.data
+    .col-md-12
+      %h4.page-header
         fonts unique to altered:
       %p.font-results
-        - (@altered.fonts[:installed] - @difference.fonts_intersection).each do |font|
-          %span{class: 'font-span'}= font
+        =format_fonts(@altered.fonts[:installed] - @difference.fonts_intersection)
+        -# - (@altered.fonts[:installed] - @difference.fonts_intersection).each do |font|
+          -# %span{class: 'font-span'}= font

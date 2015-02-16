@@ -7,6 +7,6 @@
     original_count: @original.plugins.count,
     altered_count: @altered.plugins.count,
     distance: @difference.plugins_distance,
-    original_components: @original.plugins.flatten - @difference.plugins_intersection,
-    altered_components:@altered.plugins.flatten - @difference.plugins_intersection,
-    intersection: @difference.plugins_intersection
+    original_components: format_array(@original.plugins.flatten - @difference.plugins_intersection),
+    altered_components:format_array(@altered.plugins.flatten - @difference.plugins_intersection),
+    intersection: format_array(@difference.plugins_intersection)
