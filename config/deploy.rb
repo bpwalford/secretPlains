@@ -46,12 +46,12 @@ namespace :deploy do
     end
   end
 
-  # task :restart do
-  #   on roles(:web), in: :sequence, wait: 5 do
-  #     execute :touch, release_path.join('tmp/restart.txt')
-  #   end
-  # end
-  #
-  # after 'deploy:publishing', 'deploy:restart'
+  task :restart do
+    on roles(:web), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+  
+  after 'deploy:publishing', 'deploy:restart'
 
 end
