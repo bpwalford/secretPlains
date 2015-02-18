@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def format_array(array)
-    return content_tag(:em, 'blank') if array.length == 0
+    return content_tag(:em, '. . .') if array.length == 0
 
     array = array.to_s
     array = array.gsub('"', '')
@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def format_fonts(font_array)
-    return content_tag(:em, 'blank') if font_array.length == 0
+    return content_tag(:em, '. . .') if font_array.length == 0
 
     font_string = ''
     font_array.each{|f| font_string += "#{f} "}
