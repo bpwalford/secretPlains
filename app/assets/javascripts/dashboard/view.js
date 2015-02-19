@@ -2,11 +2,11 @@ var Dashboard = {
   collapseSearch: function () {
     $('.form').fadeOut(300);
     $('.compare-prints').delay(400).animate({
-      width:50,
-      height:50,
+      width:52,
+      height:52,
       padding:0,
-      'margin-left':'14px',
-      'margin-top':'15px',
+      'margin-left':'12px',
+      'margin-top':'72px',
     }, 800);
     $('.search-icon').delay(700).fadeIn(300);
   },

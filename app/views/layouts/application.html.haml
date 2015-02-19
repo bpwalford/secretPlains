@@ -13,7 +13,7 @@
         = link_to "s e c r e t P l a i n s", root_path if page("/about") && !current_user
       .links
         -if current_user
-          .dropdown.pull-right
+          .dropdown.pull-left
             %button.btn.btn-default.dropdown-toggle{"type" => "button", "data-toggle" => "dropdown"}
               %span.fa.fa-bars
             %ul.dropdown-menu{"role" => "menu"}
