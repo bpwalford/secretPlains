@@ -2,7 +2,7 @@
   = render 'dashboard/comparisons/distance_comparisons',
     title: 'browser version',
     match: @difference.browser_distance == 0,
-    description: 'The browser version is collected as a string and is then broken down into smaller components by splitting it on every space character in the string. Once broken down into individual components it is compared by first eliminating any components that exist in both browser versions, and then the remaining components are converted back into a string. The Levenshtein distance is calculated from the resulting strings.',
+    description: 'Similar to the user agent, the browser version is collected as a string and is then broken down into smaller components by splitting it on every space character. Once broken down into individual components it is compared by first eliminating any matching components that exist in both browser versions, and then the remaining components are converted back into a string. A Levenshtein distance is calculated from the resulting strings.',
     type: 'components',
     original_count: @original.browser.split(' ').count,
     altered_count: @altered.browser.split(' ').count,

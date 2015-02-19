@@ -2,6 +2,6 @@
   =render 'dashboard/comparisons/boolean_comparison',
     title: 'cookies',
     match: @original.cookies == @altered.cookies,
-    description: 'The browser is scanned to see whether the user has cookies turned on or off. It is returned a boolean value which either matches or does not match.',
+    description: 'Most browsers have cookies enabled, however this setting can be controlled by a user. The browser is scanned to see whether the user has cookies turned on or off. It returns a boolean value which either matches or does not match.',
     original: @original.cookies,
     altered: @altered.cookies
