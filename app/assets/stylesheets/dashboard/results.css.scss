@@ -1,7 +1,6 @@
 @import '../mixins';
 
 .comparison-inspector {
-  // margin-top: 1%;
   margin-top: -58px;
   height: 85vh;
   overflow: scroll;
@@ -12,7 +11,7 @@
     top: 7px;
     background: white;
     width: 80%;
-    margin-left: 10%;
+    margin-left: 11%;
     height: 50px;
 
     a {
@@ -31,7 +30,6 @@
   }
 
   .compare-attribute {
-    // margin-top: -50px;
 
     .comparison-overview {
       @include box-border();
