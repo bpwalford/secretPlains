@@ -44,7 +44,6 @@
 .result-display {
   @include box-border();
   padding: 3%;
-  margin-top: 3%;
   height: 80vh;
   overflow: scroll;
 }
