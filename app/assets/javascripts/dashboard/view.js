@@ -6,7 +6,7 @@ var Dashboard = {
       height:52,
       padding:0,
       'margin-left':'12px',
-      'margin-top':'72px',
+      'margin-top':'82px',
     }, 800);
     $('.search-icon').delay(700).fadeIn(300);
   },
