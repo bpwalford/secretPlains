@@ -15,8 +15,7 @@ function collapseNodes(className, svg){
 
   svg.selectAll('.fingerprint-image')
     .transition()
-    .attr('x', focusedNodeX - 34)
-    // .attr('y', 280 - 39);
+    .attr('x', Diagram.focusedNodeX - 34)
     .attr('y', 280);
 
   d3.selectAll('.' + className)
@@ -29,12 +28,12 @@ function inflateNodes(className, svg) {
   svg.selectAll('.small')
     .transition()
     .delay(300)
-    .attr('r', small);
+    .attr('r', Diagram.small);
 
   svg.selectAll('text')
     .transition()
     .delay(300)
-    .attr('font-size', font);
+    .attr('font-size', Diagram.font);
 
   svg.selectAll('line')
     .transition()
@@ -43,8 +42,8 @@ function inflateNodes(className, svg) {
 
   svg.selectAll('.fingerprint-image')
     .transition()
-    .attr('x', width/2 - 34)
-    .attr('y', height/2 - 43);
+    .attr('x', Diagram.width/2 - 34)
+    .attr('y', Diagram.height/2 - 43);
 
   d3.selectAll('.' + className)
     .style('display', 'none');

@@ -9,14 +9,14 @@ function calculateTheta(data, index) {
 
 function calculateX(obj, index, radius, data) {
   var theta = calculateTheta(data, index);
-  var x = (width/2) + radius * Math.sin(theta);
+  var x = (Diagram.width/2) + radius * Math.sin(theta);
   obj.x = x;
   return x;
 }
 
 function calculateY(obj, index, radius, data) {
   var theta = calculateTheta(data, index);
-  var y = (height/2) + radius * Math.cos(theta);
+  var y = (Diagram.height/2) + radius * Math.cos(theta);
   obj.y = y;
   return y;
 }

@@ -1,13 +1,15 @@
 'use strict';
 
-var width          = $(window).width();
-var height         = $(window).height() - 75;
-var smallDimension = width > height ? height : width;
-var radius         = (smallDimension / 2) - 100;
-var small          = smallDimension / 8.5;
-var big            = smallDimension / 5;
-var focusedNodeX   = width - (width/5);
-var font           = '18';
+var Diagram = {};
+
+Diagram.width          = $(window).width();
+Diagram.height         = $(window).height() - 75;
+Diagram.smallDimension = Diagram.width > Diagram.height ? Diagram.height : Diagram.width;
+Diagram.radius         = (Diagram.smallDimension / 2) - 100;
+Diagram.small          = Diagram.smallDimension / 8.5;
+Diagram.big            = Diagram.smallDimension / 5;
+Diagram.focusedNodeX   = Diagram.width - (Diagram.width/5);
+Diagram.font           = '18';
 
 $.get('/user_fingerprint')
   .then(function(json) {
@@ -30,8 +32,8 @@ $.get('/user_fingerprint')
 // **************************************************************************
   var svg = d3.select('#fingerprint')
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('width', Diagram.width)
+    .attr('height', Diagram.height);
 
   var lines = svg.selectAll('line')
     .data(data)
@@ -68,9 +70,9 @@ $.get('/user_fingerprint')
 // add attributes to diagram elements
 // **************************************************************************
   circles.attr({
-    'cx': function(d, i) { return calculateX(d, i, radius, data); },
-    'cy': function(d, i) { return calculateY(d, i, radius, data); },
-    'r': small,
+    'cx': function(d, i) { return calculateX(d, i, Diagram.radius, data); },
+    'cy': function(d, i) { return calculateY(d, i, Diagram.radius, data); },
+    'r': Diagram.small,
     'class': 'small circle',
     'fill': 'url(#gradient)',
   });
@@ -79,8 +81,8 @@ $.get('/user_fingerprint')
     'xlink:href': '<%= asset_path("fingerprint.png") %>',
     'height': '96',
     'width': '69',
-    'x': width/2 - 34,
-    'y': height/2 - 43,
+    'x': Diagram.width/2 - 34,
+    'y': Diagram.height/2 - 43,
     'class': 'fingerprint-image',
   });
 
@@ -88,8 +90,8 @@ $.get('/user_fingerprint')
     'stroke': 'rgb(103, 175, 233)',
     'stroke-width': '2',
     'opacity': '0.3',
-    'x1': width/2,
-    'y1': height/2,
+    'x1': Diagram.width/2,
+    'y1': Diagram.height/2,
     'x2': function(d) { return d.x; },
     'y2': function(d) { return d.y; },
   });
@@ -103,7 +105,7 @@ $.get('/user_fingerprint')
       var attrs = d3.select(this).node().getBBox();
       return d.y + attrs.height/2 - 3;
     },
-    'font-size': font,
+    'font-size': Diagram.font,
     'fill': '#545454',
     'font-family': 'Cantarell'
   });
@@ -119,10 +121,9 @@ $.get('/user_fingerprint')
       d3.select(this)
         .transition()
         .attr({
-          'cx': focusedNodeX,
-          // 'cy': 290,
+          'cx': Diagram.focusedNodeX,
           'cy': 325,
-          'r': big,
+          'r': Diagram.big,
           'opacity': 1,
         });
     } else {
@@ -132,7 +133,7 @@ $.get('/user_fingerprint')
         .attr({
           'cx': function(d) { return d.x },
           'cy': function(d) { return d.y },
-          'r': small,
+          'r': Diagram.small,
           'opacity': 1,
         });
     }
@@ -141,7 +142,7 @@ $.get('/user_fingerprint')
   circles.on('mouseover', function(d) {
     d3.select(this)
     var xVal = Math.round(this.cx.animVal.value);
-    if (xVal === Math.round(d.x) || xVal === focusedNodeX) {
+    if (xVal === Math.round(d.x) || xVal === Diagram.focusedNodeX) {
       d3.select(this)
         .transition()
         .attr('opacity', '0.5');
@@ -151,7 +152,7 @@ $.get('/user_fingerprint')
   circles.on('mouseout',  function(d) {
     d3.select(this)
     var xVal = Math.round(this.cx.animVal.value);
-    if (xVal === Math.round(d.x) || xVal === focusedNodeX) {
+    if (xVal === Math.round(d.x) || xVal === Diagram.focusedNodeX) {
       d3.select(this)
         .transition()
         .attr('opacity', '1');
