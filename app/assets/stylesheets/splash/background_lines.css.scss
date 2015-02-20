@@ -1,0 +1,225 @@
+@import 'mixins.css.scss';
+
+.grid {
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: static;
+  top: 0;
+  left: 0;
+  z-index: -2;
+
+  // ************
+  $num: 60;
+  $timing: 55s;
+  // ************
+
+  // functions to avoid overlap of animated elements
+  // **************************************************************************
+  $setValues: ();
+
+  @function setProximity($value) {
+
+    // ensure vertical lines are not too close to each other
+    @if length($setValues) == 0 {
+      $setValues: append($setValues, $value);
+      @return $value;
+    }@else {
+      // otherwise loop through existing measurements
+      @for $i from 1 through length($setValues) {
+        // if it's similar
+        @if ($value > nth($setValues,$i)-10) and ($value < nth($setValues, $i)+10) {
+          // then reset value
+          $direction: random(501);
+          @if $direction < 250 {
+            $value: $value + 5;
+          } @else {
+            $value: $value - 5;
+          }
+          // would have been cool to call recursively and ensure no overlap but browser can't handle it
+            // $value: random(100%);
+            // $value: scanOverlap($value);
+          @return $value;
+        } @else {
+          // otherwise populate list with new value
+          $setValues: append($setValues, $value);
+          @return $value;
+        }
+      }
+    }
+  }
+  // **************************************************************************
+
+
+  //  functions to set line size to avoid over flow
+  // **************************************************************************
+  @function setLines($size, $distance, $minimum) {
+
+    @while $size < $minimum {
+      $size: $size + 5;
+    }
+    @while ($size + $distance) > 100 {
+      $size: $size - 5;
+    }
+
+    @return $size;
+
+  }
+
+  @function setLineMargins($distance, $size) {
+
+    // set top and left sides
+    @if $distance < 20 {
+      $distance: $distance + random(20);
+    // set right and bottom sides
+  } @else if (100 - $distance - $size) < 20 {
+      $difference: 100 - $distance - $size;
+      // $distance: $distance - $difference;
+      $distance: $distance - 9;
+    }
+
+    @return $distance;
+
+  }
+  // **************************************************************************
+
+
+  // animated lines
+  // **************************************************************************
+    .line {
+    position: absolute;
+    border-left: solid 2px rgb(238, 238, 238);
+    // border-left: solid 2px gray;
+    z-index: -1;
+
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
+
+        $left: random(100%);
+        left: setProximity($left);
+        // clear the list
+        $setValues: ();
+
+        $minimum: 30%;
+        $top: random(70%)+10;
+        $height: random(100%);
+        height: setLines($height, $top, $minimum);
+
+        $top: setLineMargins($top, $height);
+        top: $top;
+
+        $seconds: random($timing) + 5;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
+  }
+
+  .lineh {
+    position: absolute;
+    border-bottom: solid 2px rgb(238, 238, 238);
+    // border-bottom: solid 2px gray;
+    z-index: -1;
+
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
+
+        $top: random(90%)+10;
+        top: setProximity($top);
+
+        $minimum: 30%;
+        $left: random(60%);
+        $width: random(70%);
+        width: setLines($width, $left, $minimum);
+
+        $left: setLineMargins($left, $width);
+        left: $left;
+
+        $seconds: random($timing) + 5;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
+  }
+  // **************************************************************************
+
+
+  // functions for checking box margins to avoid overflow
+  // **************************************************************************
+  @function checkBoxHorizontalMargins($margin) {
+
+    @if $margin < 5% {
+      $margin: random(5%) + 5;
+      @return $margin;
+    } @else if $margin > 95% {
+      $margin: random(5%) + 91;
+      @return $margin;
+    } @else {
+      @return $margin;
+    }
+
+  }
+
+  @function checkBoxVerticalMargins($margin) {
+
+    @if $margin < 10% {
+      $margin: random(10%) + 10;
+      @return $margin;
+    } @else if $margin > 90% {
+      $margin: random(10%) + 80;
+      @return $margin;
+    } @else {
+      @return $margin;
+    }
+
+  }
+  // **************************************************************************
+
+  // animated boxes
+  // **************************************************************************
+  $boxSizes: 20 20 20 20 20 30 30 30;
+
+  .box {
+    position: absolute;
+    background-color: rgb(103, 175, 233);
+    // z-index: 1;
+
+    @for $i from 1 through $num {
+      &:nth-child(#{$i}) {
+        $size: nth($boxSizes, random(8)+1);
+        width: $size + px;
+        height: $size + px;
+        @include borderRadius(5px);
+
+        // set left and right margins
+        $left: random(100%);
+        $left: setProximity($left);
+        left: checkBoxHorizontalMargins($left);
+        // empty list for next value setting
+        $setValues: ();
+
+        // set top and bottom margin
+        $top: random(100%);
+        $top: setProximity($top);
+        top: checkBoxVerticalMargins($top);
+        // empty list for next value setting
+        $setValues: ();
+
+        // set fade animation and timing
+        $seconds: random($timing) + 10;
+        @include animate (elementFade $seconds infinite);
+      }
+    }
+  }
+}
+// ****************************************************************************
+
+
+// fade animation
+// ****************************************************************************
+@include keyframes(elementFade) {
+  0%   { opacity:  0;}
+  40%  { opacity:  0.05;}
+  50%  { opacity:  1;}
+  60%  { opacity:  0.05;}
+  100% { opacity:  0;}
+}
+// ****************************************************************************
