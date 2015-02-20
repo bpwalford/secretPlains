@@ -8,11 +8,13 @@ var Dashboard = {
       'margin-left':'12px',
       'margin-top':'82px',
     }, 800);
-    $('body').css('width:20%');
+    $('body').delay(700).queue(function () {
+      $(this).removeClass('body-big');
+    });
     $('.search-icon').delay(700).fadeIn(300);
   },
   inflateSearch: function () {
-    $('body').css('width:100%');
+    $('body').addClass('body-big');
     $('.compare-prints').animate({
       width:'40%',
       height:375,
